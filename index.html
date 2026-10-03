@@ -1,1 +1,1692 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shustho Poth AI</title><style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f5f7f8;color:#172026}header{background:#0f4c5c;color:#fff;padding:20px}header h1{margin:0;font-size:27px}main{max-width:980px;margin:auto;padding:18px}.card{background:#fff;border-radius:14px;padding:18px;margin:14px 0;box-shadow:0 2px 10px #0001}.status{display:inline-block;padding:6px 10px;border-radius:20px;background:#e7f6ec;color:#146b35;font-weight:700}.offline{background:#fff1e7;color:#8b3f00}textarea{width:100%;min-height:110px;border:1px solid #ccd5d8;border-radius:10px;padding:12px;font-size:17px;box-sizing:border-box}button{border:0;border-radius:9px;padding:11px 15px;margin:7px 6px 0 0;font-weight:700;cursor:pointer;background:#0f4c5c;color:#fff}.secondary{background:#e8eef0;color:#17313a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.metric{padding:12px;background:#f2f6f7;border-radius:10px}.warn{background:#fff4d6;border-left:5px solid #c98b00;padding:12px;border-radius:8px}.safe{background:#e8f7ee;border-left:5px solid #23864c;padding:12px;border-radius:8px}.hidden{display:none}.pill{display:inline-block;padding:4px 8px;background:#e9eff2;border-radius:12px;margin:3px}.small{font-size:13px;color:#5d6a70}.money{border-left:5px solid #6c4ab6;background:#f3effa;padding:13px;border-radius:8px}.facility{border:1px solid #dce5e8;border-radius:10px;padding:12px;margin:8px 0}.tag{font-size:12px;padding:3px 7px;border-radius:10px;background:#eef2f3}.bar{height:10px;background:#e8edef;border-radius:8px;overflow:hidden}.fill{height:100%;background:#0f4c5c}.error{color:#8b3f00}.source{font-size:12px;color:#5d6a70}select{padding:10px;border-radius:8px;border:1px solid #ccd5d8}</style></head><body><header><h1>Shustho Poth AI</h1><div>From local words to the next safe step.</div></header><main><div class="card"><span id="status" class="status">● Offline core available</span><p class="small">Bangla-first frontline health workflow. The AI structures reported information; a health worker makes the final decision.</p></div><div class="card"><h2>1. Patient conversation</h2><p class="small">Synthetic demo data. Try everyday Bangla or Banglish. No internet is required for the core classifier.</p><textarea id="input">বাচ্চার ৩ দিন ধরে জ্বর, কিছু খাচ্ছে না, বুক ধর ধর করছে</textarea><br><button onclick="runAI()">Structure with Small AI</button><button class="secondary" onclick="setInput('ডাক্তারের কাছে যাওয়ার টাকা নাই')">Financial barrier</button><button class="secondary" onclick="setInput('net nai, pore case pathabo')">Banglish / offline</button></div><div id="result" class="card hidden"></div><div id="decision" class="card hidden"></div><div id="facilityCard" class="card hidden"></div><div id="money" class="card hidden"></div><div id="sync" class="card hidden"></div><div class="card"><h2>Prototype evaluation</h2><div class="grid"><div class="metric"><b>Training examples</b><br>105 synthetic cases</div><div class="metric"><b>Held-out test</b><br>49 cases</div><div class="metric"><b>Accuracy</b><br>98.0%</div><div class="metric"><b>Macro-F1</b><br>97.9%</div></div><p class="small">One held-out connectivity example was misclassified as a financial barrier. We retain the error and use human review as a safety control.</p><p class="source">Evaluation is on synthetic demonstration data only; it is not clinical validation.</p></div><div class="card"><h2>Bangladesh referral layer</h2><p>Sample records use fields from the public DGHS Facility Registry. This demo does not calculate distance or claim live service availability.</p><select id="districtFilter" onchange="renderFacilities()"><option value="all">All sample districts</option><option>Dhaka</option><option>Tangail</option></select><div id="facilities"></div><p class="source">Source: DGHS Facility Registry. Verify live facility details before deployment.</p></div><div class="card"><h2>Why AI?</h2><p>A fixed form can store fields and SMS can transmit them. This narrow offline model adds value by classifying and structuring <b>unstructured local-language descriptions</b>, including Bangla/Banglish, while exposing uncertainty for human review.</p></div><div class="card"><h2>Responsible AI</h2><ul><li>No autonomous diagnosis or treatment.</li><li>Missing information and low confidence are surfaced.</li><li>Human health worker makes the final call.</li><li>DGHS facility records are a small registry sample, not live availability.</li><li>Financial/mobile-money options are access workflow only; no real payment is initiated.</li><li>Synthetic cases are not clinical records.</li></ul></div></main><script src="ai.js"></script><script>const FACILITIES=[{"facility_id": "10000056", "name": "Sir Salimullah Medical College Mitford Hospital", "name_bn": "স্যার সলিমুল্লাহ মেডিকেল কলেজ মিটফোর্ড হাসপাতাল", "type": "Medical College Hospital", "agency": "DGHS", "division": "Dhaka", "district": "Dhaka", "upazila": "Kotwali", "is_private": false, "source_status": "DGHS public registry record"}, {"facility_id": "10000057", "name": "Tejgaon Health Complex, Dhaka", "name_bn": "তেজগাঁও স্বাস্থ্য কমপ্লেক্স, ঢাকা", "type": "31-bed Hospital", "agency": "DGHS", "division": "Dhaka", "district": "Dhaka", "upazila": "Tejgaon", "is_private": false, "source_status": "DGHS public registry record"}, {"facility_id": "10014947", "name": "Taranagar Union Health Center", "name_bn": "তারানগর ইউনিয়ন স্বাস্থ্য কেন্দ্র", "type": "Union Health Center", "agency": "DGHS", "division": "Dhaka", "district": "Dhaka", "upazila": "Keraniganj", "is_private": false, "source_status": "DGHS public registry record"}, {"facility_id": "10014948", "name": "Zinjira Union Health Center", "name_bn": "জিনজীরা ইউনিয়ন স্বাস্থ্য কেন্দ্র", "type": "Union Health Center", "agency": "DGHS", "division": "Dhaka", "district": "Dhaka", "upazila": "Keraniganj", "is_private": false, "source_status": "DGHS public registry record"}, {"facility_id": "10014949", "name": "Agla Union Health Center", "name_bn": "আগলা ইউনিয়ন স্বাস্থ্য কেন্দ্র", "type": "Union Health Center", "agency": "DGHS", "division": "Dhaka", "district": "Dhaka", "upazila": "Nawabganj", "is_private": false, "source_status": "DGHS public registry record"}, {"facility_id": "10013142", "name": "Sakhipur Union Health Sub Center", "name_bn": "সখিপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র", "type": "Union Health Sub Center", "agency": "DGHS", "division": "Dhaka", "district": "Tangail", "upazila": "Sakhipur", "is_private": false, "source_status": "DGHS public registry record"}];let last=null;function label(i){return({fever:'Fever / febrile concern',breathing_difficulty:'Breathing difficulty',seizure:'Seizure reported',pain:'Pain / abdominal concern',financial_barrier:'Financial access barrier',connectivity:'Connectivity / store-and-forward',travel_barrier:'Travel / distance barrier'})[i]||i}function setInput(t){document.getElementById('input').value=t;runAI()}function runAI(){const text=document.getElementById('input').value.trim();if(!text)return;last=analyzeCase(text);const f=last.fields;document.getElementById('result').classList.remove('hidden');document.getElementById('result').innerHTML='<h2>2. Small AI result</h2><div class="grid"><div class="metric"><b>Detected concern</b><br>'+label(last.intent)+'</div><div class="metric"><b>AI confidence</b><br>'+Math.round(last.confidence*100)+'%</div><div class="metric"><b>Duration</b><br>'+(f.duration||'Missing')+'</div><div class="metric"><b>Age</b><br>'+(f.age||'Missing')+'</div></div><p><b>Reported reduced intake:</b> '+(f.reduced_intake?'Yes':'Not detected')+'</p><p><b>Reported breathing concern:</b> '+(f.breathing_reported?'Yes':'Not detected')+'</p><div class="warn"><b>Human review:</b><ul>'+(last.uncertainty.map(x=>'<li>'+x+'</li>').join('')||'<li>Review extracted information before deciding.</li>')+'</ul></div><button onclick="showDecision()">Review case →</button>';if(f.financial_barrier||last.intent==='financial_barrier')showMoney();else document.getElementById('money').classList.add('hidden');if(f.offline_reported||last.intent==='connectivity')showSync();else document.getElementById('sync').classList.add('hidden');}function showDecision(){document.getElementById('decision').classList.remove('hidden');document.getElementById('decision').innerHTML='<h2>3. Human health-worker decision</h2><p>The AI does not select the clinical action.</p><button onclick="saveCase('Refer')">Refer</button><button onclick="saveCase('Follow up')">Follow up</button><button onclick="saveCase('Need more information')">Need more information</button><button class="secondary" onclick="saveCase('Manage according to protocol')">Manage according to protocol</button>'}function showMoney(){document.getElementById('money').classList.remove('hidden');document.getElementById('money').innerHTML='<h2>Access barrier detected</h2><div class="money"><b>Reported:</b> financial barrier<p>Record affordability as part of the referral workflow.</p><b>Demo access routes</b><div><span class="pill">Mobile money</span><span class="pill">Cash</span><span class="pill">Verified assistance</span></div><p class="small">Prototype only: no real payment is initiated. Any deployed option must be verified and current.</p></div>'}function showSync(){document.getElementById('sync').classList.remove('hidden');document.getElementById('sync').innerHTML='<h2>Offline / store-and-forward</h2><div class="safe"><b>No internet required for core processing.</b><br>The case can be saved locally and synchronized when a connection returns.</div>'}function saveCase(action){const record={id:'SP-'+Date.now().toString().slice(-6),text:document.getElementById('input').value,analysis:last,decision:action,saved_at:new Date().toISOString(),sync_status:'pending_offline'};localStorage.setItem('shustho_poth_last_case',JSON.stringify(record));document.getElementById('decision').innerHTML='<h2>4. Referral / follow-up record</h2><div class="safe"><b>Saved locally.</b><br>Decision: '+action+'<br>Case ID: '+record.id+'<br>Sync status: pending offline</div><button onclick="simulateSync()">Restore connection & sync</button>'}function simulateSync(){document.getElementById('sync').classList.remove('hidden');document.getElementById('sync').innerHTML='<h2>5. Store-and-forward</h2><div class="safe"><b>✓ Connection restored</b><br>1 pending case synchronized in this demo.</div>'}function renderFacilities(){const d=document.getElementById('districtFilter').value;const fs=d==='all'?FACILITIES:FACILITIES.filter(x=>x.district===d);document.getElementById('facilities').innerHTML=fs.map(x=>'<div class="facility"><b>'+x.name+'</b><br>'+x.name_bn+'<br><span class="tag">'+x.type+'</span> <span class="tag">'+x.district+'</span> <span class="tag">'+x.upazila+'</span><p class="small">DGHS facility ID: '+x.facility_id+' · Registry record</p></div>').join('')}renderFacilities();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shustho Poth AI</title>
+
+<style>
+:root{
+  --navy:#123b46;
+  --teal:#16756b;
+  --teal-light:#e7f5f2;
+  --bg:#f4f7f7;
+  --card:#ffffff;
+  --text:#17252b;
+  --muted:#65757b;
+  --border:#dce5e7;
+  --warning:#9a6800;
+  --warning-bg:#fff7df;
+  --success:#176b45;
+  --success-bg:#e9f7ef;
+  --purple:#6948a8;
+  --purple-bg:#f3effb;
+  --shadow:0 5px 20px rgba(20,50,60,.07);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+}
+
+header{
+  background:linear-gradient(135deg,#123b46,#176b68);
+  color:white;
+  padding:34px 20px;
+}
+
+.header-inner{
+  max-width:1050px;
+  margin:auto;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:rgba(255,255,255,.14);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:-.5px;
+}
+
+.tagline{
+  margin-top:4px;
+  opacity:.9;
+  font-size:16px;
+}
+
+.header-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:20px;
+}
+
+.header-badge{
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.1);
+  padding:6px 11px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+main{
+  max-width:1050px;
+  margin:auto;
+  padding:22px 18px 60px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  margin:16px 0;
+  box-shadow:var(--shadow);
+}
+
+h2{
+  margin:0 0 8px;
+  font-size:20px;
+}
+
+h3{
+  margin:0 0 6px;
+  font-size:16px;
+}
+
+p{
+  margin:8px 0;
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.section-label{
+  color:var(--teal);
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:1px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 11px;
+  border-radius:20px;
+  background:var(--success-bg);
+  color:var(--success);
+  font-size:13px;
+  font-weight:800;
+}
+
+.status-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#2a9d68;
+}
+
+.workflow{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin:18px 0 4px;
+}
+
+.step{
+  background:#edf2f3;
+  color:#53646a;
+  padding:7px 10px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.step.active{
+  background:var(--teal-light);
+  color:var(--teal);
+  font-weight:800;
+}
+
+textarea{
+  width:100%;
+  min-height:135px;
+  resize:vertical;
+  border:1px solid #cbd8da;
+  border-radius:12px;
+  padding:15px;
+  font-size:17px;
+  font-family:inherit;
+  color:var(--text);
+  outline:none;
+  transition:.15s;
+}
+
+textarea:focus{
+  border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(22,117,107,.1);
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:11px 15px;
+  margin:9px 7px 0 0;
+  font-weight:750;
+  cursor:pointer;
+  background:var(--navy);
+  color:white;
+  font-size:14px;
+  transition:.15s;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  opacity:.94;
+}
+
+button.secondary{
+  background:#edf2f3;
+  color:#23434b;
+}
+
+button.success{
+  background:var(--teal);
+}
+
+button.purple{
+  background:var(--purple);
+}
+
+.demo-buttons{
+  margin-top:5px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:11px;
+}
+
+.metric{
+  background:#f5f8f8;
+  border:1px solid #e5ecee;
+  border-radius:12px;
+  padding:14px;
+}
+
+.metric-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:650;
+}
+
+.metric-value{
+  font-size:20px;
+  font-weight:800;
+  margin-top:2px;
+}
+
+.result-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.intent{
+  display:inline-block;
+  background:var(--teal-light);
+  color:var(--teal);
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.confidence{
+  font-weight:800;
+  color:var(--teal);
+}
+
+.bar{
+  height:8px;
+  background:#e7edef;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:7px;
+}
+
+.fill{
+  height:100%;
+  background:var(--teal);
+  border-radius:10px;
+  transition:width .4s ease;
+}
+
+.warn{
+  background:var(--warning-bg);
+  border-left:4px solid #d59a16;
+  padding:13px 15px;
+  border-radius:9px;
+  margin-top:15px;
+}
+
+.safe{
+  background:var(--success-bg);
+  border-left:4px solid #29905f;
+  padding:13px 15px;
+  border-radius:9px;
+  margin-top:15px;
+}
+
+.money{
+  background:var(--purple-bg);
+  border-left:4px solid var(--purple);
+  padding:15px;
+  border-radius:9px;
+}
+
+.pill{
+  display:inline-block;
+  padding:5px 9px;
+  margin:4px 4px 0 0;
+  border-radius:15px;
+  background:#e9edf5;
+  font-size:12px;
+}
+
+.facility{
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:14px;
+  margin:9px 0;
+  background:#fbfcfc;
+}
+
+.facility-name{
+  font-weight:800;
+}
+
+.tag{
+  display:inline-block;
+  font-size:11px;
+  padding:3px 7px;
+  border-radius:9px;
+  background:#edf2f3;
+  margin:5px 4px 0 0;
+  color:#526268;
+}
+
+select{
+  padding:10px 12px;
+  border:1px solid #cbd8da;
+  border-radius:9px;
+  background:white;
+  font-size:14px;
+  margin:5px 0 12px;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+@media(max-width:700px){
+  .two-col{
+    grid-template-columns:1fr;
+  }
+  header{
+    padding:27px 18px;
+  }
+  h1{
+    font-size:26px;
+  }
+}
+
+.divider{
+  height:1px;
+  background:var(--border);
+  margin:18px 0;
+}
+
+.number{
+  display:inline-flex;
+  width:28px;
+  height:28px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--teal-light);
+  color:var(--teal);
+  font-weight:800;
+  margin-right:7px;
+}
+
+footer{
+  color:var(--muted);
+  text-align:center;
+  font-size:12px;
+  padding:10px 20px 30px;
+}
+
+ul{
+  padding-left:22px;
+}
+
+li{
+  margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="brand">
+      <div class="logo">✚</div>
+      <div>
+        <h1>Shustho Poth AI</h1>
+        <div class="tagline">From local words to the next safe step.</div>
+      </div>
+    </div>
+
+    <div class="header-badges">
+      <span class="header-badge">● Offline core</span>
+      <span class="header-badge">বাংলা + Banglish</span>
+      <span class="header-badge">Human-in-the-loop</span>
+      <span class="header-badge">Small AI</span>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- STATUS -->
+  <section class="card">
+
+    <div class="status-row">
+
+      <div>
+        <div class="section-label">Frontline health workflow</div>
+        <h2>Local language → structured information → human decision</h2>
+        <p class="small">
+          The AI structures reported information. A health worker makes the final decision.
+        </p>
+      </div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        Offline core available
+      </div>
+
+    </div>
+
+    <div class="workflow">
+      <span class="step active">1 Conversation</span>
+      <span class="step">2 Structure</span>
+      <span class="step">3 Human review</span>
+      <span class="step">4 Referral / follow-up</span>
+      <span class="step">5 Sync</span>
+    </div>
+
+  </section>
+
+
+  <!-- PATIENT CONVERSATION -->
+  <section class="card">
+
+    <div class="section-label">Step 1</div>
+    <h2><span class="number">1</span>Patient conversation</h2>
+
+    <p class="small">
+      Describe the patient's situation in everyday Bangla or Banglish.
+      This demonstration uses synthetic cases.
+    </p>
+
+    <textarea id="input">বাচ্চার ৩ দিন ধরে জ্বর, কিছু খাচ্ছে না, বুক ধর ধর করছে</textarea>
+
+    <button onclick="runAI()">Structure with Small AI →</button>
+
+    <div class="demo-buttons">
+      <span class="small">Try a demo:</span><br>
+
+      <button class="secondary" onclick="setInput('ডাক্তারের কাছে যাওয়ার টাকা নাই')">
+        💳 Financial barrier
+      </button>
+
+      <button class="secondary" onclick="setInput('net nai, pore case pathabo')">
+        📡 Banglish / offline
+      </button>
+
+      <button class="secondary" onclick="setInput('বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে')">
+        🫁 Breathing concern
+      </button>
+
+      <button class="secondary" onclick="setInput('ছেলের খিঁচুনি হচ্ছে')">
+        ⚠️ Seizure reported
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESULT -->
+  <section id="result" class="card hidden"></section>
+
+
+  <!-- HUMAN DECISION -->
+  <section id="decision" class="card hidden"></section>
+
+
+  <!-- ACCESS -->
+  <section id="money" class="card hidden"></section>
+
+
+  <!-- OFFLINE -->
+  <section id="sync" class="card hidden"></section>
+
+
+  <!-- EVALUATION -->
+  <section class="card">
+
+    <div class="section-label">Prototype evaluation</div>
+    <h2>Model performance</h2>
+
+    <div class="grid">
+
+      <div class="metric">
+        <div class="metric-label">Training examples</div>
+        <div class="metric-value">105</div>
+        <div class="small">synthetic cases</div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-label">Held-out test</div>
+        <div class="metric-value">49</div>
+        <div class="small">synthetic cases</div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-label">Accuracy</div>
+        <div class="metric-value">98.0%</div>
+        <div class="small">48 / 49 correct</div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-label">Macro-F1</div>
+        <div class="metric-value">97.9%</div>
+        <div class="small">held-out evaluation</div>
+      </div>
+
+    </div>
+
+    <div class="warn">
+      <b>Retained model error</b>
+      <p>
+        One held-out connectivity example was misclassified as a financial barrier.
+        The error is retained rather than hidden, with human review used as a safety control.
+      </p>
+    </div>
+
+    <p class="small">
+      Evaluation is on synthetic demonstration data only; it is not clinical validation.
+    </p>
+
+  </section>
+
+
+  <!-- REFERRAL -->
+  <section class="card">
+
+    <div class="section-label">Bangladesh referral layer</div>
+    <h2>Sample DGHS facilities</h2>
+
+    <p class="small">
+      The prototype displays a small sample of facility records using fields from the
+      public DGHS Facility Registry. It does not calculate distance or claim live service availability.
+    </p>
+
+    <select id="districtFilter" onchange="renderFacilities()">
+      <option value="all">All sample districts</option>
+      <option value="Dhaka">Dhaka</option>
+      <option value="Tangail">Tangail</option>
+    </select>
+
+    <div id="facilities"></div>
+
+    <p class="small">
+      Source: DGHS Facility Registry. Verify live facility details before deployment.
+    </p>
+
+  </section>
+
+
+  <!-- WHY AI -->
+  <section class="card">
+
+    <div class="section-label">Design rationale</div>
+    <h2>Why Small AI?</h2>
+
+    <div class="two-col">
+
+      <div>
+        <h3>What a fixed form does</h3>
+        <p class="small">
+          A form can store structured information. SMS can transmit fixed fields.
+          But frontline conversations do not always arrive in structured fields.
+        </p>
+      </div>
+
+      <div>
+        <h3>What this prototype adds</h3>
+        <p class="small">
+          A narrow local classifier converts messy Bangla/Banglish descriptions
+          into structured information and flags uncertainty for human review.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="safe">
+      <b>Design principle:</b>
+      AI handles a narrow information-structuring task. It does not replace the health worker.
+    </div>
+
+  </section>
+
+
+  <!-- RESPONSIBLE AI -->
+  <section class="card">
+
+    <div class="section-label">Safety & governance</div>
+    <h2>Responsible AI</h2>
+
+    <ul>
+      <li>No autonomous diagnosis or treatment.</li>
+      <li>Missing information and low confidence are surfaced.</li>
+      <li>The human health worker makes the final decision.</li>
+      <li>DGHS facility records are a small registry sample, not live availability.</li>
+      <li>Financial/mobile-money options are access workflow only; no real payment is initiated.</li>
+      <li>Synthetic cases are clearly labeled and are not clinical records.</li>
+      <li>Model errors are retained and exposed rather than hidden.</li>
+    </ul>
+
+  </section>
+
+</main>
+
+<footer>
+  Shustho Poth AI · Hackathon prototype · Not a clinical device or validated medical decision-support system.
+</footer>
+
+
+<script>
+
+/* =========================================================
+   SHUSTHO POTH AI
+   Self-contained browser prototype
+   No external JavaScript required
+   ========================================================= */
+
+
+/* -----------------------------
+   Synthetic training examples
+   ----------------------------- */
+
+const TRAINING_CASES = [
+
+  ["বাচ্চার জ্বর আছে","fever"],
+  ["আমার মেয়ের জ্বর হয়েছে","fever"],
+  ["তিন দিন ধরে জ্বর","fever"],
+  ["বাচ্চার গা গরম","fever"],
+  ["জ্বরের জন্য খুব দুর্বল","fever"],
+  ["বাচ্চার জ্বর আর খেতে চায় না","fever"],
+  ["ছেলের দুই দিন ধরে জ্বর","fever"],
+  ["মেয়ের শরীর গরম হয়ে আছে","fever"],
+  ["জ্বরটা কমছে না","fever"],
+  ["বাচ্চার জ্বর হয়েছে গতকাল","fever"],
+  ["baby'r jor ache","fever"],
+  ["bacchar jor hocche","fever"],
+  ["tin din dhore jor","fever"],
+  ["bacchar body gorom","fever"],
+  ["jor komche na","fever"],
+
+  ["বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে","breathing_difficulty"],
+  ["শ্বাসকষ্ট হচ্ছে","breathing_difficulty"],
+  ["বুক ধর ধর করছে","breathing_difficulty"],
+  ["বাচ্চা ঠিকমতো শ্বাস নিতে পারছে না","breathing_difficulty"],
+  ["শ্বাস খুব দ্রুত চলছে","breathing_difficulty"],
+  ["বুক চাপ চাপ লাগছে আর কাশি আছে","breathing_difficulty"],
+  ["শ্বাস নিতে গেলে কষ্ট হয়","breathing_difficulty"],
+  ["বাচ্চার নিশ্বাস নিতে সমস্যা","breathing_difficulty"],
+  ["দম নিতে কষ্ট হচ্ছে","breathing_difficulty"],
+  ["বাচ্চার বুকটা ধরছে","breathing_difficulty"],
+  ["bacchar shash nite koshto","breathing_difficulty"],
+  ["shash koshto hocche","breathing_difficulty"],
+  ["buk dhor dhor korche","breathing_difficulty"],
+  ["nishash nite parছে na","breathing_difficulty"],
+  ["bacchar breath korte koshto","breathing_difficulty"],
+
+  ["ছেলের খিঁচুনি হচ্ছে","seizure"],
+  ["বাচ্চার খিঁচুনি হয়েছে","seizure"],
+  ["আজ খিঁচুনি হয়েছে","seizure"],
+  ["শরীর কাঁপতে কাঁপতে খিঁচুনি হয়েছে","seizure"],
+  ["আবার খিঁচুনি হচ্ছে","seizure"],
+  ["খিঁচুনি দেখে ভয় পেয়েছি","seizure"],
+  ["মেয়ের খিঁচুনি হয়েছিল","seizure"],
+  ["খিঁচুনি এখন থেমেছে","seizure"],
+  ["বাচ্চা হঠাৎ খিঁচুনি দিল","seizure"],
+  ["খিঁচুনির মতো কাঁপছে","seizure"],
+  ["bacchar khichuni hocche","seizure"],
+  ["cheler khichuni hoyeche","seizure"],
+  ["aj khichuni holo","seizure"],
+  ["baccha hotat khichuni dilo","seizure"],
+  ["khichuni abar hocche","seizure"],
+
+  ["বাচ্চার পেট ব্যথা করছে","pain"],
+  ["পেটে অনেক ব্যথা","pain"],
+  ["দুই দিন ধরে পেট ব্যথা","pain"],
+  ["ছেলের পেটে ব্যথা আর বমি","pain"],
+  ["পেট মোচড় দিচ্ছে","pain"],
+  ["পেটটা খুব ব্যথা করছে","pain"],
+  ["আজ সকাল থেকে পেটে ব্যথা","pain"],
+  ["বাচ্চার পেটের ব্যথা কমছে না","pain"],
+  ["পেটে ব্যথা হচ্ছে","pain"],
+  ["মেয়ের পেট ব্যথা করছে","pain"],
+  ["pet betha korche","pain"],
+  ["dui din dhore pet betha","pain"],
+  ["bacchar pet betha","pain"],
+  ["pet mochra diye betha","pain"],
+  ["pet onek betha","pain"],
+
+  ["ডাক্তারের কাছে যাওয়ার টাকা নাই","financial_barrier"],
+  ["হাসপাতালে যাওয়ার টাকা নেই","financial_barrier"],
+  ["চিকিৎসার খরচ দিতে পারব না","financial_barrier"],
+  ["ডাক্তারের ভাড়া নেই","financial_barrier"],
+  ["হাসপাতালে যেতে টাকা লাগবে কিন্তু টাকা নেই","financial_barrier"],
+  ["টাকা না থাকায় ডাক্তার দেখাতে পারছি না","financial_barrier"],
+  ["চিকিৎসার জন্য টাকা নাই","financial_barrier"],
+  ["বাচ্চাকে ডাক্তার দেখানোর সামর্থ্য নেই","financial_barrier"],
+  ["যাওয়ার ভাড়া দিতে পারব না","financial_barrier"],
+  ["ডাক্তারের কাছে যাওয়ার খরচ নেই","financial_barrier"],
+  ["doctor dekhanor taka nai","financial_barrier"],
+  ["hospital e jawar taka nai","financial_barrier"],
+  ["treatment er taka nei","financial_barrier"],
+  ["doctor er vara nai","financial_barrier"],
+  ["chikitsa korte taka nai","financial_barrier"],
+
+  ["নেট নাই","connectivity"],
+  ["ইন্টারনেট নেই","connectivity"],
+  ["নেট এলে রিপোর্ট পাঠাব","connectivity"],
+  ["এখন নেট নেই পরে পাঠাব","connectivity"],
+  ["কেসটা পরে সিঙ্ক করব","connectivity"],
+  ["ফোনে নেট আসছে না","connectivity"],
+  ["ডাটা শেষ হয়ে গেছে","connectivity"],
+  ["এখন অনলাইনে পাঠানো সম্ভব না","connectivity"],
+  ["নেটওয়ার্ক নেই","connectivity"],
+  ["সংযোগ ফিরে এলে কেস পাঠাব","connectivity"],
+  ["net nai","connectivity"],
+  ["internet nai","connectivity"],
+  ["net ashle pathabo","connectivity"],
+  ["pore sync korbo","connectivity"],
+  ["mobile data sesh","connectivity"],
+
+  ["ক্লিনিকে যেতে অনেক দূর","travel_barrier"],
+  ["ডাক্তারের কাছে যেতে দুই ঘণ্টা লাগে","travel_barrier"],
+  ["হাসপাতাল অনেক দূরে","travel_barrier"],
+  ["ক্লিনিকে যাওয়ার রাস্তা অনেক দূর","travel_barrier"],
+  ["যেতে অনেক সময় লাগে","travel_barrier"],
+  ["হাসপাতালে যেতে দূর পথ","travel_barrier"],
+  ["ডাক্তারের কাছে যেতে কষ্ট হয় কারণ অনেক দূর","travel_barrier"],
+  ["ক্লিনিক থেকে বাড়ি অনেক দূরে","travel_barrier"],
+  ["যাতায়াতের পথ অনেক লম্বা","travel_barrier"],
+  ["হাসপাতালে পৌঁছাতে অনেক সময় লাগে","travel_barrier"],
+  ["clinic onek dure","travel_barrier"],
+  ["doctor er kache jete dui ghonta lage","travel_barrier"],
+  ["hospital onek dure","travel_barrier"],
+  ["jete onek shomoy lage","travel_barrier"],
+  ["clinic e jete dure","travel_barrier"]
+];
+
+
+/* -----------------------------
+   Tokenizer
+   ----------------------------- */
+
+function tokenize(text){
+
+  return (text || "")
+    .toLowerCase()
+    .replace(/[।,!?;:()\-]/g," ")
+    .split(/\s+/)
+    .filter(Boolean);
+
+}
+
+
+/* -----------------------------
+   Naive Bayes training
+   ----------------------------- */
+
+function trainNaiveBayes(rows){
+
+  const classes = [...new Set(rows.map(x => x[1]))];
+
+  const docs = {};
+  const words = {};
+  const total = {};
+
+  classes.forEach(c => {
+    docs[c] = 0;
+    words[c] = {};
+    total[c] = 0;
+  });
+
+  const vocabulary = new Set();
+
+  rows.forEach(([text,label]) => {
+
+    docs[label]++;
+
+    tokenize(text).forEach(token => {
+
+      vocabulary.add(token);
+
+      words[label][token] =
+        (words[label][token] || 0) + 1;
+
+      total[label]++;
+
+    });
+
+  });
+
+  return {
+    classes,
+    docs,
+    words,
+    total,
+    vocabulary:[...vocabulary],
+    n:rows.length
+  };
+
+}
+
+const MODEL = trainNaiveBayes(TRAINING_CASES);
+
+
+/* -----------------------------
+   Classifier
+   ----------------------------- */
+
+function classify(text){
+
+  const tokens = tokenize(text);
+  const scores = {};
+
+  MODEL.classes.forEach(c => {
+
+    let logProbability =
+      Math.log(
+        (MODEL.docs[c] + 1) /
+        (MODEL.n + MODEL.classes.length)
+      );
+
+    tokens.forEach(token => {
+
+      logProbability += Math.log(
+        ((MODEL.words[c][token] || 0) + 1) /
+        (MODEL.total[c] + MODEL.vocabulary.length)
+      );
+
+    });
+
+    scores[c] = logProbability;
+
+  });
+
+  const sorted =
+    Object.entries(scores)
+      .sort((a,b) => b[1] - a[1]);
+
+  const best = sorted[0];
+  const second = sorted[1] || ["",best[1]-2];
+
+  const margin = best[1] - second[1];
+
+  const confidence =
+    Math.max(
+      .50,
+      Math.min(.99,.55 + margin/8)
+    );
+
+  return {
+    intent:best[0],
+    confidence,
+    scores
+  };
+
+}
+
+
+/* -----------------------------
+   Field extraction
+   ----------------------------- */
+
+function extractFields(text){
+
+  const t = text.toLowerCase();
+
+  const fields = {
+    duration:null,
+    age:null,
+    reduced_intake:false,
+    breathing_reported:false,
+    financial_barrier:false,
+    travel_barrier:false,
+    offline_reported:false
+  };
+
+
+  const duration =
+    t.match(/(\d+)\s*(দিন|day|days)/);
+
+  if(duration){
+
+    fields.duration =
+      `${duration[1]} day${duration[1] === "1" ? "" : "s"}`;
+
+  }
+
+
+  const age =
+    t.match(/(\d+)\s*(বছর|year|years|মাস|month|months)/);
+
+  if(age){
+
+    fields.age =
+      `${age[1]} ${age[2]}`;
+
+  }
+
+
+  if(
+    /খেতে|খাওয়া|দুধ|পানি|eat|milk|water/.test(t)
+    &&
+    /না|নেই|চায় না|পারছে না|not|no/.test(t)
+  ){
+
+    fields.reduced_intake = true;
+
+  }
+
+
+  if(
+    /শ্বাস|বুক ধর|শ্বাসকষ্ট|শ্বাস নিতে|shash|nishash|breath|koshto/.test(t)
+  ){
+
+    fields.breathing_reported = true;
+
+  }
+
+
+  if(
+    /টাকা নাই|টাকা নেই|ভাড়া নেই|টাকা লাগবে|সামর্থ্য নেই|taka nai|taka nei|vara nai|cost/.test(t)
+  ){
+
+    fields.financial_barrier = true;
+
+  }
+
+
+  if(
+    /দূর|দুই ঘণ্টা|দুই ঘন্টা|ভাড়া|dure|ghonta|shomoy lage/.test(t)
+  ){
+
+    fields.travel_barrier = true;
+
+  }
+
+
+  if(
+    /নেট নাই|নেট নেই|ইন্টারনেট নেই|সিঙ্ক|net nai|internet nai|sync|data sesh|নেটওয়ার্ক/.test(t)
+  ){
+
+    fields.offline_reported = true;
+
+  }
+
+
+  return fields;
+
+}
+
+
+/* -----------------------------
+   Complete analysis
+   ----------------------------- */
+
+function analyzeCase(text){
+
+  const result = classify(text);
+  const fields = extractFields(text);
+
+  const required = {
+
+    fever:["age","duration"],
+
+    breathing_difficulty:["age","duration"],
+
+    seizure:["age","duration"],
+
+    pain:["age","duration"]
+
+  }[result.intent] || [];
+
+
+  const missing =
+    required.filter(key => !fields[key]);
+
+
+  const uncertainty = [];
+
+
+  if(result.confidence < .72){
+
+    uncertainty.push(
+      "AI intent confidence is low; confirm the concern."
+    );
+
+  }
+
+
+  missing.forEach(key => {
+
+    uncertainty.push(
+      `${key} is missing and should be confirmed by the health worker.`
+    );
+
+  });
+
+
+  if(fields.breathing_reported){
+
+    uncertainty.push(
+      "Breathing difficulty is based on reported words; confirm clinically."
+    );
+
+  }
+
+
+  return {
+    intent:result.intent,
+    confidence:result.confidence,
+    fields,
+    missing,
+    uncertainty
+  };
+
+}
+
+
+/* -----------------------------
+   Intent labels
+   ----------------------------- */
+
+function label(intent){
+
+  const labels = {
+
+    fever:"Fever / febrile concern",
+
+    breathing_difficulty:"Breathing difficulty",
+
+    seizure:"Seizure reported",
+
+    pain:"Pain / abdominal concern",
+
+    financial_barrier:"Financial access barrier",
+
+    connectivity:"Connectivity / store-and-forward",
+
+    travel_barrier:"Travel / distance barrier"
+
+  };
+
+  return labels[intent] || intent;
+
+}
+
+
+/* -----------------------------
+   Input helper
+   ----------------------------- */
+
+function setInput(text){
+
+  document.getElementById("input").value = text;
+
+  runAI();
+
+}
+
+
+/* -----------------------------
+   Main AI button
+   ----------------------------- */
+
+let lastAnalysis = null;
+
+function runAI(){
+
+  const text =
+    document.getElementById("input").value.trim();
+
+  if(!text){
+
+    alert("Please describe the patient's situation first.");
+
+    return;
+
+  }
+
+
+  lastAnalysis = analyzeCase(text);
+
+  const result =
+    document.getElementById("result");
+
+  const f = lastAnalysis.fields;
+
+  const confidence =
+    Math.round(lastAnalysis.confidence * 100);
+
+
+  let uncertaintyHTML = "";
+
+  if(lastAnalysis.uncertainty.length){
+
+    uncertaintyHTML =
+      "<ul>" +
+      lastAnalysis.uncertainty
+        .map(x => `<li>${x}</li>`)
+        .join("") +
+      "</ul>";
+
+  }else{
+
+    uncertaintyHTML =
+      "<p>Review the extracted information before making a decision.</p>";
+
+  }
+
+
+  result.innerHTML = `
+
+    <div class="section-label">Step 2</div>
+
+    <div class="result-header">
+
+      <div>
+        <h2><span class="number">2</span>Small AI result</h2>
+        <span class="intent">
+          ${label(lastAnalysis.intent)}
+        </span>
+      </div>
+
+      <div>
+        <div class="small">AI confidence</div>
+        <div class="confidence">${confidence}%</div>
+        <div class="bar" style="width:150px">
+          <div class="fill" style="width:${confidence}%"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="grid">
+
+      <div class="metric">
+        <div class="metric-label">Duration</div>
+        <div class="metric-value" style="font-size:16px">
+          ${f.duration || "Missing"}
+        </div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-label">Age</div>
+        <div class="metric-value" style="font-size:16px">
+          ${f.age || "Missing"}
+        </div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-label">Reduced intake</div>
+        <div class="metric-value" style="font-size:16px">
+          ${f.reduced_intake ? "Yes" : "Not detected"}
+        </div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-label">Breathing concern</div>
+        <div class="metric-value" style="font-size:16px">
+          ${f.breathing_reported ? "Reported" : "Not detected"}
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="warn">
+
+      <b>Human review required</b>
+
+      ${uncertaintyHTML}
+
+    </div>
+
+
+    <button class="success" onclick="showDecision()">
+      Review case →
+    </button>
+
+  `;
+
+
+  result.classList.remove("hidden");
+
+
+  if(
+    f.financial_barrier ||
+    lastAnalysis.intent === "financial_barrier"
+  ){
+
+    showMoney();
+
+  }else{
+
+    document.getElementById("money")
+      .classList.add("hidden");
+
+  }
+
+
+  if(
+    f.offline_reported ||
+    lastAnalysis.intent === "connectivity"
+  ){
+
+    showSync();
+
+  }else{
+
+    document.getElementById("sync")
+      .classList.add("hidden");
+
+  }
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* -----------------------------
+   Human decision
+   ----------------------------- */
+
+function showDecision(){
+
+  const decision =
+    document.getElementById("decision");
+
+
+  decision.innerHTML = `
+
+    <div class="section-label">Step 3</div>
+
+    <h2>
+      <span class="number">3</span>
+      Human health-worker decision
+    </h2>
+
+    <p>
+      The AI does not select the clinical action.
+      The health worker reviews the information and records the decision.
+    </p>
+
+    <div class="warn">
+      <b>Human-in-the-loop control</b>
+      <p class="small">
+        These buttons represent the worker's decision, not an AI recommendation.
+      </p>
+    </div>
+
+    <button onclick="saveCase('Refer')">
+      Refer
+    </button>
+
+    <button onclick="saveCase('Follow up')">
+      Follow up
+    </button>
+
+    <button onclick="saveCase('Need more information')">
+      Need more information
+    </button>
+
+    <button class="secondary"
+            onclick="saveCase('Manage according to protocol')">
+      Manage according to protocol
+    </button>
+
+  `;
+
+  decision.classList.remove("hidden");
+
+  decision.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* -----------------------------
+   Financial access layer
+   ----------------------------- */
+
+function showMoney(){
+
+  const money =
+    document.getElementById("money");
+
+
+  money.innerHTML = `
+
+    <div class="section-label">Access layer</div>
+
+    <h2>💳 Financial access barrier detected</h2>
+
+    <div class="money">
+
+      <b>Reported barrier:</b>
+      affordability / treatment cost
+
+      <p>
+        The barrier can be recorded alongside the health workflow
+        so that access support is not lost when the case is referred.
+      </p>
+
+      <b>Demo access routes</b>
+
+      <div>
+        <span class="pill">Mobile money</span>
+        <span class="pill">Cash</span>
+        <span class="pill">Verified assistance</span>
+      </div>
+
+      <p class="small">
+        Prototype only: no real payment is initiated.
+        Any deployed option would need to be verified and current.
+      </p>
+
+    </div>
+
+  `;
+
+  money.classList.remove("hidden");
+
+}
+
+
+/* -----------------------------
+   Offline layer
+   ----------------------------- */
+
+function showSync(){
+
+  const sync =
+    document.getElementById("sync");
+
+
+  sync.innerHTML = `
+
+    <div class="section-label">Offline workflow</div>
+
+    <h2>📡 Store-and-forward</h2>
+
+    <div class="safe">
+
+      <b>No internet required for core processing.</b>
+
+      <p>
+        The case can be saved locally and synchronized
+        when a connection becomes available.
+      </p>
+
+    </div>
+
+  `;
+
+  sync.classList.remove("hidden");
+
+}
+
+
+/* -----------------------------
+   Save case locally
+   ----------------------------- */
+
+function saveCase(action){
+
+  if(!lastAnalysis){
+
+    return;
+
+  }
+
+
+  const record = {
+
+    id:"SP-" + Date.now().toString().slice(-6),
+
+    text:
+      document.getElementById("input").value,
+
+    analysis:lastAnalysis,
+
+    decision:action,
+
+    saved_at:new Date().toISOString(),
+
+    sync_status:"pending_offline"
+
+  };
+
+
+  localStorage.setItem(
+    "shustho_poth_last_case",
+    JSON.stringify(record)
+  );
+
+
+  const decision =
+    document.getElementById("decision");
+
+
+  decision.innerHTML = `
+
+    <div class="section-label">Step 4</div>
+
+    <h2>
+      <span class="number">4</span>
+      Referral / follow-up record
+    </h2>
+
+    <div class="safe">
+
+      <b>✓ Saved locally</b>
+
+      <p>
+        Decision: <b>${action}</b><br>
+        Case ID: <b>${record.id}</b><br>
+        Sync status: <b>pending offline</b>
+      </p>
+
+    </div>
+
+    <button class="success" onclick="simulateSync()">
+      Restore connection & sync
+    </button>
+
+  `;
+
+
+  decision.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* -----------------------------
+   Simulated synchronization
+   ----------------------------- */
+
+function simulateSync(){
+
+  const sync =
+    document.getElementById("sync");
+
+
+  sync.innerHTML = `
+
+    <div class="section-label">Step 5</div>
+
+    <h2>
+      <span class="number">5</span>
+      Store-and-forward
+    </h2>
+
+    <div class="safe">
+
+      <b>✓ Connection restored</b>
+
+      <p>
+        1 pending case synchronized in this demonstration.
+      </p>
+
+    </div>
+
+  `;
+
+
+  sync.classList.remove("hidden");
+
+
+  sync.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* -----------------------------
+   DGHS sample facility layer
+   ----------------------------- */
+
+const FACILITIES = [
+
+  {
+    facility_id:"10000056",
+    name:"Sir Salimullah Medical College Mitford Hospital",
+    name_bn:"স্যার সলিমুল্লাহ মেডিকেল কলেজ মিটফোর্ড হাসপাতাল",
+    type:"Medical College Hospital",
+    agency:"DGHS",
+    division:"Dhaka",
+    district:"Dhaka",
+    upazila:"Kotwali",
+    is_private:false
+  },
+
+  {
+    facility_id:"10000057",
+    name:"Tejgaon Health Complex, Dhaka",
+    name_bn:"তেজগাঁও স্বাস্থ্য কমপ্লেক্স, ঢাকা",
+    type:"31-bed Hospital",
+    agency:"DGHS",
+    division:"Dhaka",
+    district:"Dhaka",
+    upazila:"Tejgaon",
+    is_private:false
+  },
+
+  {
+    facility_id:"10014947",
+    name:"Taranagar Union Health Center",
+    name_bn:"তারানগর ইউনিয়ন স্বাস্থ্য কেন্দ্র",
+    type:"Union Health Center",
+    agency:"DGHS",
+    division:"Dhaka",
+    district:"Dhaka",
+    upazila:"Keraniganj",
+    is_private:false
+  },
+
+  {
+    facility_id:"10014948",
+    name:"Zinjira Union Health Center",
+    name_bn:"জিনজীরা ইউনিয়ন স্বাস্থ্য কেন্দ্র",
+    type:"Union Health Center",
+    agency:"DGHS",
+    district:"Dhaka",
+    upazila:"Keraniganj",
+    is_private:false
+  },
+
+  {
+    facility_id:"10014949",
+    name:"Agla Union Health Center",
+    name_bn:"আগলা ইউনিয়ন স্বাস্থ্য কেন্দ্র",
+    type:"Union Health Center",
+    agency:"DGHS",
+    district:"Dhaka",
+    upazila:"Nawabganj",
+    is_private:false
+  },
+
+  {
+    facility_id:"10013142",
+    name:"Sakhipur Union Health Sub Center",
+    name_bn:"সখিপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+    type:"Union Health Sub Center",
+    agency:"DGHS",
+    district:"Tangail",
+    upazila:"Sakhipur",
+    is_private:false
+  }
+
+];
+
+
+/* -----------------------------
+   Facility rendering
+   ----------------------------- */
+
+function renderFacilities(){
+
+  const district =
+    document.getElementById("districtFilter").value;
+
+
+  const facilities =
+    district === "all"
+      ? FACILITIES
+      : FACILITIES.filter(
+          x => x.district === district
+        );
+
+
+  document.getElementById("facilities").innerHTML =
+    facilities.map(x => `
+
+      <div class="facility">
+
+        <div class="facility-name">
+          ${x.name}
+        </div>
+
+        <div>
+          ${x.name_bn}
+        </div>
+
+        <div>
+
+          <span class="tag">
+            ${x.type}
+          </span>
+
+          <span class="tag">
+            ${x.district}
+          </span>
+
+          <span class="tag">
+            ${x.upazila}
+          </span>
+
+        </div>
+
+        <p class="small">
+          DGHS facility ID: ${x.facility_id}
+          · Public registry sample
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* -----------------------------
+   Initial page setup
+   ----------------------------- */
+
+renderFacilities();
+
+</script>
+
+</body>
+</html>
