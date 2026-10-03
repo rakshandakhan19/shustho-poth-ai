@@ -1,0 +1,59 @@
+{
+  "dataset": "local_language_dataset.csv",
+  "train_cases": 105,
+  "held_out_test_cases": 49,
+  "accuracy": 0.9796,
+  "macro_f1": 0.9794,
+  "per_intent": {
+    "fever": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "test_cases": 7
+    },
+    "breathing_difficulty": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "test_cases": 7
+    },
+    "seizure": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "test_cases": 7
+    },
+    "pain": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "test_cases": 7
+    },
+    "financial_barrier": {
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.933,
+      "test_cases": 7
+    },
+    "connectivity": {
+      "precision": 1.0,
+      "recall": 0.857,
+      "f1": 0.923,
+      "test_cases": 7
+    },
+    "travel_barrier": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "test_cases": 7
+    }
+  },
+  "errors": [
+    {
+      "text": "নেটওয়ার্ক না থাকায় এখন পাঠাতে পারছি না",
+      "expected": "connectivity",
+      "predicted": "financial_barrier"
+    }
+  ],
+  "note": "Synthetic demonstration data. Metrics are prototype evaluation only and are not clinical validation."
+}

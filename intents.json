@@ -1,0 +1,23 @@
+{
+  "fever": {
+    "description": "Reported fever / febrile concern"
+  },
+  "breathing_difficulty": {
+    "description": "Reported breathing difficulty"
+  },
+  "seizure": {
+    "description": "Reported seizure"
+  },
+  "pain": {
+    "description": "Reported pain / abdominal concern"
+  },
+  "financial_barrier": {
+    "description": "Reported financial access barrier"
+  },
+  "connectivity": {
+    "description": "Connectivity / store-and-forward issue"
+  },
+  "travel_barrier": {
+    "description": "Travel / distance barrier"
+  }
+}

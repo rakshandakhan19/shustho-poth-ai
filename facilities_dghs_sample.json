@@ -1,0 +1,80 @@
+{
+  "source": "DGHS Facility Registry",
+  "source_url": "https://hrm.dghs.gov.bd/public/facility-registry",
+  "retrieved": "2026-10-04",
+  "records": [
+    {
+      "facility_id": "10000056",
+      "name": "Sir Salimullah Medical College Mitford Hospital",
+      "name_bn": "স্যার সলিমুল্লাহ মেডিকেল কলেজ মিটফোর্ড হাসপাতাল",
+      "type": "Medical College Hospital",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Kotwali",
+      "is_private": false,
+      "source_status": "DGHS public registry record"
+    },
+    {
+      "facility_id": "10000057",
+      "name": "Tejgaon Health Complex, Dhaka",
+      "name_bn": "তেজগাঁও স্বাস্থ্য কমপ্লেক্স, ঢাকা",
+      "type": "31-bed Hospital",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Tejgaon",
+      "is_private": false,
+      "source_status": "DGHS public registry record"
+    },
+    {
+      "facility_id": "10014947",
+      "name": "Taranagar Union Health Center",
+      "name_bn": "তারানগর ইউনিয়ন স্বাস্থ্য কেন্দ্র",
+      "type": "Union Health Center",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Keraniganj",
+      "is_private": false,
+      "source_status": "DGHS public registry record"
+    },
+    {
+      "facility_id": "10014948",
+      "name": "Zinjira Union Health Center",
+      "name_bn": "জিনজীরা ইউনিয়ন স্বাস্থ্য কেন্দ্র",
+      "type": "Union Health Center",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Keraniganj",
+      "is_private": false,
+      "source_status": "DGHS public registry record"
+    },
+    {
+      "facility_id": "10014949",
+      "name": "Agla Union Health Center",
+      "name_bn": "আগলা ইউনিয়ন স্বাস্থ্য কেন্দ্র",
+      "type": "Union Health Center",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Nawabganj",
+      "is_private": false,
+      "source_status": "DGHS public registry record"
+    },
+    {
+      "facility_id": "10013142",
+      "name": "Sakhipur Union Health Sub Center",
+      "name_bn": "সখিপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র",
+      "type": "Union Health Sub Center",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Tangail",
+      "upazila": "Sakhipur",
+      "is_private": false,
+      "source_status": "DGHS public registry record"
+    }
+  ],
+  "important_note": "Sample registry records only. The prototype does not infer distance, opening hours, bed availability, service availability, or emergency capacity. Verify live information before deployment."
+}

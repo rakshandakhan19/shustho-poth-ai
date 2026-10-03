@@ -1,0 +1,17 @@
+{
+  "purpose": "Safety guardrails for the prototype; not a clinical protocol.",
+  "rules": [
+    "AI structures reported information; it does not diagnose or prescribe.",
+    "A health worker makes the final clinical/referral decision.",
+    "Missing age/duration fields are surfaced for confirmation.",
+    "Breathing-related reports are flagged for human confirmation.",
+    "Facility records must be verified before deployment.",
+    "Payment/assistance options must be verified and current before deployment."
+  ],
+  "allowed_decisions": [
+    "Refer",
+    "Follow up",
+    "Need more information",
+    "Manage according to protocol"
+  ]
+}

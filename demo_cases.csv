@@ -1,0 +1,8 @@
+﻿id,text,expected_intent
+D001,"আমার বাচ্চার ৩ দিন ধরে জ্বর, কিছু খাচ্ছে না, বুক ধর ধর করছে",fever
+D002,বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে,breathing_difficulty
+D003,ছেলের খিঁচুনি হচ্ছে,seizure
+D004,ডাক্তারের কাছে যাওয়ার টাকা নাই,financial_barrier
+D005,"নেট নাই, পরে পাঠাব",connectivity
+D006,ক্লিনিকে যেতে অনেক দূর,travel_barrier
+D007,দুই দিন ধরে পেট ব্যথা করছে,pain

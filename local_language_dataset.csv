@@ -1,0 +1,155 @@
+﻿id,split,text,intent,predicted_intent,correct,confidence
+T001,train,বাচ্চার জ্বর আছে,fever,fever,true,1.0
+T002,train,আমার মেয়ের জ্বর হয়েছে,fever,fever,true,1.0
+T003,train,তিন দিন ধরে জ্বর,fever,fever,true,1.0
+T004,train,বাচ্চার গা গরম,fever,fever,true,1.0
+T005,train,জ্বরের জন্য খুব দুর্বল,fever,fever,true,1.0
+T006,train,বাচ্চার জ্বর আর খেতে চায় না,fever,fever,true,1.0
+T007,train,ছেলের দুই দিন ধরে জ্বর,fever,fever,true,1.0
+T008,train,মেয়ের শরীর গরম হয়ে আছে,fever,fever,true,1.0
+T009,train,জ্বরটা কমছে না,fever,fever,true,1.0
+T010,train,বাচ্চার জ্বর হয়েছে গতকাল,fever,fever,true,1.0
+T011,train,baby'r jor ache,fever,fever,true,1.0
+T012,train,bacchar jor hocche,fever,fever,true,1.0
+T013,train,tin din dhore jor,fever,fever,true,1.0
+T014,train,bacchar body gorom,fever,fever,true,1.0
+T015,train,jor komche na,fever,fever,true,1.0
+T016,train,বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,1.0
+T017,train,শ্বাসকষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,1.0
+T018,train,বুক ধর ধর করছে,breathing_difficulty,breathing_difficulty,true,1.0
+T019,train,বাচ্চা ঠিকমতো শ্বাস নিতে পারছে না,breathing_difficulty,breathing_difficulty,true,1.0
+T020,train,শ্বাস খুব দ্রুত চলছে,breathing_difficulty,breathing_difficulty,true,1.0
+T021,train,বুক চাপ চাপ লাগছে আর কাশি আছে,breathing_difficulty,breathing_difficulty,true,1.0
+T022,train,শ্বাস নিতে গেলে কষ্ট হয়,breathing_difficulty,breathing_difficulty,true,1.0
+T023,train,বাচ্চার নিশ্বাস নিতে সমস্যা,breathing_difficulty,breathing_difficulty,true,1.0
+T024,train,দম নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,1.0
+T025,train,বাচ্চার বুকটা ধরছে,breathing_difficulty,breathing_difficulty,true,1.0
+T026,train,bacchar shash nite koshto,breathing_difficulty,breathing_difficulty,true,1.0
+T027,train,shash koshto hocche,breathing_difficulty,breathing_difficulty,true,1.0
+T028,train,buk dhor dhor korche,breathing_difficulty,breathing_difficulty,true,1.0
+T029,train,nishash nite parছে na,breathing_difficulty,breathing_difficulty,true,1.0
+T030,train,bacchar breath korte koshto,breathing_difficulty,breathing_difficulty,true,1.0
+T031,train,ছেলের খিঁচুনি হচ্ছে,seizure,seizure,true,1.0
+T032,train,বাচ্চার খিঁচুনি হয়েছে,seizure,seizure,true,1.0
+T033,train,আজ খিঁচুনি হয়েছে,seizure,seizure,true,1.0
+T034,train,শরীর কাঁপতে কাঁপতে খিঁচুনি হয়েছে,seizure,seizure,true,1.0
+T035,train,আবার খিঁচুনি হচ্ছে,seizure,seizure,true,1.0
+T036,train,খিঁচুনি দেখে ভয় পেয়েছি,seizure,seizure,true,1.0
+T037,train,মেয়ের খিঁচুনি হয়েছিল,seizure,seizure,true,1.0
+T038,train,খিঁচুনি এখন থেমেছে,seizure,seizure,true,1.0
+T039,train,বাচ্চা হঠাৎ খিঁচুনি দিল,seizure,seizure,true,1.0
+T040,train,খিঁচুনির মতো কাঁপছে,seizure,seizure,true,1.0
+T041,train,bacchar khichuni hocche,seizure,seizure,true,1.0
+T042,train,cheler khichuni hoyeche,seizure,seizure,true,1.0
+T043,train,aj khichuni holo,seizure,seizure,true,1.0
+T044,train,baccha hotat khichuni dilo,seizure,seizure,true,1.0
+T045,train,khichuni abar hocche,seizure,seizure,true,1.0
+T046,train,বাচ্চার পেট ব্যথা করছে,pain,pain,true,1.0
+T047,train,পেটে অনেক ব্যথা,pain,pain,true,1.0
+T048,train,দুই দিন ধরে পেট ব্যথা,pain,pain,true,1.0
+T049,train,ছেলের পেটে ব্যথা আর বমি,pain,pain,true,1.0
+T050,train,পেট মোচড় দিচ্ছে,pain,pain,true,1.0
+T051,train,পেটটা খুব ব্যথা করছে,pain,pain,true,1.0
+T052,train,আজ সকাল থেকে পেটে ব্যথা,pain,pain,true,1.0
+T053,train,বাচ্চার পেটের ব্যথা কমছে না,pain,pain,true,1.0
+T054,train,পেটে ব্যথা হচ্ছে,pain,pain,true,1.0
+T055,train,মেয়ের পেট ব্যথা করছে,pain,pain,true,1.0
+T056,train,pet betha korche,pain,pain,true,1.0
+T057,train,dui din dhore pet betha,pain,pain,true,1.0
+T058,train,bacchar pet betha,pain,pain,true,1.0
+T059,train,pet mochra diye betha,pain,pain,true,1.0
+T060,train,pet onek betha,pain,pain,true,1.0
+T061,train,ডাক্তারের কাছে যাওয়ার টাকা নাই,financial_barrier,financial_barrier,true,1.0
+T062,train,হাসপাতালে যাওয়ার টাকা নেই,financial_barrier,financial_barrier,true,1.0
+T063,train,চিকিৎসার খরচ দিতে পারব না,financial_barrier,financial_barrier,true,1.0
+T064,train,ডাক্তারের ভাড়া নেই,financial_barrier,financial_barrier,true,1.0
+T065,train,হাসপাতালে যেতে টাকা লাগবে কিন্তু টাকা নেই,financial_barrier,financial_barrier,true,1.0
+T066,train,টাকা না থাকায় ডাক্তার দেখাতে পারছি না,financial_barrier,financial_barrier,true,1.0
+T067,train,চিকিৎসার জন্য টাকা নাই,financial_barrier,financial_barrier,true,1.0
+T068,train,বাচ্চাকে ডাক্তার দেখানোর সামর্থ্য নেই,financial_barrier,financial_barrier,true,1.0
+T069,train,যাওয়ার ভাড়া দিতে পারব না,financial_barrier,financial_barrier,true,1.0
+T070,train,ডাক্তারের কাছে যাওয়ার খরচ নেই,financial_barrier,financial_barrier,true,1.0
+T071,train,doctor dekhanor taka nai,financial_barrier,financial_barrier,true,1.0
+T072,train,hospital e jawar taka nai,financial_barrier,financial_barrier,true,1.0
+T073,train,treatment er taka nei,financial_barrier,financial_barrier,true,1.0
+T074,train,doctor er vara nai,financial_barrier,financial_barrier,true,1.0
+T075,train,chikitsa korte taka nai,financial_barrier,financial_barrier,true,1.0
+T076,train,নেট নাই,connectivity,connectivity,true,1.0
+T077,train,ইন্টারনেট নেই,connectivity,connectivity,true,1.0
+T078,train,নেট এলে রিপোর্ট পাঠাব,connectivity,connectivity,true,1.0
+T079,train,এখন নেট নেই পরে পাঠাব,connectivity,connectivity,true,1.0
+T080,train,কেসটা পরে সিঙ্ক করব,connectivity,connectivity,true,1.0
+T081,train,ফোনে নেট আসছে না,connectivity,connectivity,true,1.0
+T082,train,ডাটা শেষ হয়ে গেছে,connectivity,connectivity,true,1.0
+T083,train,এখন অনলাইনে পাঠানো সম্ভব না,connectivity,connectivity,true,1.0
+T084,train,নেটওয়ার্ক নেই,connectivity,connectivity,true,1.0
+T085,train,সংযোগ ফিরে এলে কেস পাঠাব,connectivity,connectivity,true,1.0
+T086,train,net nai,connectivity,connectivity,true,1.0
+T087,train,internet nai,connectivity,connectivity,true,1.0
+T088,train,net ashle pathabo,connectivity,connectivity,true,1.0
+T089,train,pore sync korbo,connectivity,connectivity,true,1.0
+T090,train,mobile data sesh,connectivity,connectivity,true,1.0
+T091,train,ক্লিনিকে যেতে অনেক দূর,travel_barrier,travel_barrier,true,1.0
+T092,train,ডাক্তারের কাছে যেতে দুই ঘণ্টা লাগে,travel_barrier,travel_barrier,true,1.0
+T093,train,হাসপাতাল অনেক দূরে,travel_barrier,travel_barrier,true,1.0
+T094,train,ক্লিনিকে যাওয়ার রাস্তা অনেক দূর,travel_barrier,travel_barrier,true,1.0
+T095,train,যেতে অনেক সময় লাগে,travel_barrier,travel_barrier,true,1.0
+T096,train,হাসপাতালে যেতে দূর পথ,travel_barrier,travel_barrier,true,1.0
+T097,train,ডাক্তারের কাছে যেতে কষ্ট হয় কারণ অনেক দূর,travel_barrier,travel_barrier,true,1.0
+T098,train,ক্লিনিক থেকে বাড়ি অনেক দূরে,travel_barrier,travel_barrier,true,1.0
+T099,train,যাতায়াতের পথ অনেক লম্বা,travel_barrier,travel_barrier,true,1.0
+T100,train,হাসপাতালে পৌঁছাতে অনেক সময় লাগে,travel_barrier,travel_barrier,true,1.0
+T101,train,clinic onek dure,travel_barrier,travel_barrier,true,1.0
+T102,train,doctor er kache jete dui ghonta lage,travel_barrier,travel_barrier,true,1.0
+T103,train,hospital onek dure,travel_barrier,travel_barrier,true,1.0
+T104,train,jete onek shomoy lage,travel_barrier,travel_barrier,true,1.0
+T105,train,clinic e jete dure,travel_barrier,travel_barrier,true,1.0
+T106,test,আমার বাচ্চার তিন দিন ধরে গা গরম,fever,fever,true,0.99
+T107,test,ছেলের জ্বরটা দুই দিন হলো,fever,fever,true,0.692
+T108,test,জ্বরের সঙ্গে কিছু খেতে চাচ্ছে না,fever,fever,true,0.699
+T109,test,বাচ্চার শরীর খুব গরম হয়ে আছে,fever,fever,true,0.957
+T110,test,মেয়ের কাল থেকে জ্বর,fever,fever,true,0.761
+T111,test,baby'r jor tin din dhore,fever,fever,true,0.929
+T112,test,amar meyer body gorom ar jor,fever,fever,true,0.904
+T113,test,বাচ্চা শ্বাস নিতে পারছে না ঠিকমতো,breathing_difficulty,breathing_difficulty,true,0.99
+T114,test,বুকটা ধর ধর করছে আর নিশ্বাস ছোট হয়ে যাচ্ছে,breathing_difficulty,breathing_difficulty,true,0.894
+T115,test,দম নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,0.99
+T116,test,ছেলের শ্বাস খুব দ্রুত চলছে,breathing_difficulty,breathing_difficulty,true,0.823
+T117,test,বাচ্চার বুক চাপ চাপ করছে,breathing_difficulty,breathing_difficulty,true,0.902
+T118,test,bacchar shash nite koshto hocche,breathing_difficulty,breathing_difficulty,true,0.966
+T119,test,"buk dhor dhor korche, nishash choto",breathing_difficulty,breathing_difficulty,true,0.986
+T120,test,আজ সকালে বাচ্চার খিঁচুনি হয়েছিল,seizure,seizure,true,0.896
+T121,test,মেয়েটা হঠাৎ কাঁপতে কাঁপতে খিঁচুনি দিল,seizure,seizure,true,0.99
+T122,test,খিঁচুনি আবার শুরু হয়েছে,seizure,seizure,true,0.974
+T123,test,বাচ্চার শরীর কাঁপছে খিঁচুনির মতো,seizure,seizure,true,0.713
+T124,test,ছেলের খিঁচুনি থেমে গেছে,seizure,seizure,true,0.838
+T125,test,bacchar khichuni hoyeche,seizure,seizure,true,0.82
+T126,test,chele hotat khichuni dilo,seizure,seizure,true,0.947
+T127,test,ছেলের পেটটা আজ থেকে ব্যথা করছে,pain,pain,true,0.99
+T128,test,বাচ্চার পেটে মোচড় দিয়ে ব্যথা হচ্ছে,pain,pain,true,0.99
+T129,test,দুই দিন হলো পেটটা খুব ব্যথা,pain,pain,true,0.868
+T130,test,মেয়ের পেটে ব্যথা আর বমি,pain,pain,true,0.99
+T131,test,পেটের ব্যথা কমছে না,pain,pain,true,0.87
+T132,test,pet betha korche dui din,pain,pain,true,0.99
+T133,test,bacchar pet mochra diye betha,pain,pain,true,0.99
+T134,test,ডাক্তার দেখানোর টাকা নাই,financial_barrier,financial_barrier,true,0.99
+T135,test,হাসপাতালে যাওয়ার ভাড়া জোগাড় করতে পারছি না,financial_barrier,financial_barrier,true,0.99
+T136,test,চিকিৎসার জন্য টাকা নেই,financial_barrier,financial_barrier,true,0.99
+T137,test,ডাক্তারের কাছে যাওয়ার সামর্থ্য নেই,financial_barrier,financial_barrier,true,0.99
+T138,test,টাকা না থাকায় হাসপাতালে যেতে পারছি না,financial_barrier,financial_barrier,true,0.99
+T139,test,doctor dekhanor taka nai,financial_barrier,financial_barrier,true,0.99
+T140,test,hospital e jawar vara nai,financial_barrier,financial_barrier,true,0.91
+T141,test,নেটওয়ার্ক না থাকায় এখন পাঠাতে পারছি না,connectivity,financial_barrier,false,0.556
+T142,test,ইন্টারনেট আসলে কেসটা পাঠাব,connectivity,connectivity,true,0.897
+T143,test,মোবাইল ডাটা শেষ,connectivity,connectivity,true,0.723
+T144,test,এখন কানেকশন নেই পরে সিঙ্ক হবে,connectivity,connectivity,true,0.921
+T145,test,নেট পাচ্ছি না,connectivity,connectivity,true,0.718
+T146,test,"net nai, pore case pathabo",connectivity,connectivity,true,0.847
+T147,test,internet nai ekhon,connectivity,connectivity,true,0.603
+T148,test,ক্লিনিকটা আমাদের বাড়ি থেকে অনেক দূরে,travel_barrier,travel_barrier,true,0.933
+T149,test,হাসপাতালে যেতে অনেক সময় লাগে,travel_barrier,travel_barrier,true,0.99
+T150,test,ডাক্তার দেখাতে যেতে দুই ঘণ্টা লাগে,travel_barrier,travel_barrier,true,0.816
+T151,test,দূর পথ বলে হাসপাতালে যাওয়া কঠিন,travel_barrier,travel_barrier,true,0.894
+T152,test,ক্লিনিকে পৌঁছাতে অনেক দূর যেতে হয়,travel_barrier,travel_barrier,true,0.99
+T153,test,clinic onek dure,travel_barrier,travel_barrier,true,0.933
+T154,test,hospital e jete onek shomoy lage,travel_barrier,travel_barrier,true,0.99
