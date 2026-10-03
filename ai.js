@@ -1,5 +1,4 @@
-// Shustho Poth AI — tiny offline Naive Bayes classifier.
-// Training data is synthetic and local-language; this is not a clinical model.
+/* Shustho Poth AI: small, synthetic Naive Bayes model. Browser-only; not clinical. */
 const TRAINING_CASES = [
   ["বাচ্চার জ্বর আছে", "fever"],
   ["আমার মেয়ের জ্বর হয়েছে", "fever"],
@@ -107,9 +106,44 @@ const TRAINING_CASES = [
   ["jete onek shomoy lage", "travel_barrier"],
   ["clinic e jete dure", "travel_barrier"]
 ];
-function tokenize(s){ return (s||"").toLowerCase().replace(/[।,!?;:()\-]/g," ").split(/\s+/).filter(Boolean); }
-function trainNaiveBayes(rows){const classes=[...new Set(rows.map(x=>x[1]))],docs={},words={},total={}; classes.forEach(c=>{docs[c]=0;words[c]={};total[c]=0});const vocab=new Set();rows.forEach(([text,label])=>{docs[label]++;tokenize(text).forEach(t=>{vocab.add(t);words[label][t]=(words[label][t]||0)+1;total[label]++})});return {classes,docs,words,total,vocab:[...vocab],n:rows.length};}
-const MODEL=trainNaiveBayes(TRAINING_CASES);
-function classify(text){const toks=tokenize(text),scores={};MODEL.classes.forEach(c=>{let logp=Math.log((MODEL.docs[c]+1)/(MODEL.n+MODEL.classes.length));toks.forEach(t=>{logp+=Math.log(((MODEL.words[c][t]||0)+1)/(MODEL.total[c]+MODEL.vocab.length));});scores[c]=logp;});const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);const best=sorted[0],second=sorted[1]||["",best[1]-2];const margin=best[1]-second[1];return {intent:best[0],confidence:Math.max(.5,Math.min(.99,.55+margin/8)),scores};}
-function extractFields(text){const t=text.toLowerCase();const out={duration:null,age:null,reduced_intake:false,breathing_reported:false,financial_barrier:false,travel_barrier:false,offline_reported:false};const d=t.match(/(\d+)\s*(দিন|day|days)/);if(d)out.duration=`${d[1]} day${d[1]==='1'?'':'s'}`;const age=t.match(/(\d+)\s*(বছর|year|years|মাস|month|months)/);if(age)out.age=`${age[1]} ${age[2]}`;if(/খেতে|খাওয়া|দুধ|পানি|খেতে|eat|milk|water/.test(t)&&/না|নেই|চায় না|পারছে না|not|no/.test(t))out.reduced_intake=true;if(/শ্বাস|বুক ধর|শ্বাসকষ্ট|শ্বাস নিতে|shash|nishash|breath|koshto/.test(t))out.breathing_reported=true;if(/টাকা নাই|টাকা নেই|ভাড়া নেই|টাকা লাগবে|taka nai|taka nei|vara nai|cost/.test(t))out.financial_barrier=true;if(/দূর|দুই ঘণ্টা|ভাড়া|dure|dure|ghonta|shomoy lage/.test(t))out.travel_barrier=true;if(/নেট নাই|নেট নেই|ইন্টারনেট নেই|সিঙ্ক|net nai|internet nai|sync|data sesh|নেটওয়ার্ক/.test(t))out.offline_reported=true;return out;}
-function analyzeCase(text){const result=classify(text),fields=extractFields(text);const required={fever:["age","duration"],breathing_difficulty:["age","duration"],seizure:["age","duration"],pain:["age","duration"]}[result.intent]||[];const missing=required.filter(k=>!fields[k]);const uncertainty=[];if(result.confidence<.72)uncertainty.push("AI intent confidence is low; confirm the concern.");missing.forEach(k=>uncertainty.push(`${k} is missing and should be confirmed by the health worker.`));if(fields.breathing_reported)uncertainty.push("Breathing difficulty is based on reported words; confirm clinically.");return {intent:result.intent,confidence:result.confidence,fields,missing,uncertainty};}
+
+function tokenize(text) { return (text || "").toLowerCase().replace(/[।,!?;:()\-]/g, " ").split(/\s+/).filter(Boolean); }
+function trainNaiveBayes(rows) {
+  const classes = [...new Set(rows.map(row => row[1]))], docs = {}, words = {}, total = {}, vocabulary = new Set();
+  classes.forEach(label => { docs[label] = 0; words[label] = {}; total[label] = 0; });
+  rows.forEach(([text, label]) => { docs[label]++; tokenize(text).forEach(token => { vocabulary.add(token); words[label][token] = (words[label][token] || 0) + 1; total[label]++; }); });
+  return { classes, docs, words, total, vocabulary: [...vocabulary], n: rows.length };
+}
+const MODEL = trainNaiveBayes(TRAINING_CASES);
+function classify(text) {
+  const tokens = tokenize(text), scores = {};
+  MODEL.classes.forEach(label => {
+    let score = Math.log((MODEL.docs[label] + 1) / (MODEL.n + MODEL.classes.length));
+    tokens.forEach(token => { score += Math.log(((MODEL.words[label][token] || 0) + 1) / (MODEL.total[label] + MODEL.vocabulary.length)); });
+    scores[label] = score;
+  });
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const margin = sorted[0][1] - (sorted[1] ? sorted[1][1] : sorted[0][1] - 2);
+  return { intent: sorted[0][0], confidence: Math.max(.5, Math.min(.99, .55 + margin / 8)), scores };
+}
+function extractFields(text) {
+  const value = (text || "").toLowerCase().replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit));
+  const fields = { duration: null, age: null, reduced_intake: false, breathing_reported: false, financial_barrier: false, travel_barrier: false, offline_reported: false };
+  const duration = value.match(/(\d+)\s*(দিন|day|days)/); if (duration) fields.duration = `${duration[1]} ${duration[2]}`;
+  const age = value.match(/(\d+)\s*(বছর|year|years|মাস|month|months)/); if (age) fields.age = `${age[1]} ${age[2]}`;
+  if (/(খেতে|খাওয়া|খাচ্ছে|দুধ|পানি|eat|milk|water)/.test(value) && /(না|নেই|চায় না|পারছে না|not|no)/.test(value)) fields.reduced_intake = true;
+  fields.breathing_reported = /শ্বাস|বুক ধর|শ্বাসকষ্ট|শ্বাস নিতে|shash|nishash|breath|koshto/.test(value);
+  fields.financial_barrier = /টাকা নাই|টাকা নেই|ভাড়া নেই|টাকা লাগবে|সামর্থ্য নেই|taka nai|taka nei|vara nai|cost/.test(value);
+  fields.travel_barrier = /দূর|দুই ঘণ্টা|দুই ঘন্টা|ভাড়া|dure|ghonta|shomoy lage/.test(value);
+  fields.offline_reported = /নেট নাই|নেট নেই|ইন্টারনেট নেই|সিঙ্ক|net nai|internet nai|sync|data sesh|নেটওয়ার্ক/.test(value);
+  return fields;
+}
+function analyzeCase(text) {
+  const result = classify(text), fields = extractFields(text);
+  const required = { fever: ["age", "duration"], breathing_difficulty: ["age", "duration"], seizure: ["age", "duration"], pain: ["age", "duration"] }[result.intent] || [];
+  const missing = required.filter(key => !fields[key]), uncertainty = [];
+  if (result.confidence < .72) uncertainty.push("AI intent confidence is low; confirm the concern.");
+  missing.forEach(key => uncertainty.push(`${key} is missing and should be confirmed by the health worker.`));
+  if (fields.breathing_reported) uncertainty.push("Breathing difficulty is based on reported words; confirm clinically.");
+  return { intent: result.intent, confidence: result.confidence, fields, missing, uncertainty };
+}
