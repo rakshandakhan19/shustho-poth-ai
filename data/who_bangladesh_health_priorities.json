@@ -1,0 +1,2973 @@
+{
+  "title": "WHO Bangladesh health-priority indicators",
+  "country": "Bangladesh",
+  "country_code_m49": "050",
+  "source_package": "050_Bangladesh.zip (provided by user)",
+  "extraction_date": "2026-10-04",
+  "source_url": "https://data.who.int/countries/050",
+  "notes": [
+    "These indicators describe population-level context and are not diagnostic signals.",
+    "All Bangladesh rows from the selected indicator datasets are retained as provided; values and interval bounds are not recalculated. source_row identifies the row in the supplied dataset CSV.",
+    "The package dataset rows may extend beyond their metadata temporal-coverage statements; both are recorded as supplied.",
+    "Top causes of death / leading causes estimates were not present in the supplied package and are not reconstructed.",
+    "The wasting dataset contains multiple observations for some year/sex combinations; all rows are preserved because the supplied dimensions do not justify choosing one."
+  ],
+  "indicators": [
+    {
+      "indicator_id": "1F96863",
+      "indicator": "Probability of premature mortality from NCDs",
+      "unit": "Percentage of 30-year-old people who would die before their 70th birthday from non-communicable diseases",
+      "temporal_coverage_in_metadata": "1999 - 2018",
+      "metadata_last_updated": "18 December 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "1F96863_3.4.1 - cardiovascular disease, cancer, diabetes or chronic respiratory disease/050_1F96863_Dataset_2024-12-18.csv",
+        "metadata": "1F96863_3.4.1 - cardiovascular disease, cancer, diabetes or chronic respiratory disease/050_1F96863_Metadata_2024-12-18.csv",
+        "license_terms": "1F96863_3.4.1 - cardiovascular disease, cancer, diabetes or chronic respiratory disease/050_1F96863_License & Terms of Use_2024-12-18.pdf"
+      },
+      "observations": [
+        {
+          "year": 2017,
+          "sex": "Female",
+          "rate_per_100_n": 16.9,
+          "rate_per_100_nl": 10.7,
+          "rate_per_100_nu": 25.2,
+          "source_row": 1
+        },
+        {
+          "year": 2017,
+          "sex": "Male",
+          "rate_per_100_n": 21.8,
+          "rate_per_100_nl": 13.6,
+          "rate_per_100_nu": 32.5,
+          "source_row": 2
+        },
+        {
+          "year": 2017,
+          "sex": "Total",
+          "rate_per_100_n": 19.3,
+          "rate_per_100_nl": 12.2,
+          "rate_per_100_nu": 28.8,
+          "source_row": 3
+        },
+        {
+          "year": 2020,
+          "sex": "Female",
+          "rate_per_100_n": 16.2,
+          "rate_per_100_nl": 11.1,
+          "rate_per_100_nu": 26.9,
+          "source_row": 4
+        },
+        {
+          "year": 2020,
+          "sex": "Male",
+          "rate_per_100_n": 21.5,
+          "rate_per_100_nl": 13.6,
+          "rate_per_100_nu": 33,
+          "source_row": 5
+        },
+        {
+          "year": 2020,
+          "sex": "Total",
+          "rate_per_100_n": 18.9,
+          "rate_per_100_nl": 12.4,
+          "rate_per_100_nu": 30.2,
+          "source_row": 6
+        },
+        {
+          "year": 2019,
+          "sex": "Female",
+          "rate_per_100_n": 16.8,
+          "rate_per_100_nl": 11.1,
+          "rate_per_100_nu": 26.8,
+          "source_row": 7
+        },
+        {
+          "year": 2019,
+          "sex": "Male",
+          "rate_per_100_n": 21.6,
+          "rate_per_100_nl": 13.5,
+          "rate_per_100_nu": 33.1,
+          "source_row": 8
+        },
+        {
+          "year": 2019,
+          "sex": "Total",
+          "rate_per_100_n": 19.2,
+          "rate_per_100_nl": 12.4,
+          "rate_per_100_nu": 30.1,
+          "source_row": 9
+        },
+        {
+          "year": 2000,
+          "sex": "Female",
+          "rate_per_100_n": 19.6,
+          "rate_per_100_nl": 11.7,
+          "rate_per_100_nu": 26.5,
+          "source_row": 10
+        },
+        {
+          "year": 2000,
+          "sex": "Male",
+          "rate_per_100_n": 29,
+          "rate_per_100_nl": 18.4,
+          "rate_per_100_nu": 39.7,
+          "source_row": 11
+        },
+        {
+          "year": 2000,
+          "sex": "Total",
+          "rate_per_100_n": 24.7,
+          "rate_per_100_nl": 15.3,
+          "rate_per_100_nu": 33.7,
+          "source_row": 12
+        },
+        {
+          "year": 2005,
+          "sex": "Female",
+          "rate_per_100_n": 19.4,
+          "rate_per_100_nl": 11.8,
+          "rate_per_100_nu": 26.5,
+          "source_row": 13
+        },
+        {
+          "year": 2005,
+          "sex": "Male",
+          "rate_per_100_n": 27,
+          "rate_per_100_nl": 17.4,
+          "rate_per_100_nu": 37.4,
+          "source_row": 14
+        },
+        {
+          "year": 2005,
+          "sex": "Total",
+          "rate_per_100_n": 23.4,
+          "rate_per_100_nl": 14.7,
+          "rate_per_100_nu": 32.3,
+          "source_row": 15
+        },
+        {
+          "year": 2004,
+          "sex": "Male",
+          "rate_per_100_n": 26.9,
+          "rate_per_100_nl": 17.3,
+          "rate_per_100_nu": 37.4,
+          "source_row": 16
+        },
+        {
+          "year": 2011,
+          "sex": "Total",
+          "rate_per_100_n": 20.8,
+          "rate_per_100_nl": 13,
+          "rate_per_100_nu": 29,
+          "source_row": 17
+        },
+        {
+          "year": 2013,
+          "sex": "Female",
+          "rate_per_100_n": 17.2,
+          "rate_per_100_nl": 10.6,
+          "rate_per_100_nu": 24.2,
+          "source_row": 18
+        },
+        {
+          "year": 2013,
+          "sex": "Male",
+          "rate_per_100_n": 22.1,
+          "rate_per_100_nl": 13.9,
+          "rate_per_100_nu": 31.7,
+          "source_row": 19
+        },
+        {
+          "year": 2013,
+          "sex": "Total",
+          "rate_per_100_n": 19.7,
+          "rate_per_100_nl": 12.3,
+          "rate_per_100_nu": 28.1,
+          "source_row": 20
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "rate_per_100_n": 17.8,
+          "rate_per_100_nl": 10.9,
+          "rate_per_100_nu": 24.7,
+          "source_row": 21
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "rate_per_100_n": 23.5,
+          "rate_per_100_nl": 14.9,
+          "rate_per_100_nu": 33.1,
+          "source_row": 22
+        }
+      ],
+      "indicator_codes": [
+        "NCDMORT3070"
+      ]
+    },
+    {
+      "indicator_id": "217795A",
+      "indicator": "Density of physicians (per 10 000 population)",
+      "unit": "Number of medical doctors per 10 000",
+      "temporal_coverage_in_metadata": "1989 - 2020",
+      "metadata_last_updated": "30 April 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "217795A_3.C.1 - Health worker density and distribution/050_217795A_Dataset_2025-04-30.csv",
+        "metadata": "217795A_3.C.1 - Health worker density and distribution/050_217795A_Metadata_2025-04-30.csv",
+        "license_terms": "217795A_3.C.1 - Health worker density and distribution/050_217795A_License & Terms of Use_2025-04-30.pdf"
+      },
+      "observations": [
+        {
+          "year": 2017,
+          "rate_per_10000_n": 5.35,
+          "source_row": 1
+        },
+        {
+          "year": 2010,
+          "rate_per_10000_n": 3.52,
+          "source_row": 2
+        },
+        {
+          "year": 2013,
+          "rate_per_10000_n": 4.12,
+          "source_row": 3
+        },
+        {
+          "year": 2001,
+          "rate_per_10000_n": 2.38,
+          "source_row": 4
+        },
+        {
+          "year": 2008,
+          "rate_per_10000_n": 3.3,
+          "source_row": 5
+        },
+        {
+          "year": 2022,
+          "rate_per_10000_n": 7.17,
+          "source_row": 6
+        },
+        {
+          "year": 2014,
+          "rate_per_10000_n": 4.78,
+          "source_row": 7
+        },
+        {
+          "year": 2012,
+          "rate_per_10000_n": 3.9,
+          "source_row": 8
+        },
+        {
+          "year": 2011,
+          "rate_per_10000_n": 3.73,
+          "source_row": 9
+        },
+        {
+          "year": 2020,
+          "rate_per_10000_n": 6.61,
+          "source_row": 10
+        },
+        {
+          "year": 2005,
+          "rate_per_10000_n": 2.96,
+          "source_row": 11
+        },
+        {
+          "year": 2019,
+          "rate_per_10000_n": 6.3,
+          "source_row": 12
+        },
+        {
+          "year": 2004,
+          "rate_per_10000_n": 2.69,
+          "source_row": 13
+        },
+        {
+          "year": 2006,
+          "rate_per_10000_n": 3.05,
+          "source_row": 14
+        },
+        {
+          "year": 2003,
+          "rate_per_10000_n": 2.6,
+          "source_row": 15
+        },
+        {
+          "year": 2016,
+          "rate_per_10000_n": 4.89,
+          "source_row": 16
+        },
+        {
+          "year": 2018,
+          "rate_per_10000_n": 5.73,
+          "source_row": 17
+        },
+        {
+          "year": 2021,
+          "rate_per_10000_n": 6.77,
+          "source_row": 18
+        },
+        {
+          "year": 2009,
+          "rate_per_10000_n": 3.43,
+          "source_row": 19
+        },
+        {
+          "year": 2023,
+          "rate_per_10000_n": 7.22,
+          "source_row": 20
+        },
+        {
+          "year": 2007,
+          "rate_per_10000_n": 3.17,
+          "source_row": 21
+        },
+        {
+          "year": 2015,
+          "rate_per_10000_n": 4.76,
+          "source_row": 22
+        }
+      ],
+      "indicator_codes": [
+        "HWF_0001"
+      ]
+    },
+    {
+      "indicator_id": "2322814",
+      "indicator": "Under-five mortality rate (per 1000 live births)",
+      "unit": "Probability of dying by age 5 per 1000 births",
+      "temporal_coverage_in_metadata": "1931 - 2020",
+      "metadata_last_updated": "15 May 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "2322814_3.2.1 - Under-five mortality rate/050_2322814_Dataset_2024-05-15.csv",
+        "metadata": "2322814_3.2.1 - Under-five mortality rate/050_2322814_Metadata_2024-05-15.csv",
+        "license_terms": "2322814_3.2.1 - Under-five mortality rate/050_2322814_License & Terms of Use_2024-05-15.pdf"
+      },
+      "observations": [
+        {
+          "year": 1974,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 223.968524656,
+          "rate_per_1000_nl": 212.445036396,
+          "rate_per_1000_nu": 236.245415291,
+          "source_row": 1
+        },
+        {
+          "year": 1974,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 229.359058216,
+          "rate_per_1000_nl": 217.657878005,
+          "rate_per_1000_nu": 241.912986283,
+          "source_row": 2
+        },
+        {
+          "year": 1974,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 226.789362046,
+          "rate_per_1000_nl": 215.656281714,
+          "rate_per_1000_nu": 238.524610819,
+          "source_row": 3
+        },
+        {
+          "year": 1960,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 254.334452873,
+          "rate_per_1000_nl": 232.680817829,
+          "rate_per_1000_nu": 278.344012743,
+          "source_row": 4
+        },
+        {
+          "year": 1960,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 268.610682028,
+          "rate_per_1000_nl": 245.870410975,
+          "rate_per_1000_nu": 293.798557162,
+          "source_row": 5
+        },
+        {
+          "year": 1960,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 261.735872766,
+          "rate_per_1000_nl": 240.118132927,
+          "rate_per_1000_nu": 285.348209532,
+          "source_row": 6
+        },
+        {
+          "year": 1989,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 149.497006607,
+          "rate_per_1000_nl": 144.173301483,
+          "rate_per_1000_nu": 154.91341784,
+          "source_row": 7
+        },
+        {
+          "year": 1989,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 154.835320784,
+          "rate_per_1000_nl": 149.489749774,
+          "rate_per_1000_nu": 160.34728931,
+          "source_row": 8
+        },
+        {
+          "year": 1989,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 152.22691942,
+          "rate_per_1000_nl": 147.331280318,
+          "rate_per_1000_nu": 157.237660918,
+          "source_row": 9
+        },
+        {
+          "year": 1979,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 210.042702768,
+          "rate_per_1000_nl": 200.638756524,
+          "rate_per_1000_nu": 220.10452322,
+          "source_row": 10
+        },
+        {
+          "year": 1979,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 211.182329177,
+          "rate_per_1000_nl": 201.844428222,
+          "rate_per_1000_nu": 220.974100212,
+          "source_row": 11
+        },
+        {
+          "year": 1979,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 210.637467252,
+          "rate_per_1000_nl": 201.842132539,
+          "rate_per_1000_nu": 219.928322282,
+          "source_row": 12
+        },
+        {
+          "year": 1981,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 200.254739613,
+          "rate_per_1000_nl": 191.972536009,
+          "rate_per_1000_nu": 208.83828478,
+          "source_row": 13
+        },
+        {
+          "year": 1981,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 201.060196968,
+          "rate_per_1000_nl": 192.891165805,
+          "rate_per_1000_nu": 209.662749603,
+          "source_row": 14
+        },
+        {
+          "year": 1981,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 200.744627429,
+          "rate_per_1000_nl": 192.967825028,
+          "rate_per_1000_nu": 208.69309231,
+          "source_row": 15
+        },
+        {
+          "year": 1983,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 189.235801198,
+          "rate_per_1000_nl": 182.131217708,
+          "rate_per_1000_nu": 196.551830668,
+          "source_row": 16
+        },
+        {
+          "year": 1983,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 190.608930359,
+          "rate_per_1000_nl": 183.388263949,
+          "rate_per_1000_nu": 198.087504683,
+          "source_row": 17
+        },
+        {
+          "year": 1983,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 189.933075952,
+          "rate_per_1000_nl": 183.29121784,
+          "rate_per_1000_nu": 196.91124924,
+          "source_row": 18
+        },
+        {
+          "year": 1988,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 158.622645937,
+          "rate_per_1000_nl": 153.514829808,
+          "rate_per_1000_nu": 163.912526004,
+          "source_row": 19
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 43.677516885,
+          "rate_per_1000_nl": 41.924461722,
+          "rate_per_1000_nu": 45.538345432,
+          "source_row": 20
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 49.640936533,
+          "rate_per_1000_nl": 47.680252573,
+          "rate_per_1000_nu": 51.738937133,
+          "source_row": 21
+        },
+        {
+          "year": 2011,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 46.746214154,
+          "rate_per_1000_nl": 45.021099927,
+          "rate_per_1000_nu": 48.558608395,
+          "source_row": 22
+        },
+        {
+          "year": 2018,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 31.400588267,
+          "rate_per_1000_nl": 29.725418503,
+          "rate_per_1000_nu": 32.982945409,
+          "source_row": 23
+        },
+        {
+          "year": 2018,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 35.7964261,
+          "rate_per_1000_nl": 33.916258948,
+          "rate_per_1000_nu": 37.542717496,
+          "source_row": 24
+        },
+        {
+          "year": 2018,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 33.661178341,
+          "rate_per_1000_nl": 31.967620505,
+          "rate_per_1000_nu": 35.178499019,
+          "source_row": 25
+        },
+        {
+          "year": 2006,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 56.080211567,
+          "rate_per_1000_nl": 54.033658859,
+          "rate_per_1000_nu": 58.24921663,
+          "source_row": 26
+        },
+        {
+          "year": 2006,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 63.357662827,
+          "rate_per_1000_nl": 61.059374459,
+          "rate_per_1000_nu": 65.732915513,
+          "source_row": 27
+        },
+        {
+          "year": 2006,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 59.807695523,
+          "rate_per_1000_nl": 57.835619143,
+          "rate_per_1000_nu": 61.853132224,
+          "source_row": 28
+        },
+        {
+          "year": 2021,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 28.834632338,
+          "rate_per_1000_nl": 27.535069136,
+          "rate_per_1000_nu": 30.080626456,
+          "source_row": 29
+        },
+        {
+          "year": 2021,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 32.980600126,
+          "rate_per_1000_nl": 31.604049078,
+          "rate_per_1000_nu": 34.320750997,
+          "source_row": 30
+        },
+        {
+          "year": 2021,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 30.967205428,
+          "rate_per_1000_nl": 29.796186418,
+          "rate_per_1000_nu": 32.042686482,
+          "source_row": 31
+        },
+        {
+          "year": 2023,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 28.366276921,
+          "rate_per_1000_nl": 26.876955749,
+          "rate_per_1000_nu": 29.976703176,
+          "source_row": 32
+        },
+        {
+          "year": 2023,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 32.633430373,
+          "rate_per_1000_nl": 31.070964494,
+          "rate_per_1000_nu": 34.43174973,
+          "source_row": 33
+        },
+        {
+          "year": 2023,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 30.5562359,
+          "rate_per_1000_nl": 29.212312986,
+          "rate_per_1000_nu": 32.087392942,
+          "source_row": 34
+        },
+        {
+          "year": 1972,
+          "sex": "Female",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 224.289197717,
+          "rate_per_1000_nl": 211.825446686,
+          "rate_per_1000_nu": 237.545892642,
+          "source_row": 35
+        },
+        {
+          "year": 1972,
+          "sex": "Male",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 230.780897875,
+          "rate_per_1000_nl": 217.933441437,
+          "rate_per_1000_nu": 244.343432556,
+          "source_row": 36
+        },
+        {
+          "year": 1972,
+          "sex": "Total",
+          "age": "0 to 4 years",
+          "rate_per_1000_n": 227.665989838,
+          "rate_per_1000_nl": 215.593823345,
+          "rate_per_1000_nu": 240.266632162,
+          "source_row": 37
+        }
+      ],
+      "indicator_codes": [
+        "MDG_0000000007"
+      ]
+    },
+    {
+      "indicator_id": "442CEA8",
+      "indicator": "Malaria incidence (per 1000 population at risk)",
+      "unit": "Number of new malaria cases per 1000 population at risk",
+      "temporal_coverage_in_metadata": "1999 - 2020",
+      "metadata_last_updated": "8 March 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "442CEA8_3.3.3 - Malaria/050_442CEA8_Dataset_2024-03-08.csv",
+        "metadata": "442CEA8_3.3.3 - Malaria/050_442CEA8_Metadata_2024-03-08.csv",
+        "license_terms": "442CEA8_3.3.3 - Malaria/050_442CEA8_License & Terms of Use_2024-03-08.pdf"
+      },
+      "observations": [
+        {
+          "year": 2013,
+          "rate_per_1000_n": 1.872846447,
+          "rate_per_1000_nl": 1.663237501,
+          "rate_per_1000_nu": 2.106525448,
+          "source_row": 1
+        },
+        {
+          "year": 2012,
+          "rate_per_1000_n": 2.116749427,
+          "rate_per_1000_nl": 1.847000753,
+          "rate_per_1000_nu": 2.40445382,
+          "source_row": 2
+        },
+        {
+          "year": 2011,
+          "rate_per_1000_n": 3.832158791,
+          "rate_per_1000_nl": 3.279916085,
+          "rate_per_1000_nu": 4.414007207,
+          "source_row": 3
+        },
+        {
+          "year": 2021,
+          "rate_per_1000_n": 0.496661674,
+          "rate_per_1000_nl": 0.423273464,
+          "rate_per_1000_nu": 0.576468464,
+          "source_row": 4
+        },
+        {
+          "year": 2004,
+          "rate_per_1000_n": 6.616721679,
+          "rate_per_1000_nl": 2.844464055,
+          "rate_per_1000_nu": 10.70667798,
+          "source_row": 5
+        },
+        {
+          "year": 2009,
+          "rate_per_1000_n": 4.957225838,
+          "rate_per_1000_nl": 4.189607077,
+          "rate_per_1000_nu": 5.794633714,
+          "source_row": 6
+        },
+        {
+          "year": 2019,
+          "rate_per_1000_n": 1.192951693,
+          "rate_per_1000_nl": 1.014979528,
+          "rate_per_1000_nu": 1.382008261,
+          "source_row": 7
+        },
+        {
+          "year": 2022,
+          "rate_per_1000_n": 1.229878145,
+          "rate_per_1000_nl": 1.046850847,
+          "rate_per_1000_nu": 1.424957164,
+          "source_row": 8
+        },
+        {
+          "year": 2018,
+          "rate_per_1000_n": 0.703458625,
+          "rate_per_1000_nl": 0.620838979,
+          "rate_per_1000_nu": 0.792208071,
+          "source_row": 9
+        },
+        {
+          "year": 2008,
+          "rate_per_1000_n": 7.51405436,
+          "rate_per_1000_nl": 5.966457631,
+          "rate_per_1000_nu": 9.331567434,
+          "source_row": 10
+        },
+        {
+          "year": 2007,
+          "rate_per_1000_n": 7.959009942,
+          "rate_per_1000_nl": 4.852858292,
+          "rate_per_1000_nu": 11.5786769,
+          "source_row": 11
+        },
+        {
+          "year": 2002,
+          "rate_per_1000_n": 6.616747199,
+          "rate_per_1000_nl": 2.860930696,
+          "rate_per_1000_nu": 10.5526138,
+          "source_row": 12
+        },
+        {
+          "year": 2014,
+          "rate_per_1000_n": 3.89299269,
+          "rate_per_1000_nl": 3.511175539,
+          "rate_per_1000_nu": 4.320596882,
+          "source_row": 13
+        },
+        {
+          "year": 2005,
+          "rate_per_1000_n": 6.616736101,
+          "rate_per_1000_nl": 2.930785459,
+          "rate_per_1000_nu": 10.57164573,
+          "source_row": 14
+        },
+        {
+          "year": 2015,
+          "rate_per_1000_n": 2.647646245,
+          "rate_per_1000_nl": 2.398063465,
+          "rate_per_1000_nu": 2.926688877,
+          "source_row": 15
+        },
+        {
+          "year": 2000,
+          "rate_per_1000_n": 6.616747152,
+          "rate_per_1000_nl": 2.920827105,
+          "rate_per_1000_nu": 10.53252946,
+          "source_row": 16
+        },
+        {
+          "year": 2024,
+          "rate_per_1000_n": 0.860524973,
+          "rate_per_1000_nl": 0.734941308,
+          "rate_per_1000_nu": 0.998247194,
+          "source_row": 17
+        },
+        {
+          "year": 2016,
+          "rate_per_1000_n": 1.824561023,
+          "rate_per_1000_nl": 1.65855257,
+          "rate_per_1000_nu": 2.01837988,
+          "source_row": 18
+        },
+        {
+          "year": 2006,
+          "rate_per_1000_n": 4.343902128,
+          "rate_per_1000_nl": 2.568276123,
+          "rate_per_1000_nu": 6.559023489,
+          "source_row": 19
+        },
+        {
+          "year": 2020,
+          "rate_per_1000_n": 0.420991407,
+          "rate_per_1000_nl": 0.358330923,
+          "rate_per_1000_nu": 0.488062676,
+          "source_row": 20
+        },
+        {
+          "year": 2017,
+          "rate_per_1000_n": 1.906934,
+          "rate_per_1000_nl": 1.738559011,
+          "rate_per_1000_nu": 2.103056821,
+          "source_row": 21
+        },
+        {
+          "year": 2023,
+          "rate_per_1000_n": 1.102654564,
+          "rate_per_1000_nl": 0.939008364,
+          "rate_per_1000_nu": 1.279671316,
+          "source_row": 22
+        },
+        {
+          "year": 2001,
+          "rate_per_1000_n": 6.616702382,
+          "rate_per_1000_nl": 2.930609272,
+          "rate_per_1000_nu": 10.44603732,
+          "source_row": 23
+        },
+        {
+          "year": 2010,
+          "rate_per_1000_n": 4.225303083,
+          "rate_per_1000_nl": 3.599908601,
+          "rate_per_1000_nu": 4.8939111,
+          "source_row": 24
+        },
+        {
+          "year": 2003,
+          "rate_per_1000_n": 6.616724627,
+          "rate_per_1000_nl": 2.870286685,
+          "rate_per_1000_nu": 10.43428854,
+          "source_row": 25
+        }
+      ],
+      "indicator_codes": [
+        "MALARIA_EST_INCIDENCE"
+      ]
+    },
+    {
+      "indicator_id": "45CA7C8",
+      "indicator": "Density of pharmaceutical personnel  (per 10 000 population)",
+      "unit": "Number of pharmacists per 10 000",
+      "temporal_coverage_in_metadata": "1989 - 2020",
+      "metadata_last_updated": "30 April 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "45CA7C8_3.C.1 - Health worker density and distribution/050_45CA7C8_Dataset_2025-04-30.csv",
+        "metadata": "45CA7C8_3.C.1 - Health worker density and distribution/050_45CA7C8_Metadata_2025-04-30.csv",
+        "license_terms": "45CA7C8_3.C.1 - Health worker density and distribution/050_45CA7C8_License & Terms of Use_2025-04-30.pdf"
+      },
+      "observations": [
+        {
+          "year": 2012,
+          "rate_per_10000_n": 0.6,
+          "source_row": 1
+        },
+        {
+          "year": 2015,
+          "rate_per_10000_n": 0.77,
+          "source_row": 2
+        },
+        {
+          "year": 2021,
+          "rate_per_10000_n": 1.02,
+          "source_row": 3
+        },
+        {
+          "year": 2023,
+          "rate_per_10000_n": 1.1,
+          "source_row": 4
+        },
+        {
+          "year": 2002,
+          "rate_per_10000_n": 0.55,
+          "source_row": 5
+        },
+        {
+          "year": 2022,
+          "rate_per_10000_n": 1.09,
+          "source_row": 6
+        },
+        {
+          "year": 2011,
+          "rate_per_10000_n": 0.6,
+          "source_row": 7
+        },
+        {
+          "year": 2008,
+          "rate_per_10000_n": 0.54,
+          "source_row": 8
+        },
+        {
+          "year": 2009,
+          "rate_per_10000_n": 0.55,
+          "source_row": 9
+        },
+        {
+          "year": 2014,
+          "rate_per_10000_n": 0.77,
+          "source_row": 10
+        },
+        {
+          "year": 2020,
+          "rate_per_10000_n": 1,
+          "source_row": 11
+        },
+        {
+          "year": 2010,
+          "rate_per_10000_n": 0.8,
+          "source_row": 12
+        },
+        {
+          "year": 2019,
+          "rate_per_10000_n": 0.89,
+          "source_row": 13
+        }
+      ],
+      "indicator_codes": [
+        "HWF_0014"
+      ]
+    },
+    {
+      "indicator_id": "5C8435F",
+      "indicator": "Density of nursing and midwifery personnel (per 10 000 population)",
+      "unit": "Number of nurses and midwifery personnel per 10 000",
+      "temporal_coverage_in_metadata": "1989 - 2020",
+      "metadata_last_updated": "30 April 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "5C8435F_3.C.1 - Health worker density and distribution/050_5C8435F_Dataset_2025-04-30.csv",
+        "metadata": "5C8435F_3.C.1 - Health worker density and distribution/050_5C8435F_Metadata_2025-04-30.csv",
+        "license_terms": "5C8435F_3.C.1 - Health worker density and distribution/050_5C8435F_License & Terms of Use_2025-04-30.pdf"
+      },
+      "observations": [
+        {
+          "year": 2005,
+          "rate_per_10000_n": 1.39,
+          "source_row": 1
+        },
+        {
+          "year": 2006,
+          "rate_per_10000_n": 1.38,
+          "source_row": 2
+        },
+        {
+          "year": 2011,
+          "rate_per_10000_n": 1.88,
+          "source_row": 3
+        },
+        {
+          "year": 2022,
+          "rate_per_10000_n": 6.22,
+          "source_row": 4
+        },
+        {
+          "year": 2008,
+          "rate_per_10000_n": 1.57,
+          "source_row": 5
+        },
+        {
+          "year": 2014,
+          "rate_per_10000_n": 2.43,
+          "source_row": 6
+        },
+        {
+          "year": 2009,
+          "rate_per_10000_n": 1.66,
+          "source_row": 7
+        },
+        {
+          "year": 2019,
+          "rate_per_10000_n": 4.77,
+          "source_row": 8
+        },
+        {
+          "year": 2017,
+          "rate_per_10000_n": 3.04,
+          "source_row": 9
+        },
+        {
+          "year": 2023,
+          "rate_per_10000_n": 6.64,
+          "source_row": 10
+        },
+        {
+          "year": 2012,
+          "rate_per_10000_n": 1.98,
+          "source_row": 11
+        },
+        {
+          "year": 2018,
+          "rate_per_10000_n": 4.66,
+          "source_row": 12
+        },
+        {
+          "year": 2015,
+          "rate_per_10000_n": 2.6,
+          "source_row": 13
+        },
+        {
+          "year": 2021,
+          "rate_per_10000_n": 6.19,
+          "source_row": 14
+        },
+        {
+          "year": 2013,
+          "rate_per_10000_n": 1.95,
+          "source_row": 15
+        },
+        {
+          "year": 2010,
+          "rate_per_10000_n": 1.77,
+          "source_row": 16
+        },
+        {
+          "year": 2007,
+          "rate_per_10000_n": 1.57,
+          "source_row": 17
+        },
+        {
+          "year": 2016,
+          "rate_per_10000_n": 2.59,
+          "source_row": 18
+        },
+        {
+          "year": 2020,
+          "rate_per_10000_n": 5.48,
+          "source_row": 19
+        },
+        {
+          "year": 2003,
+          "rate_per_10000_n": 1.38,
+          "source_row": 20
+        }
+      ],
+      "indicator_codes": [
+        "HWF_0006"
+      ]
+    },
+    {
+      "indicator_id": "5F8A486",
+      "indicator": "Prevalence of stunting in children under 5 (%)",
+      "unit": "Percentage of children (under 5) with height-for-age <-2 standard deviation from the median of the World Health Organization (WHO) Child Growth Standards",
+      "temporal_coverage_in_metadata": "1989 - 2019",
+      "metadata_last_updated": "8 May 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "5F8A486_2.2.1 - Stunting/050_5F8A486_Dataset_2025-05-08.csv",
+        "metadata": "5F8A486_2.2.1 - Stunting/050_5F8A486_Metadata_2025-05-08.csv",
+        "license_terms": "5F8A486_2.2.1 - Stunting/050_5F8A486_License & Terms of Use_2025-05-08.pdf"
+      },
+      "observations": [
+        {
+          "year": 2005,
+          "sex": "Female",
+          "rate_per_100_n": 48.2,
+          "rate_per_100_nl": 47,
+          "rate_per_100_nu": 49.3,
+          "source_row": 1
+        },
+        {
+          "year": 2006,
+          "sex": "Female",
+          "rate_per_100_n": 46.9,
+          "rate_per_100_nl": 45.7,
+          "rate_per_100_nu": 48.1,
+          "source_row": 2
+        },
+        {
+          "year": 2015,
+          "sex": "Female",
+          "rate_per_100_n": 33.6,
+          "rate_per_100_nl": 32.7,
+          "rate_per_100_nu": 34.5,
+          "source_row": 3
+        },
+        {
+          "year": 2007,
+          "sex": "Male",
+          "rate_per_100_n": 46.5,
+          "rate_per_100_nl": 45.3,
+          "rate_per_100_nu": 47.7,
+          "source_row": 4
+        },
+        {
+          "year": 2009,
+          "sex": "Male",
+          "rate_per_100_n": 43.4,
+          "rate_per_100_nl": 42.2,
+          "rate_per_100_nu": 44.6,
+          "source_row": 5
+        },
+        {
+          "year": 2012,
+          "sex": "Male",
+          "rate_per_100_n": 38.9,
+          "rate_per_100_nl": 37.9,
+          "rate_per_100_nu": 39.9,
+          "source_row": 6
+        },
+        {
+          "year": 2022,
+          "sex": "Male",
+          "rate_per_100_n": 26.5,
+          "rate_per_100_nl": 24.9,
+          "rate_per_100_nu": 28.3,
+          "source_row": 7
+        },
+        {
+          "year": 2009,
+          "sex": "Total",
+          "rate_per_100_n": 42.9,
+          "rate_per_100_nl": 41.8,
+          "rate_per_100_nu": 43.9,
+          "source_row": 8
+        },
+        {
+          "year": 2012,
+          "sex": "Total",
+          "rate_per_100_n": 38.3,
+          "rate_per_100_nl": 37.4,
+          "rate_per_100_nu": 39.2,
+          "source_row": 9
+        },
+        {
+          "year": 2007,
+          "sex": "Female",
+          "rate_per_100_n": 45.4,
+          "rate_per_100_nl": 44.2,
+          "rate_per_100_nu": 46.6,
+          "source_row": 10
+        },
+        {
+          "year": 2023,
+          "sex": "Female",
+          "rate_per_100_n": 24.8,
+          "rate_per_100_nl": 23,
+          "rate_per_100_nu": 26.8,
+          "source_row": 11
+        },
+        {
+          "year": 2010,
+          "sex": "Female",
+          "rate_per_100_n": 40.7,
+          "rate_per_100_nl": 39.6,
+          "rate_per_100_nu": 41.9,
+          "source_row": 12
+        },
+        {
+          "year": 2001,
+          "sex": "Female",
+          "rate_per_100_n": 53.1,
+          "rate_per_100_nl": 51.8,
+          "rate_per_100_nu": 54.4,
+          "source_row": 13
+        },
+        {
+          "year": 2009,
+          "sex": "Female",
+          "rate_per_100_n": 42.3,
+          "rate_per_100_nl": 41.1,
+          "rate_per_100_nu": 43.5,
+          "source_row": 14
+        },
+        {
+          "year": 2012,
+          "sex": "Female",
+          "rate_per_100_n": 37.7,
+          "rate_per_100_nl": 36.8,
+          "rate_per_100_nu": 38.7,
+          "source_row": 15
+        },
+        {
+          "year": 2008,
+          "sex": "Female",
+          "rate_per_100_n": 43.9,
+          "rate_per_100_nl": 42.7,
+          "rate_per_100_nu": 45.1,
+          "source_row": 16
+        },
+        {
+          "year": 2000,
+          "sex": "Female",
+          "rate_per_100_n": 54.3,
+          "rate_per_100_nl": 53,
+          "rate_per_100_nu": 55.7,
+          "source_row": 17
+        },
+        {
+          "year": 2003,
+          "sex": "Female",
+          "rate_per_100_n": 50.7,
+          "rate_per_100_nl": 49.5,
+          "rate_per_100_nu": 51.9,
+          "source_row": 18
+        },
+        {
+          "year": 2014,
+          "sex": "Female",
+          "rate_per_100_n": 35,
+          "rate_per_100_nl": 34.1,
+          "rate_per_100_nu": 35.9,
+          "source_row": 19
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "rate_per_100_n": 39.2,
+          "rate_per_100_nl": 38.2,
+          "rate_per_100_nu": 40.3,
+          "source_row": 20
+        }
+      ],
+      "indicator_codes": [
+        "NUTSTUNTINGPREV"
+      ]
+    },
+    {
+      "indicator_id": "608DE39",
+      "indicator": "Age-standardized prevalence of hypertension among adults aged 30 to 79 years (%)",
+      "unit": "Percentage of adults (30-79) with hypertnesion",
+      "temporal_coverage_in_metadata": "1989 - 2018",
+      "metadata_last_updated": "8 January 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "608DE39/050_608DE39_Dataset_2024-01-08.csv",
+        "metadata": "608DE39/050_608DE39_Metadata_2024-01-08.csv",
+        "license_terms": "608DE39/050_608DE39_License & Terms of Use_2024-01-08.pdf"
+      },
+      "observations": [
+        {
+          "year": 1993,
+          "sex": "Female",
+          "rate_per_100_n": 32,
+          "rate_per_100_nl": 20.7,
+          "rate_per_100_nu": 44.9,
+          "source_row": 1
+        },
+        {
+          "year": 1999,
+          "sex": "Female",
+          "rate_per_100_n": 31.8,
+          "rate_per_100_nl": 23.9,
+          "rate_per_100_nu": 40.4,
+          "source_row": 2
+        },
+        {
+          "year": 2018,
+          "sex": "Female",
+          "rate_per_100_n": 33.8,
+          "rate_per_100_nl": 28.5,
+          "rate_per_100_nu": 39.4,
+          "source_row": 3
+        },
+        {
+          "year": 2017,
+          "sex": "Female",
+          "rate_per_100_n": 33.3,
+          "rate_per_100_nl": 28.8,
+          "rate_per_100_nu": 38.3,
+          "source_row": 4
+        },
+        {
+          "year": 2019,
+          "sex": "Female",
+          "rate_per_100_n": 34.2,
+          "rate_per_100_nl": 28.2,
+          "rate_per_100_nu": 40.7,
+          "source_row": 5
+        },
+        {
+          "year": 2016,
+          "sex": "Male",
+          "rate_per_100_n": 23.6,
+          "rate_per_100_nl": 19.5,
+          "rate_per_100_nu": 28,
+          "source_row": 6
+        },
+        {
+          "year": 2005,
+          "sex": "Male",
+          "rate_per_100_n": 25.2,
+          "rate_per_100_nl": 20,
+          "rate_per_100_nu": 31.1,
+          "source_row": 7
+        },
+        {
+          "year": 2009,
+          "sex": "Total",
+          "rate_per_100_n": 27.9,
+          "rate_per_100_nl": 25,
+          "rate_per_100_nu": 31.3,
+          "source_row": 8
+        },
+        {
+          "year": 1999,
+          "sex": "Total",
+          "rate_per_100_n": 28.6,
+          "rate_per_100_nl": 23.2,
+          "rate_per_100_nu": 34.5,
+          "source_row": 9
+        },
+        {
+          "year": 2018,
+          "sex": "Total",
+          "rate_per_100_n": 28.6,
+          "rate_per_100_nl": 24.9,
+          "rate_per_100_nu": 32.5,
+          "source_row": 10
+        },
+        {
+          "year": 2017,
+          "sex": "Total",
+          "rate_per_100_n": 28.4,
+          "rate_per_100_nl": 25.1,
+          "rate_per_100_nu": 31.8,
+          "source_row": 11
+        },
+        {
+          "year": 2019,
+          "sex": "Total",
+          "rate_per_100_n": 28.8,
+          "rate_per_100_nl": 24.6,
+          "rate_per_100_nu": 33.2,
+          "source_row": 12
+        },
+        {
+          "year": 1990,
+          "sex": "Female",
+          "rate_per_100_n": 32.2,
+          "rate_per_100_nl": 18.7,
+          "rate_per_100_nu": 48.1,
+          "source_row": 13
+        },
+        {
+          "year": 1997,
+          "sex": "Female",
+          "rate_per_100_n": 31.8,
+          "rate_per_100_nl": 23,
+          "rate_per_100_nu": 41.5,
+          "source_row": 14
+        },
+        {
+          "year": 1994,
+          "sex": "Female",
+          "rate_per_100_n": 31.9,
+          "rate_per_100_nl": 21.3,
+          "rate_per_100_nu": 43.9,
+          "source_row": 15
+        },
+        {
+          "year": 2008,
+          "sex": "Female",
+          "rate_per_100_n": 31.7,
+          "rate_per_100_nl": 26.7,
+          "rate_per_100_nu": 36.9,
+          "source_row": 16
+        },
+        {
+          "year": 1995,
+          "sex": "Female",
+          "rate_per_100_n": 31.9,
+          "rate_per_100_nl": 21.9,
+          "rate_per_100_nu": 43.1,
+          "source_row": 17
+        },
+        {
+          "year": 1998,
+          "sex": "Female",
+          "rate_per_100_n": 31.8,
+          "rate_per_100_nl": 23.4,
+          "rate_per_100_nu": 40.9,
+          "source_row": 18
+        },
+        {
+          "year": 2015,
+          "sex": "Female",
+          "rate_per_100_n": 32.6,
+          "rate_per_100_nl": 28.7,
+          "rate_per_100_nu": 36.6,
+          "source_row": 19
+        },
+        {
+          "year": 2010,
+          "sex": "Female",
+          "rate_per_100_n": 31.7,
+          "rate_per_100_nl": 27.4,
+          "rate_per_100_nu": 36.4,
+          "source_row": 20
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "rate_per_100_n": 31.8,
+          "rate_per_100_nl": 27.6,
+          "rate_per_100_nu": 36.1,
+          "source_row": 21
+        },
+        {
+          "year": 2000,
+          "sex": "Female",
+          "rate_per_100_n": 31.8,
+          "rate_per_100_nl": 24.2,
+          "rate_per_100_nu": 40,
+          "source_row": 22
+        }
+      ],
+      "indicator_codes": [
+        "NCD_HYP_PREVALENCE_A"
+      ]
+    },
+    {
+      "indicator_id": "A4C49D3",
+      "indicator": "Neonatal mortality rate (per 1000 live births)",
+      "unit": "Number of deaths during the first 28 completed days of life per 1000 live births",
+      "temporal_coverage_in_metadata": "1950 - 2020",
+      "metadata_last_updated": "16 May 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "A4C49D3_3.2.2- Neonatal mortality rate/050_A4C49D3_Dataset_2024-05-16.csv",
+        "metadata": "A4C49D3_3.2.2- Neonatal mortality rate/050_A4C49D3_Metadata_2024-05-16.csv",
+        "license_terms": "A4C49D3_3.2.2- Neonatal mortality rate/050_A4C49D3_License & Terms of Use_2024-05-16.pdf"
+      },
+      "observations": [
+        {
+          "year": 1994,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 56.093561774,
+          "rate_per_1000_nl": 53.04246521,
+          "rate_per_1000_nu": 59.269834957,
+          "source_row": 1
+        },
+        {
+          "year": 1996,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 51.53718582,
+          "rate_per_1000_nl": 48.812544394,
+          "rate_per_1000_nu": 54.401928012,
+          "source_row": 2
+        },
+        {
+          "year": 1972,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 93.911257593,
+          "rate_per_1000_nl": 86.668267248,
+          "rate_per_1000_nu": 101.727361463,
+          "source_row": 3
+        },
+        {
+          "year": 1974,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 94.597584249,
+          "rate_per_1000_nl": 87.544694785,
+          "rate_per_1000_nu": 102.26465523,
+          "source_row": 4
+        },
+        {
+          "year": 1986,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 74.559638921,
+          "rate_per_1000_nl": 70.279839409,
+          "rate_per_1000_nu": 79.106080223,
+          "source_row": 5
+        },
+        {
+          "year": 1958,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 106.443320013,
+          "rate_per_1000_nl": 94.2097111,
+          "rate_per_1000_nu": 120.304995732,
+          "source_row": 6
+        },
+        {
+          "year": 1952,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 118.791870558,
+          "rate_per_1000_nl": 100.355667579,
+          "rate_per_1000_nu": 140.170720032,
+          "source_row": 7
+        },
+        {
+          "year": 1953,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 116.707692466,
+          "rate_per_1000_nl": 99.773626591,
+          "rate_per_1000_nu": 135.883784572,
+          "source_row": 8
+        },
+        {
+          "year": 1997,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 49.392189356,
+          "rate_per_1000_nl": 46.762071658,
+          "rate_per_1000_nu": 52.169952876,
+          "source_row": 9
+        },
+        {
+          "year": 1995,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 53.781478919,
+          "rate_per_1000_nl": 50.885662452,
+          "rate_per_1000_nu": 56.80531604,
+          "source_row": 10
+        },
+        {
+          "year": 2019,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 19.319157558,
+          "rate_per_1000_nl": 18.020138233,
+          "rate_per_1000_nu": 20.51038644,
+          "source_row": 11
+        },
+        {
+          "year": 1955,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 112.542137257,
+          "rate_per_1000_nl": 97.913747758,
+          "rate_per_1000_nu": 129.131041191,
+          "source_row": 12
+        },
+        {
+          "year": 2001,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 41.237537506,
+          "rate_per_1000_nl": 39.196746755,
+          "rate_per_1000_nu": 43.383277324,
+          "source_row": 13
+        },
+        {
+          "year": 2005,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 34.899729889,
+          "rate_per_1000_nl": 33.168068404,
+          "rate_per_1000_nu": 36.652090889,
+          "source_row": 14
+        },
+        {
+          "year": 1998,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 47.320628916,
+          "rate_per_1000_nl": 44.866079858,
+          "rate_per_1000_nu": 49.897238045,
+          "source_row": 15
+        },
+        {
+          "year": 1991,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 63.168982366,
+          "rate_per_1000_nl": 59.811852829,
+          "rate_per_1000_nu": 66.820240622,
+          "source_row": 16
+        },
+        {
+          "year": 2021,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 18.252170314,
+          "rate_per_1000_nl": 17.139696076,
+          "rate_per_1000_nu": 19.338035569,
+          "source_row": 17
+        },
+        {
+          "year": 2014,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 24.658095273,
+          "rate_per_1000_nl": 23.350191081,
+          "rate_per_1000_nu": 26.022429859,
+          "source_row": 18
+        },
+        {
+          "year": 2002,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 39.405265455,
+          "rate_per_1000_nl": 37.444722188,
+          "rate_per_1000_nu": 41.470584009,
+          "source_row": 19
+        },
+        {
+          "year": 1970,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 93.905933229,
+          "rate_per_1000_nl": 85.956642174,
+          "rate_per_1000_nu": 101.929894231,
+          "source_row": 20
+        },
+        {
+          "year": 2013,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 25.687150049,
+          "rate_per_1000_nl": 24.354170981,
+          "rate_per_1000_nu": 27.073239096,
+          "source_row": 21
+        },
+        {
+          "year": 2022,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 18.039538558,
+          "rate_per_1000_nl": 16.914960683,
+          "rate_per_1000_nu": 19.134556671,
+          "source_row": 22
+        },
+        {
+          "year": 1999,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 45.26561734,
+          "rate_per_1000_nl": 42.928962711,
+          "rate_per_1000_nu": 47.709814754,
+          "source_row": 23
+        },
+        {
+          "year": 1968,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 92.55414316,
+          "rate_per_1000_nl": 84.120987165,
+          "rate_per_1000_nu": 101.221322335,
+          "source_row": 24
+        },
+        {
+          "year": 2020,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 18.67122028,
+          "rate_per_1000_nl": 17.467815243,
+          "rate_per_1000_nu": 19.809523767,
+          "source_row": 25
+        },
+        {
+          "year": 1956,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 110.551786571,
+          "rate_per_1000_nl": 96.861887866,
+          "rate_per_1000_nu": 126.048996159,
+          "source_row": 26
+        },
+        {
+          "year": 1967,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 92.601674937,
+          "rate_per_1000_nl": 83.87857549,
+          "rate_per_1000_nu": 101.633378398,
+          "source_row": 27
+        },
+        {
+          "year": 2023,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 17.945911246,
+          "rate_per_1000_nl": 16.62542694,
+          "rate_per_1000_nu": 19.265763783,
+          "source_row": 28
+        },
+        {
+          "year": 1965,
+          "sex": "Total",
+          "age": "0 to 27 days",
+          "rate_per_1000_n": 94.144576531,
+          "rate_per_1000_nl": 84.998154958,
+          "rate_per_1000_nu": 103.789578775,
+          "source_row": 29
+        }
+      ],
+      "indicator_codes": [
+        "WHOSIS_000003"
+      ]
+    },
+    {
+      "indicator_id": "AC597B1",
+      "indicator": "Maternal mortality ratio (per 100 000 live births)",
+      "unit": "Number of maternal deaths per 100 000 live births",
+      "temporal_coverage_in_metadata": "1999 - 2022",
+      "metadata_last_updated": "10 April 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "AC597B1_3.1.1 - Maternal mortality ratio/050_AC597B1_Dataset_2025-04-10.csv",
+        "metadata": "AC597B1_3.1.1 - Maternal mortality ratio/050_AC597B1_Metadata_2025-04-10.csv",
+        "license_terms": "AC597B1_3.1.1 - Maternal mortality ratio/050_AC597B1_License & Terms of Use_2025-04-10.pdf"
+      },
+      "observations": [
+        {
+          "year": 1994,
+          "rate_per_100000_n": 748.8188729,
+          "rate_per_100000_nl": 551.9674498,
+          "rate_per_100000_nu": 1003.463577,
+          "source_row": 1
+        },
+        {
+          "year": 2004,
+          "rate_per_100000_n": 406.0547828,
+          "rate_per_100000_nl": 309.3945156,
+          "rate_per_100000_nu": 534.5857052,
+          "source_row": 2
+        },
+        {
+          "year": 2003,
+          "rate_per_100000_n": 435.6746223,
+          "rate_per_100000_nl": 332.0784817,
+          "rate_per_100000_nu": 573.4427796,
+          "source_row": 3
+        },
+        {
+          "year": 2020,
+          "rate_per_100000_n": 151.8462478,
+          "rate_per_100000_nl": 114.9422177,
+          "rate_per_100000_nu": 202.917397,
+          "source_row": 4
+        },
+        {
+          "year": 2014,
+          "rate_per_100000_n": 216.7063553,
+          "rate_per_100000_nl": 167.2819484,
+          "rate_per_100000_nu": 286.4604106,
+          "source_row": 5
+        },
+        {
+          "year": 1986,
+          "rate_per_100000_n": 890.9494495,
+          "rate_per_100000_nl": 583.993279,
+          "rate_per_100000_nu": 1266.421427,
+          "source_row": 6
+        },
+        {
+          "year": 1985,
+          "rate_per_100000_n": 925.5020593,
+          "rate_per_100000_nl": 593.1579666,
+          "rate_per_100000_nu": 1330.743617,
+          "source_row": 7
+        },
+        {
+          "year": 1990,
+          "rate_per_100000_n": 870.4179371,
+          "rate_per_100000_nl": 609.5370983,
+          "rate_per_100000_nu": 1184.656368,
+          "source_row": 8
+        },
+        {
+          "year": 1987,
+          "rate_per_100000_n": 883.9517054,
+          "rate_per_100000_nl": 587.3439376,
+          "rate_per_100000_nu": 1237.835863,
+          "source_row": 9
+        },
+        {
+          "year": 1991,
+          "rate_per_100000_n": 889.9382426,
+          "rate_per_100000_nl": 574.7704453,
+          "rate_per_100000_nu": 1319.370363,
+          "source_row": 10
+        },
+        {
+          "year": 1988,
+          "rate_per_100000_n": 881.1076163,
+          "rate_per_100000_nl": 597.8537016,
+          "rate_per_100000_nu": 1223.6901,
+          "source_row": 11
+        },
+        {
+          "year": 1998,
+          "rate_per_100000_n": 589.2030094,
+          "rate_per_100000_nl": 448.0274326,
+          "rate_per_100000_nu": 773.8230246,
+          "source_row": 12
+        },
+        {
+          "year": 1992,
+          "rate_per_100000_n": 826.7405676,
+          "rate_per_100000_nl": 593.3926219,
+          "rate_per_100000_nu": 1115.749337,
+          "source_row": 13
+        },
+        {
+          "year": 1999,
+          "rate_per_100000_n": 554.4972256,
+          "rate_per_100000_nl": 421.2296334,
+          "rate_per_100000_nu": 727.5989648,
+          "source_row": 14
+        },
+        {
+          "year": 1997,
+          "rate_per_100000_n": 625.6421549,
+          "rate_per_100000_nl": 473.031627,
+          "rate_per_100000_nu": 822.6294895,
+          "source_row": 15
+        },
+        {
+          "year": 2006,
+          "rate_per_100000_n": 352.3234485,
+          "rate_per_100000_nl": 270.339209,
+          "rate_per_100000_nu": 463.583152,
+          "source_row": 16
+        },
+        {
+          "year": 2000,
+          "rate_per_100000_n": 522.6529523,
+          "rate_per_100000_nl": 399.4011081,
+          "rate_per_100000_nu": 682.7262237,
+          "source_row": 17
+        },
+        {
+          "year": 2002,
+          "rate_per_100000_n": 465.2857233,
+          "rate_per_100000_nl": 354.7755325,
+          "rate_per_100000_nu": 609.2835331,
+          "source_row": 18
+        },
+        {
+          "year": 1993,
+          "rate_per_100000_n": 790.5457894,
+          "rate_per_100000_nl": 576.3765509,
+          "rate_per_100000_nu": 1065.259101,
+          "source_row": 19
+        },
+        {
+          "year": 2005,
+          "rate_per_100000_n": 377.5322521,
+          "rate_per_100000_nl": 289.8290692,
+          "rate_per_100000_nu": 497.8617332,
+          "source_row": 20
+        },
+        {
+          "year": 2018,
+          "rate_per_100000_n": 167.9323727,
+          "rate_per_100000_nl": 127.6442337,
+          "rate_per_100000_nu": 224.7512232,
+          "source_row": 21
+        },
+        {
+          "year": 2009,
+          "rate_per_100000_n": 292.7508784,
+          "rate_per_100000_nl": 224.0284629,
+          "rate_per_100000_nu": 384.4531292,
+          "source_row": 22
+        },
+        {
+          "year": 2016,
+          "rate_per_100000_n": 191.0299516,
+          "rate_per_100000_nl": 146.4159392,
+          "rate_per_100000_nu": 251.8283057,
+          "source_row": 23
+        },
+        {
+          "year": 2012,
+          "rate_per_100000_n": 244.1808988,
+          "rate_per_100000_nl": 189.301409,
+          "rate_per_100000_nu": 324.7968935,
+          "source_row": 24
+        },
+        {
+          "year": 1996,
+          "rate_per_100000_n": 663.6775886,
+          "rate_per_100000_nl": 499.0943689,
+          "rate_per_100000_nu": 876.758507,
+          "source_row": 25
+        },
+        {
+          "year": 2010,
+          "rate_per_100000_n": 274.6342259,
+          "rate_per_100000_nl": 211.8387342,
+          "rate_per_100000_nu": 363.4967123,
+          "source_row": 26
+        }
+      ],
+      "indicator_codes": [
+        "MDG_0000000026                                                     SDG Indicator 3.1.1"
+      ]
+    },
+    {
+      "indicator_id": "C288D13",
+      "indicator": "Tuberculosis incidence (per 100 000 population)",
+      "unit": "Number of TB cases per year per 100 000 population.",
+      "temporal_coverage_in_metadata": "1999 - 2020",
+      "metadata_last_updated": "8 January 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "C288D13_3.3.2 - Tuberculosis/050_C288D13_Dataset_2024-01-08.csv",
+        "metadata": "C288D13_3.3.2 - Tuberculosis/050_C288D13_Metadata_2024-01-08.csv",
+        "license_terms": "C288D13_3.3.2 - Tuberculosis/050_C288D13_License & Terms of Use_2024-01-08.pdf"
+      },
+      "observations": [
+        {
+          "year": 2023,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 1
+        },
+        {
+          "year": 2003,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 2
+        },
+        {
+          "year": 2000,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 3
+        },
+        {
+          "year": 2012,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 4
+        },
+        {
+          "year": 2015,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 5
+        },
+        {
+          "year": 2013,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 6
+        },
+        {
+          "year": 2001,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 7
+        },
+        {
+          "year": 2010,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 8
+        },
+        {
+          "year": 2011,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 9
+        },
+        {
+          "year": 2007,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 10
+        },
+        {
+          "year": 2006,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 11
+        },
+        {
+          "year": 2004,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 12
+        },
+        {
+          "year": 2014,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 13
+        },
+        {
+          "year": 2002,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 14
+        },
+        {
+          "year": 2018,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 15
+        },
+        {
+          "year": 2005,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 16
+        },
+        {
+          "year": 2016,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 17
+        },
+        {
+          "year": 2017,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 18
+        },
+        {
+          "year": 2019,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 19
+        },
+        {
+          "year": 2022,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 20
+        },
+        {
+          "year": 2020,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 21
+        },
+        {
+          "year": 2008,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 22
+        },
+        {
+          "year": 2009,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 23
+        },
+        {
+          "year": 2021,
+          "rate_per_100000_n": 221,
+          "rate_per_100000_nl": 161,
+          "rate_per_100000_nu": 291,
+          "source_row": 24
+        }
+      ],
+      "indicator_codes": [
+        "MDG_0000000020                                                     20                                                     SDG Indicator 3.3.2                                                     1426"
+      ]
+    },
+    {
+      "indicator_id": "D6176E2",
+      "indicator": "Road traffic mortality rate (per 100 000 population)",
+      "unit": "Number of road traffic deaths per 100 000 population",
+      "temporal_coverage_in_metadata": "1999 - 2018",
+      "metadata_last_updated": "5 February 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "D6176E2_3.6.1 - Deaths due to road traffic injuries/050_D6176E2_Dataset_2024-02-05.csv",
+        "metadata": "D6176E2_3.6.1 - Deaths due to road traffic injuries/050_D6176E2_Metadata_2024-02-05.csv",
+        "license_terms": "D6176E2_3.6.1 - Deaths due to road traffic injuries/050_D6176E2_License & Terms of Use_2024-02-05.pdf"
+      },
+      "observations": [
+        {
+          "year": 2021,
+          "rate_per_100000_n": 18.6,
+          "source_row": 1
+        }
+      ],
+      "indicator_codes": [
+        "RS_198"
+      ]
+    },
+    {
+      "indicator_id": "E2FC6D7",
+      "indicator": "Age-standardized mortality rate attributed to household and ambient air pollution  (per 100 000 population)",
+      "unit": "Number of deaths attributable to ambient and household air pollution per 100 000 population",
+      "temporal_coverage_in_metadata": "2015 - 2018",
+      "metadata_last_updated": "2 May 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "E2FC6D7_3.9.1 - Household and ambient air pollution/050_E2FC6D7_Dataset_2025-05-02.csv",
+        "metadata": "E2FC6D7_3.9.1 - Household and ambient air pollution/050_E2FC6D7_Metadata_2025-05-02.csv",
+        "license_terms": "E2FC6D7_3.9.1 - Household and ambient air pollution/050_E2FC6D7_License & Terms of Use_2025-05-02.pdf"
+      },
+      "observations": [
+        {
+          "year": 2016,
+          "sex": "Male",
+          "rate_per_100000_n": 149.59,
+          "rate_per_100000_nl": 126.816,
+          "rate_per_100000_nu": 176.838,
+          "source_row": 1
+        },
+        {
+          "year": 2016,
+          "sex": "Total",
+          "rate_per_100000_n": 141.124,
+          "rate_per_100000_nl": 119.268,
+          "rate_per_100000_nu": 167.133,
+          "source_row": 2
+        },
+        {
+          "year": 2015,
+          "sex": "Male",
+          "rate_per_100000_n": 16.562,
+          "rate_per_100000_nl": 13.768,
+          "rate_per_100000_nu": 18.832,
+          "source_row": 3
+        },
+        {
+          "year": 2015,
+          "sex": "Female",
+          "rate_per_100000_n": 16.536,
+          "rate_per_100000_nl": 13.831,
+          "rate_per_100000_nu": 18.644,
+          "source_row": 4
+        },
+        {
+          "year": 2012,
+          "sex": "Female",
+          "rate_per_100000_n": 17.786,
+          "rate_per_100000_nl": 14.993,
+          "rate_per_100000_nu": 20.051,
+          "source_row": 5
+        },
+        {
+          "year": 2012,
+          "sex": "Male",
+          "rate_per_100000_n": 18.261,
+          "rate_per_100000_nl": 15.269,
+          "rate_per_100000_nu": 20.766,
+          "source_row": 6
+        },
+        {
+          "year": 2012,
+          "sex": "Total",
+          "rate_per_100000_n": 18.038,
+          "rate_per_100000_nl": 15.155,
+          "rate_per_100000_nu": 20.423,
+          "source_row": 7
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "rate_per_100000_n": 2.732,
+          "rate_per_100000_nl": 2.284,
+          "rate_per_100000_nu": 3.115,
+          "source_row": 8
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "rate_per_100000_n": 8.803,
+          "rate_per_100000_nl": 7.092,
+          "rate_per_100000_nu": 10.353,
+          "source_row": 9
+        },
+        {
+          "year": 2011,
+          "sex": "Total",
+          "rate_per_100000_n": 5.878,
+          "rate_per_100000_nl": 4.783,
+          "rate_per_100000_nu": 6.864,
+          "source_row": 10
+        },
+        {
+          "year": 2017,
+          "sex": "Total",
+          "rate_per_100000_n": 5.579,
+          "rate_per_100000_nl": 4.492,
+          "rate_per_100000_nu": 6.551,
+          "source_row": 11
+        },
+        {
+          "year": 2017,
+          "sex": "Female",
+          "rate_per_100000_n": 2.883,
+          "rate_per_100000_nl": 2.393,
+          "rate_per_100000_nu": 3.309,
+          "source_row": 12
+        },
+        {
+          "year": 2017,
+          "sex": "Male",
+          "rate_per_100000_n": 8.127,
+          "rate_per_100000_nl": 6.464,
+          "rate_per_100000_nu": 9.612,
+          "source_row": 13
+        },
+        {
+          "year": 2019,
+          "sex": "Female",
+          "rate_per_100000_n": 2.982,
+          "rate_per_100000_nl": 2.459,
+          "rate_per_100000_nu": 3.44,
+          "source_row": 14
+        },
+        {
+          "year": 2015,
+          "sex": "Female",
+          "rate_per_100000_n": 56.082,
+          "rate_per_100000_nl": 36.467,
+          "rate_per_100000_nu": 78.29,
+          "source_row": 15
+        },
+        {
+          "year": 2015,
+          "sex": "Male",
+          "rate_per_100000_n": 51.038,
+          "rate_per_100000_nl": 32.302,
+          "rate_per_100000_nu": 73.129,
+          "source_row": 16
+        },
+        {
+          "year": 2015,
+          "sex": "Male",
+          "rate_per_100000_n": 26.713,
+          "rate_per_100000_nl": 16.737,
+          "rate_per_100000_nu": 38.177,
+          "source_row": 17
+        },
+        {
+          "year": 2015,
+          "sex": "Total",
+          "rate_per_100000_n": 22.75,
+          "rate_per_100000_nl": 14.607,
+          "rate_per_100000_nu": 32.134,
+          "source_row": 18
+        },
+        {
+          "year": 2015,
+          "sex": "Male",
+          "rate_per_100000_n": 152.145,
+          "rate_per_100000_nl": 127.366,
+          "rate_per_100000_nu": 179.501,
+          "source_row": 19
+        },
+        {
+          "year": 2015,
+          "sex": "Total",
+          "rate_per_100000_n": 143.59,
+          "rate_per_100000_nl": 120.128,
+          "rate_per_100000_nu": 169.66,
+          "source_row": 20
+        },
+        {
+          "year": 2010,
+          "sex": "Female",
+          "rate_per_100000_n": 157.16,
+          "rate_per_100000_nl": 130.342,
+          "rate_per_100000_nu": 186.771,
+          "source_row": 21
+        },
+        {
+          "year": 2010,
+          "sex": "Male",
+          "rate_per_100000_n": 212.607,
+          "rate_per_100000_nl": 179.197,
+          "rate_per_100000_nu": 250.961,
+          "source_row": 22
+        },
+        {
+          "year": 2010,
+          "sex": "Total",
+          "rate_per_100000_n": 185.586,
+          "rate_per_100000_nl": 155.51,
+          "rate_per_100000_nu": 219.804,
+          "source_row": 23
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "rate_per_100000_n": 146.195,
+          "rate_per_100000_nl": 122.139,
+          "rate_per_100000_nu": 174.23,
+          "source_row": 24
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "rate_per_100000_n": 182.897,
+          "rate_per_100000_nl": 153.434,
+          "rate_per_100000_nu": 216.126,
+          "source_row": 25
+        },
+        {
+          "year": 2011,
+          "sex": "Total",
+          "rate_per_100000_n": 165.116,
+          "rate_per_100000_nl": 138.437,
+          "rate_per_100000_nu": 195.862,
+          "source_row": 26
+        }
+      ],
+      "indicator_codes": [
+        "SDGAIRBODA"
+      ]
+    },
+    {
+      "indicator_id": "ED50112",
+      "indicator": "Mortality rate attributed to exposure to unsafe WASH services (per 100 000 population)",
+      "unit": "Number of deaths attributable to unsafe water, sanitation and hygeine services (WASH) in a given year",
+      "temporal_coverage_in_metadata": "2018 - 2019",
+      "metadata_last_updated": "8 January 2024",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "ED50112_3.9.2 - Unsafe water, unsafe sanitation and lack of hygiene/050_ED50112_Dataset_2024-01-08.csv",
+        "metadata": "ED50112_3.9.2 - Unsafe water, unsafe sanitation and lack of hygiene/050_ED50112_Metadata_2024-01-08.csv",
+        "license_terms": "ED50112_3.9.2 - Unsafe water, unsafe sanitation and lack of hygiene/050_ED50112_License & Terms of Use_2024-01-08.pdf"
+      },
+      "observations": [
+        {
+          "year": 2019,
+          "sex": "Female",
+          "rate_per_100000_n": 21.8,
+          "source_row": 1
+        },
+        {
+          "year": 2019,
+          "sex": "Male",
+          "rate_per_100000_n": 14.7,
+          "source_row": 2
+        },
+        {
+          "year": 2019,
+          "sex": "Total",
+          "rate_per_100000_n": 18.2,
+          "source_row": 3
+        }
+      ],
+      "indicator_codes": [
+        "SDGWSHBOD"
+      ]
+    },
+    {
+      "indicator_id": "FC5231F",
+      "indicator": "Prevalence of wasting in children under 5 (%)",
+      "unit": "Percentage of children (under 5) with weight for height <-2 standard deviation from the median of the World Health Organization (WHO) Child Growth Standards",
+      "temporal_coverage_in_metadata": "1982 - 2020",
+      "metadata_last_updated": "13 May 2025",
+      "source": "World Health Organization (WHO), Bangladesh indicator dataset in supplied 050_Bangladesh.zip",
+      "source_files": {
+        "dataset": "FC5231F_2.2.2 - Malnutrition/050_FC5231F_Dataset_2025-05-13.csv",
+        "metadata": "FC5231F_2.2.2 - Malnutrition/050_FC5231F_Metadata_2025-05-13.csv",
+        "license_terms": "FC5231F_2.2.2 - Malnutrition/050_FC5231F_License & Terms of Use_2025-05-13.pdf"
+      },
+      "observations": [
+        {
+          "year": 2014,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 16.6,
+          "rate_per_100_nl": 14.4,
+          "rate_per_100_nu": 19,
+          "source_row": 1
+        },
+        {
+          "year": 2011,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 16.2,
+          "rate_per_100_nl": 14.2,
+          "rate_per_100_nu": 18.5,
+          "source_row": 2
+        },
+        {
+          "year": 2007,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 16.9,
+          "rate_per_100_nl": 14.4,
+          "rate_per_100_nu": 19.7,
+          "source_row": 3
+        },
+        {
+          "year": 2007,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 17.8,
+          "rate_per_100_nl": 15.1,
+          "rate_per_100_nu": 20.9,
+          "source_row": 4
+        },
+        {
+          "year": 2019,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 9.2,
+          "rate_per_100_nl": 8.5,
+          "rate_per_100_nu": 9.8,
+          "source_row": 5
+        },
+        {
+          "year": 2000,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 13.3,
+          "rate_per_100_nl": 12,
+          "rate_per_100_nu": 14.8,
+          "source_row": 6
+        },
+        {
+          "year": 2004,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 15.7,
+          "rate_per_100_nl": 14.3,
+          "rate_per_100_nu": 17.3,
+          "source_row": 7
+        },
+        {
+          "year": 2013,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 11.2,
+          "rate_per_100_nl": 9.5,
+          "rate_per_100_nu": 13.1,
+          "source_row": 8
+        },
+        {
+          "year": 2000,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 13.6,
+          "rate_per_100_nl": 10.1,
+          "rate_per_100_nu": 18.1,
+          "source_row": 9
+        },
+        {
+          "year": 2014,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 22.8,
+          "rate_per_100_nl": 16.7,
+          "rate_per_100_nu": 30.4,
+          "source_row": 10
+        },
+        {
+          "year": 2014,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 15.1,
+          "rate_per_100_nl": 10.4,
+          "rate_per_100_nu": 21.3,
+          "source_row": 11
+        },
+        {
+          "year": 2018,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 10.2,
+          "rate_per_100_nl": 7.2,
+          "rate_per_100_nu": 14.2,
+          "source_row": 12
+        },
+        {
+          "year": 2022,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 11.6,
+          "rate_per_100_nl": 7.7,
+          "rate_per_100_nu": 17.1,
+          "source_row": 13
+        },
+        {
+          "year": 2022,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 10,
+          "rate_per_100_nl": 6.6,
+          "rate_per_100_nu": 14.9,
+          "source_row": 14
+        },
+        {
+          "year": 1997,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 30.3,
+          "rate_per_100_nl": 26.6,
+          "rate_per_100_nu": 34.3,
+          "source_row": 15
+        },
+        {
+          "year": 1997,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 27.9,
+          "rate_per_100_nl": 23.8,
+          "rate_per_100_nu": 32.5,
+          "source_row": 16
+        },
+        {
+          "year": 2007,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 20,
+          "rate_per_100_nl": 16.4,
+          "rate_per_100_nu": 24.1,
+          "source_row": 17
+        },
+        {
+          "year": 2013,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 10.3,
+          "rate_per_100_nl": 8.6,
+          "rate_per_100_nu": 12.2,
+          "source_row": 18
+        },
+        {
+          "year": 2000,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 12.8,
+          "rate_per_100_nl": 11.4,
+          "rate_per_100_nu": 14.3,
+          "source_row": 19
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 15.7,
+          "rate_per_100_nl": 11.8,
+          "rate_per_100_nu": 20.6,
+          "source_row": 20
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 14.9,
+          "rate_per_100_nl": 11,
+          "rate_per_100_nu": 19.7,
+          "source_row": 21
+        },
+        {
+          "year": 1997,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 15.2,
+          "rate_per_100_nl": 11.1,
+          "rate_per_100_nu": 20.4,
+          "source_row": 22
+        },
+        {
+          "year": 1997,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 14.9,
+          "rate_per_100_nl": 10.4,
+          "rate_per_100_nu": 20.8,
+          "source_row": 23
+        },
+        {
+          "year": 2007,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 15.2,
+          "rate_per_100_nl": 11.1,
+          "rate_per_100_nu": 20.4,
+          "source_row": 24
+        },
+        {
+          "year": 2000,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 8.3,
+          "rate_per_100_nl": 6,
+          "rate_per_100_nu": 11.3,
+          "source_row": 25
+        },
+        {
+          "year": 2014,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 12.5,
+          "rate_per_100_nl": 9.9,
+          "rate_per_100_nu": 15.7,
+          "source_row": 26
+        },
+        {
+          "year": 2014,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 12.7,
+          "rate_per_100_nl": 9,
+          "rate_per_100_nu": 17.7,
+          "source_row": 27
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 15.6,
+          "rate_per_100_nl": 14,
+          "rate_per_100_nu": 17.4,
+          "source_row": 28
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 16.2,
+          "rate_per_100_nl": 14.6,
+          "rate_per_100_nu": 17.9,
+          "source_row": 29
+        },
+        {
+          "year": 2019,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 9.8,
+          "rate_per_100_nl": 9,
+          "rate_per_100_nu": 10.6,
+          "source_row": 30
+        },
+        {
+          "year": 2019,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 7.3,
+          "rate_per_100_nl": 5.6,
+          "rate_per_100_nu": 9.3,
+          "source_row": 31
+        },
+        {
+          "year": 2000,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 9.6,
+          "rate_per_100_nl": 6.7,
+          "rate_per_100_nu": 13.5,
+          "source_row": 32
+        },
+        {
+          "year": 2004,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 10.6,
+          "rate_per_100_nl": 7.7,
+          "rate_per_100_nu": 14.6,
+          "source_row": 33
+        },
+        {
+          "year": 2014,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 10,
+          "rate_per_100_nl": 7.1,
+          "rate_per_100_nu": 13.9,
+          "source_row": 34
+        },
+        {
+          "year": 2022,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 10,
+          "rate_per_100_nl": 6.3,
+          "rate_per_100_nu": 15.5,
+          "source_row": 35
+        },
+        {
+          "year": 2022,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 10.1,
+          "rate_per_100_nl": 6.2,
+          "rate_per_100_nu": 16.1,
+          "source_row": 36
+        },
+        {
+          "year": 2019,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 7.6,
+          "rate_per_100_nl": 6.4,
+          "rate_per_100_nu": 8.9,
+          "source_row": 37
+        },
+        {
+          "year": 2007,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 15.5,
+          "rate_per_100_nl": 11.5,
+          "rate_per_100_nu": 20.7,
+          "source_row": 38
+        },
+        {
+          "year": 2007,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 12.8,
+          "rate_per_100_nl": 8.8,
+          "rate_per_100_nu": 18.2,
+          "source_row": 39
+        },
+        {
+          "year": 2022,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 12.9,
+          "rate_per_100_nl": 8.3,
+          "rate_per_100_nu": 19.4,
+          "source_row": 40
+        },
+        {
+          "year": 2022,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 7.3,
+          "rate_per_100_nl": 4.6,
+          "rate_per_100_nu": 11.4,
+          "source_row": 41
+        },
+        {
+          "year": 2022,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 14.4,
+          "rate_per_100_nl": 10,
+          "rate_per_100_nu": 20.3,
+          "source_row": 42
+        },
+        {
+          "year": 2011,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 16.5,
+          "rate_per_100_nl": 12.7,
+          "rate_per_100_nu": 21.2,
+          "source_row": 43
+        },
+        {
+          "year": 2011,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 12.4,
+          "rate_per_100_nl": 9.3,
+          "rate_per_100_nu": 16.5,
+          "source_row": 44
+        },
+        {
+          "year": 2013,
+          "sex": "Female",
+          "age": null,
+          "rate_per_100_n": 9.8,
+          "rate_per_100_nl": 8.5,
+          "rate_per_100_nu": 11.2,
+          "source_row": 45
+        },
+        {
+          "year": 2013,
+          "sex": "Male",
+          "age": null,
+          "rate_per_100_n": 13.8,
+          "rate_per_100_nl": 12.3,
+          "rate_per_100_nu": 15.5,
+          "source_row": 46
+        },
+        {
+          "year": 2006,
+          "sex": "Total",
+          "age": "Total years",
+          "rate_per_100_n": 11.9,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 47
+        },
+        {
+          "year": 1995,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 15.1,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 48
+        },
+        {
+          "year": 1996,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 15.5,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 49
+        },
+        {
+          "year": 2014,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 14.4,
+          "rate_per_100_nl": 13.3,
+          "rate_per_100_nu": 15.5,
+          "source_row": 50
+        },
+        {
+          "year": 1994,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 16.7,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 51
+        },
+        {
+          "year": 1999,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 13.7,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 52
+        },
+        {
+          "year": 2013,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 9.6,
+          "rate_per_100_nl": 9.1,
+          "rate_per_100_nu": 10.2,
+          "source_row": 53
+        },
+        {
+          "year": 1997,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 20.7,
+          "rate_per_100_nl": 19.4,
+          "rate_per_100_nu": 22.1,
+          "source_row": 54
+        },
+        {
+          "year": 1991,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 15.2,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 55
+        },
+        {
+          "year": 1992,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 16.1,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 56
+        },
+        {
+          "year": 1993,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 14,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 57
+        },
+        {
+          "year": 1998,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 15,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 58
+        },
+        {
+          "year": 2000,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 12.5,
+          "rate_per_100_nl": 11.5,
+          "rate_per_100_nu": 13.5,
+          "source_row": 59
+        },
+        {
+          "year": 2005,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 14.5,
+          "rate_per_100_nl": null,
+          "rate_per_100_nu": null,
+          "source_row": 60
+        },
+        {
+          "year": 1997,
+          "sex": null,
+          "age": null,
+          "rate_per_100_n": 28.9,
+          "rate_per_100_nl": 26.8,
+          "rate_per_100_nu": 31.1,
+          "source_row": 61
+        }
+      ],
+      "indicator_codes": [
+        "NUTRITION_WH_2"
+      ]
+    }
+  ]
+}

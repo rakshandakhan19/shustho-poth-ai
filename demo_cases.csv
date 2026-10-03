@@ -1,8 +1,15 @@
-﻿id,text,expected_intent
-D001,"আমার বাচ্চার ৩ দিন ধরে জ্বর, কিছু খাচ্ছে না, বুক ধর ধর করছে",fever
-D002,বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে,breathing_difficulty
-D003,ছেলের খিঁচুনি হচ্ছে,seizure
-D004,ডাক্তারের কাছে যাওয়ার টাকা নাই,financial_barrier
-D005,"নেট নাই, পরে পাঠাব",connectivity
-D006,ক্লিনিকে যেতে অনেক দূর,travel_barrier
-D007,দুই দিন ধরে পেট ব্যথা করছে,pain
+﻿id,text,expected_intent,expected_concerns
+D001,"আমার বাচ্চার ৩ দিন ধরে জ্বর, কিছু খাচ্ছে না, বুক ধর ধর করছে",breathing_difficulty,fever; breathing_difficulty
+D002,বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty
+D003,ছেলের খিঁচুনি হচ্ছে,seizure,seizure
+D004,ডাক্তারের কাছে যাওয়ার টাকা নাই,financial_barrier,financial_barrier
+D005,"নেট নাই, পরে পাঠাব",connectivity,connectivity
+D006,ক্লিনিকে যেতে অনেক দূর,travel_barrier,travel_barrier
+D007,দুই দিন ধরে পেট ব্যথা করছে,pain,pain
+D008,"amar bacchar shash nite koshto hocche, hospital e jawar taka nai",breathing_difficulty,breathing_difficulty; financial_barrier
+D009,doctor dekhaite chai kintu taka nai,financial_barrier,financial_barrier
+D010,"net nai, pore case pathabo",connectivity,connectivity
+D011,"hospital onek dure, gari bhara nai",travel_barrier,travel_barrier; financial_barrier
+D012,"hothat ek pasher haat pa durbol, kotha bolte partese na, hospital e jawar taka nai",neurological_red_flag,neurological_red_flag; financial_barrier
+D013,"3 din dhore patla paykhana, pani khete partese na, prosrab kom",dehydration,dehydration; diarrhea_vomiting
+D014,"jor kome geche, abar 3 din pore dekhate bolse",routine_follow_up,fever; routine_follow_up

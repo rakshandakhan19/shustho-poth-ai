@@ -1,14 +1,19 @@
 {
-  "purpose": "Safety guardrails for the prototype; not a clinical protocol.",
+  "purpose": "Prototype safety guardrails and phrase-trigger notes only. This is not clinical guidance, a validated triage protocol, or a referral decision engine.",
   "rules": [
-    "AI structures reported information; it does not diagnose or prescribe.",
-    "A health worker makes the final clinical/referral decision.",
-    "Missing age/duration fields are surfaced for confirmation.",
-    "Breathing-related reports are flagged for human confirmation.",
-    "Facility records must be verified before deployment.",
-    "Payment/assistance options must be verified and current before deployment."
+    "The model structures reported words; it does not diagnose, prescribe, or assess a condition probability.",
+    "Potential warning phrases must be confirmed by a human health worker and handled under current local clinical protocol.",
+    "A missing phrase match does not rule out urgency or risk.",
+    "Human health worker makes the final assessment, referral, and follow-up decision.",
+    "Potential warning assessment must not be delayed by cost, payment, transport, or access planning.",
+    "Low model scores or disagreement between classifier and directly matched cues require worker review.",
+    "Age, duration, temperature, respiratory rate, drinking, urination, and pregnancy details are prompts to ask where relevant; missing information is not a reason to delay urgent assessment.",
+    "Facility entries are a small sample and must be verified for current location, opening, service, and capacity.",
+    "WHO population indicators are context only and must never be used to infer an individual diagnosis, risk, or referral.",
+    "Support and financial options must be independently verified. The app does not infer insurance or eligibility.",
+    "SMS, mobile-money payment, connection, and sync controls are demonstrations; no real transfer or transmission occurs."
   ],
-  "allowed_decisions": [
+  "allowed_worker_decisions": [
     "Refer",
     "Follow up",
     "Need more information",

@@ -1,12 +1,9 @@
-# Prototype evaluation
+# Current prototype evaluation
 
-**Held-out test set:** 49 synthetic Bangla/Banglish cases.
+The current synthetic dataset has **171 training phrases** and **71 held-out phrases** across 18 labels. The test set covers the seven original categories with seven examples each and the eleven added labels with two examples each.
 
-- Training cases: 105
-- Held-out test cases: 49
-- Accuracy: **98.0%** (48/49)
-- Macro-F1: **97.9%**
+The Naive Bayes model’s top class matches **57/71 (80.3%)**, with **62.0% macro-F1**. Fourteen model top-class errors are retained in `results.json`. One original connectivity phrase is still classified as a financial barrier.
 
-One held-out connectivity case was classified as a financial barrier. This is retained as an error rather than removed, because it demonstrates why the tool must surface uncertainty and remain human-reviewed.
+The phrase-overlay, safety-prioritized output matched all 71 curated labels on this small test split. The new categories have only two held-out examples each, and examples deliberately contain cue words. This result is not representative language evaluation, clinical validation, or evidence of safe deployment.
 
-These are synthetic demonstration cases and the metrics are **not clinical validation**. The dataset does not represent all Bangla dialects, code-switching, ages, conditions, literacy levels or real clinical environments.
+Every training and held-out phrase is synthetic. The dataset does not cover all Bangla dialects, code-switching, ages, conditions, literacy levels, or real clinical environments. See `local_language_dataset.csv`, `results.json`, and the main README for limitations.

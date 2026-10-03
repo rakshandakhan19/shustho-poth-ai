@@ -1,59 +1,329 @@
 {
   "dataset": "local_language_dataset.csv",
-  "train_cases": 105,
-  "held_out_test_cases": 49,
-  "accuracy": 0.9796,
-  "macro_f1": 0.9794,
-  "per_intent": {
-    "fever": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "test_cases": 7
-    },
-    "breathing_difficulty": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "test_cases": 7
-    },
-    "seizure": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "test_cases": 7
-    },
-    "pain": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "test_cases": 7
-    },
-    "financial_barrier": {
-      "precision": 0.875,
-      "recall": 1.0,
-      "f1": 0.933,
-      "test_cases": 7
-    },
-    "connectivity": {
-      "precision": 1.0,
-      "recall": 0.857,
-      "f1": 0.923,
-      "test_cases": 7
-    },
-    "travel_barrier": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "test_cases": 7
-    }
-  },
-  "errors": [
-    {
-      "text": "নেটওয়ার্ক না থাকায় এখন পাঠাতে পারছি না",
-      "expected": "connectivity",
-      "predicted": "financial_barrier"
-    }
+  "training_cases": 171,
+  "held_out_test_cases": 71,
+  "classifier_classes": [
+    "fever",
+    "breathing_difficulty",
+    "cough_respiratory",
+    "diarrhea_vomiting",
+    "dehydration",
+    "seizure",
+    "pain",
+    "injury_trauma",
+    "neurological_red_flag",
+    "maternal_pregnancy",
+    "skin_problem",
+    "chest_cardiac_warning",
+    "diabetes_related",
+    "hypertension_related",
+    "financial_barrier",
+    "connectivity",
+    "travel_barrier",
+    "routine_follow_up"
   ],
-  "note": "Synthetic demonstration data. Metrics are prototype evaluation only and are not clinical validation."
+  "naive_bayes_top_class": {
+    "accuracy": 0.8028,
+    "macro_f1": 0.6205,
+    "per_intent": {
+      "breathing_difficulty": {
+        "precision": 0.7778,
+        "recall": 1.0,
+        "f1": 0.875,
+        "test_cases": 7
+      },
+      "chest_cardiac_warning": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_cases": 2
+      },
+      "connectivity": {
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "test_cases": 7
+      },
+      "cough_respiratory": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "test_cases": 2
+      },
+      "dehydration": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_cases": 2
+      },
+      "diabetes_related": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "test_cases": 2
+      },
+      "diarrhea_vomiting": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "test_cases": 2
+      },
+      "fever": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "financial_barrier": {
+        "precision": 0.875,
+        "recall": 1.0,
+        "f1": 0.9333,
+        "test_cases": 7
+      },
+      "hypertension_related": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "test_cases": 2
+      },
+      "injury_trauma": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_cases": 2
+      },
+      "maternal_pregnancy": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_cases": 2
+      },
+      "neurological_red_flag": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "test_cases": 2
+      },
+      "pain": {
+        "precision": 0.875,
+        "recall": 1.0,
+        "f1": 0.9333,
+        "test_cases": 7
+      },
+      "routine_follow_up": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "test_cases": 2
+      },
+      "seizure": {
+        "precision": 0.5833,
+        "recall": 1.0,
+        "f1": 0.7368,
+        "test_cases": 7
+      },
+      "skin_problem": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "test_cases": 2
+      },
+      "travel_barrier": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      }
+    },
+    "errors": [
+      {
+        "text": "নেটওয়ার্ক না থাকায় এখন পাঠাতে পারছি না",
+        "expected": "connectivity",
+        "predicted": "financial_barrier"
+      },
+      {
+        "text": "কাশির সঙ্গে গলা খুসখুস",
+        "expected": "cough_respiratory",
+        "predicted": "seizure"
+      },
+      {
+        "text": "diarrhoea for two days",
+        "expected": "diarrhea_vomiting",
+        "predicted": "cough_respiratory"
+      },
+      {
+        "text": "জিহ্বা শুকনো লাগছে",
+        "expected": "dehydration",
+        "predicted": "breathing_difficulty"
+      },
+      {
+        "text": "no urine since morning",
+        "expected": "dehydration",
+        "predicted": "chest_cardiac_warning"
+      },
+      {
+        "text": "হাত পুড়ে গেছে",
+        "expected": "injury_trauma",
+        "predicted": "neurological_red_flag"
+      },
+      {
+        "text": "injury from a fall",
+        "expected": "injury_trauma",
+        "predicted": "seizure"
+      },
+      {
+        "text": "বাচ্চার নড়াচড়া কম মনে হচ্ছে",
+        "expected": "maternal_pregnancy",
+        "predicted": "breathing_difficulty"
+      },
+      {
+        "text": "delivery pain hocche",
+        "expected": "maternal_pregnancy",
+        "predicted": "seizure"
+      },
+      {
+        "text": "skin problem hocche",
+        "expected": "skin_problem",
+        "predicted": "seizure"
+      },
+      {
+        "text": "বুকে ব্যথা আর ঘাম হচ্ছে",
+        "expected": "chest_cardiac_warning",
+        "predicted": "pain"
+      },
+      {
+        "text": "chest pain and discomfort",
+        "expected": "chest_cardiac_warning",
+        "predicted": "maternal_pregnancy"
+      },
+      {
+        "text": "my glucose reading was high",
+        "expected": "diabetes_related",
+        "predicted": "hypertension_related"
+      },
+      {
+        "text": "পুনরায় দেখানোর সময় হয়েছে",
+        "expected": "routine_follow_up",
+        "predicted": "seizure"
+      }
+    ]
+  },
+  "combined_review_category": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "per_intent": {
+      "breathing_difficulty": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "chest_cardiac_warning": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "connectivity": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "cough_respiratory": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "dehydration": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "diabetes_related": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "diarrhea_vomiting": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "fever": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "financial_barrier": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "hypertension_related": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "injury_trauma": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "maternal_pregnancy": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "neurological_red_flag": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "pain": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "routine_follow_up": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "seizure": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      },
+      "skin_problem": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 2
+      },
+      "travel_barrier": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_cases": 7
+      }
+    },
+    "errors": []
+  },
+  "test_coverage_note": "Held-out test set covers 7 original classes with 7 cases each and 11 added classes with 2 cases each. New-class test counts are extremely small. All examples are synthetic and cue-rich; these scores do not represent language generalization or clinical safety. The separate cue-prioritized output is a curated phrase match, not a validated screening measure.",
+  "confidence_note": "Naive Bayes top-class scores are uncalibrated relative scores, not disease probabilities.",
+  "note": "Synthetic demonstration data only. Not clinical validation, diagnostic accuracy, or evidence of safe deployment."
 }

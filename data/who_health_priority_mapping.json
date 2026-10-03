@@ -1,0 +1,140 @@
+{
+  "title": "WHO indicator context to prototype concern mapping",
+  "purpose": "Documentation only. These population-level indicators do not enter the classifier, change its output, or make referral decisions.",
+  "classifier_intents": [
+    "fever",
+    "breathing_difficulty",
+    "cough_respiratory",
+    "diarrhea_vomiting",
+    "dehydration",
+    "seizure",
+    "pain",
+    "injury_trauma",
+    "neurological_red_flag",
+    "maternal_pregnancy",
+    "skin_problem",
+    "chest_cardiac_warning",
+    "diabetes_related",
+    "hypertension_related",
+    "financial_barrier",
+    "connectivity",
+    "travel_barrier",
+    "routine_follow_up"
+  ],
+  "mapping": [
+    {
+      "indicator_id": "C288D13",
+      "priority": "Tuberculosis",
+      "prototype_intent": "cough_respiratory / breathing_difficulty",
+      "relationship": "context_only",
+      "reason": "TB incidence can contextualize respiratory presentation priorities; it cannot identify TB in a person and does not train the classifier."
+    },
+    {
+      "indicator_id": "442CEA8",
+      "priority": "Malaria",
+      "prototype_intent": "fever",
+      "relationship": "context_only",
+      "reason": "Malaria incidence is population context only; fever is a nonspecific reported symptom and must not be interpreted as malaria."
+    },
+    {
+      "indicator_id": "D6176E2",
+      "priority": "Road traffic injuries",
+      "prototype_intent": "injury_trauma",
+      "relationship": "context_only",
+      "reason": "Road-traffic mortality can contextualize injury preparedness; it does not predict an individual injury."
+    },
+    {
+      "indicator_id": "AC597B1",
+      "priority": "Maternal mortality",
+      "prototype_intent": "maternal_pregnancy",
+      "relationship": "context_only",
+      "reason": "Maternal mortality supports service-priority context only; the prototype does not infer pregnancy risk."
+    },
+    {
+      "indicator_id": "2322814",
+      "priority": "Under-five mortality",
+      "prototype_intent": null,
+      "relationship": "context_only",
+      "reason": "Under-five mortality is a population outcome and not an individual presentation label."
+    },
+    {
+      "indicator_id": "A4C49D3",
+      "priority": "Neonatal mortality",
+      "prototype_intent": null,
+      "relationship": "context_only",
+      "reason": "Neonatal mortality is a population outcome and not an individual presentation label."
+    },
+    {
+      "indicator_id": "1F96863",
+      "priority": "Premature mortality from target NCDs",
+      "prototype_intent": "diabetes_related / hypertension_related / chest_cardiac_warning",
+      "relationship": "context_only",
+      "reason": "Aggregate NCD mortality risk gives service context only; no listed disease or cause is inferred for a patient."
+    },
+    {
+      "indicator_id": "608DE39",
+      "priority": "Hypertension prevalence",
+      "prototype_intent": "hypertension_related",
+      "relationship": "context_only",
+      "reason": "Prevalence can contextualize service priorities; the prototype does not measure blood pressure or diagnose hypertension."
+    },
+    {
+      "indicator_id": "5F8A486",
+      "priority": "Child stunting",
+      "prototype_intent": null,
+      "relationship": "context_only",
+      "reason": "Stunting prevalence is nutritional population context; no nutritional-status classifier is implemented."
+    },
+    {
+      "indicator_id": "FC5231F",
+      "priority": "Child wasting",
+      "prototype_intent": null,
+      "relationship": "context_only",
+      "reason": "Wasting prevalence is nutritional population context; no nutritional-status classifier is implemented."
+    },
+    {
+      "indicator_id": "E2FC6D7",
+      "priority": "Air-pollution-attributable mortality",
+      "prototype_intent": "cough_respiratory / breathing_difficulty",
+      "relationship": "context_only",
+      "reason": "Air-pollution mortality can contextualize respiratory service priorities; it cannot attribute a patient’s symptoms to pollution."
+    },
+    {
+      "indicator_id": "ED50112",
+      "priority": "Unsafe WASH-attributable mortality",
+      "prototype_intent": "diarrhea_vomiting",
+      "relationship": "context_only",
+      "reason": "Unsafe-WASH mortality can contextualize WASH and diarrhoeal service priorities; it cannot establish cause or exposure for a person."
+    },
+    {
+      "indicator_id": "217795A",
+      "priority": "Physician density",
+      "prototype_intent": null,
+      "relationship": "service_context_only",
+      "reason": "National physician density does not locate or verify a nearby facility."
+    },
+    {
+      "indicator_id": "5C8435F",
+      "priority": "Nursing and midwifery personnel density",
+      "prototype_intent": null,
+      "relationship": "service_context_only",
+      "reason": "National nursing/midwifery density does not locate or verify a nearby facility."
+    },
+    {
+      "indicator_id": "45CA7C8",
+      "priority": "Pharmaceutical personnel density",
+      "prototype_intent": null,
+      "relationship": "service_context_only",
+      "reason": "National pharmacy workforce density does not locate or verify a nearby service."
+    }
+  ],
+  "unavailable_in_supplied_package": [
+    {
+      "priority": "Leading causes of death",
+      "indicator_id": null,
+      "prototype_intent": null,
+      "reason": "No leading-causes dataset was present in 050_Bangladesh.zip; source cause names and values were not reconstructed."
+    }
+  ],
+  "mapping_policy": "These links are narrative planning context only. WHO rates and estimates never enter runtime text classification, individual risk estimation, clinical actions, or automated referral."
+}
