@@ -103,7 +103,36 @@
       <label class="choice"><input type="checkbox" name="barrier" value="navigation"><span><strong>I need help finding care</strong><small>Referral or navigation support</small></span></label>
     </div>
     <p id="facilityHint" class="muted">Static DGHS source snapshot. Verify locally; no live service status is available.</p>
-    <h3 class="subhead">Your area in Bangladesh (optional)</h3><p>Choose a division, district, and upazila. No GPS or exact address is requested. The selection stays on this device.</p><div class="form-grid"><label>Division<select id="locationDivision"><option value="">Choose division</option></select></label><label>District<select id="locationDistrict" disabled><option value="">Choose district</option></select></label><label>Upazila<select id="locationUpazila" disabled><option value="">Choose upazila</option></select></label></div><p id="locationStatus" class="muted" aria-live="polite">Bangladesh location list loads from a bundled local file.</p><h3 class="subhead">Care options in your selected area</h3><p id="careOptionStatus" class="notice">Select an area to look for DGHS source records. The directory is a static snapshot; verify locally.</p><div id="areaFacilityCards" class="facility-grid"></div><label class="label" for="facilitySelect">Choose a listed record to discuss with a health professional</label><select id="facilitySelect"><option value="">Choose a record</option></select><p id="selectedFacilitySummary" class="notice">No facility selected. Confirm locally whether it is suitable and open.</p>
+    <h3 class="subhead">Your area in Bangladesh (optional)</h3><p>Choose a division, district, and upazila. No GPS or exact address is requested. The selection stays on this device.</p><div class="form-grid"><label>Division<select id="locationDivision"><option value="">Choose division</option></select></label><label>District<select id="locationDistrict" disabled><option value="">Choose district</option></select></label><label>Upazila<select id="locationUpazila" disabled><option value="">Choose upazila</option></select></label></div><p id="locationStatus" class="muted" aria-live="polite">Bangladesh location list loads from a bundled local file.</p><h3 class="subhead">Care options in your selected area</h3><p id="careOptionStatus" class="notice">Select an area to look for DGHS source records. The directory is a static snapshot; verify locally.</p><div id="areaFacilityCards" class="facility-grid"></div><div class="divider"></div>
+
+<h3 class="subhead">📍 Find care near me</h3>
+
+<p>
+  If you allow location access, this prototype can calculate approximate
+  straight-line distance to a small set of georeferenced DGHS facilities.
+</p>
+
+<p class="muted">
+  Your location is used locally in the browser for this calculation.
+  It is not sent to the prototype server.
+</p>
+
+<button type="button" class="button" id="findNearbyButton">
+  📍 Find care near me
+</button>
+
+<div id="nearby-facilities" aria-live="polite">
+  <p class="notice">
+    No location has been checked yet. You can continue using the
+    Bangladesh area selector above.
+  </p>
+</div>
+
+<p class="muted">
+  Distance is approximate straight-line distance, not travel time.
+  This is a small georeferenced prototype subset, not a complete list
+  of nearby facilities. Verify services and opening status locally.
+</p><label class="label" for="facilitySelect">Choose a listed record to discuss with a health professional</label><select id="facilitySelect"><option value="">Choose a record</option></select><p id="selectedFacilitySummary" class="notice">No facility selected. Confirm locally whether it is suitable and open.</p>
     <div class="choice-grid"><label class="choice"><input type="radio" name="affordChoice" value="yes"><span><strong>I can afford care</strong></span></label><label class="choice"><input type="radio" name="affordChoice" value="cost"><span><strong>Cost is a problem</strong></span></label><label class="choice"><input type="radio" name="affordChoice" value="transport"><span><strong>I need transport help</strong></span></label><label class="choice"><input type="radio" name="affordChoice" value="payment"><span><strong>I need payment information</strong></span></label><label class="choice"><input type="radio" name="affordChoice" value="community"><span><strong>I need community/NGO assistance</strong></span></label></div>
     <button type="button" class="button secondary" id="prepareReferralButton">Prepare a referral note</button><button type="button" class="button secondary" id="saveCaseButton">Save my case on this device</button><p id="saveStatus" class="muted" aria-live="polite"></p>
   </section>
