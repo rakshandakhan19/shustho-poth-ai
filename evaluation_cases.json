@@ -1,0 +1,854 @@
+{
+  "description": "Independently authored synthetic prototype language and rule-coverage evaluation; not clinical validation.",
+  "cases": [
+    {
+      "id": "E001",
+      "text": "কাল রাত থেকে শরীরটা গরম, কাঁপুনি আছে",
+      "expected_intent": "fever",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E002",
+      "text": "bacchar jor uthse aar matha gorom",
+      "expected_intent": "fever",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E003",
+      "text": "My child feels hot since morning",
+      "expected_intent": "fever",
+      "expected_red_flag": false,
+      "language": "mixed",
+      "features": []
+    },
+    {
+      "id": "E004",
+      "text": "জ্বর একটু বাড়ছে বলে মনে হচ্ছে",
+      "expected_intent": "fever",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E005",
+      "text": "বাচ্চাটা ঠিকমতো দম নিতে পারছে না",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E006",
+      "text": "bacchar breath korte problem, kotha bolteo koshto",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E007",
+      "text": "amar baby r breathing problem hocche",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "mixed",
+      "features": []
+    },
+    {
+      "id": "E008",
+      "text": "shash e onek koshto hocche ekhon",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E009",
+      "text": "রাতে কাশি থামে না",
+      "expected_intent": "cough_respiratory",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E010",
+      "text": "kashi hoile buk e kof jome",
+      "expected_intent": "cough_respiratory",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E011",
+      "text": "My throat is irritated and I keep coughing",
+      "expected_intent": "cough_respiratory",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E012",
+      "text": "baccha raat bhore khuk khuk kore",
+      "expected_intent": "cough_respiratory",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E013",
+      "text": "আজ কয়েকবার পাতলা পায়খানা হয়েছে",
+      "expected_intent": "diarrhea_vomiting",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E014",
+      "text": "pet kharap, bar bar loose motion hocche",
+      "expected_intent": "diarrhea_vomiting",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E015",
+      "text": "She vomited twice after eating",
+      "expected_intent": "diarrhea_vomiting",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E016",
+      "text": "বমি হচ্ছে আর পেট মোচড় দিচ্ছে",
+      "expected_intent": "diarrhea_vomiting",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E017",
+      "text": "মুখ শুকিয়ে গেছে, প্রস্রাবও কম",
+      "expected_intent": "dehydration",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E018",
+      "text": "pani khaite iccha korche na aar prosrab kom",
+      "expected_intent": "dehydration",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E019",
+      "text": "No urine since morning and very dry mouth",
+      "expected_intent": "dehydration",
+      "expected_red_flag": true,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E020",
+      "text": "চোখ বসে গেছে, খুব দুর্বল লাগছে",
+      "expected_intent": "dehydration",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E021",
+      "text": "হঠাৎ শরীর কেঁপে খিঁচুনি শুরু হলো",
+      "expected_intent": "seizure",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E022",
+      "text": "baccha kichukhon khichuni dise",
+      "expected_intent": "seizure",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E023",
+      "text": "He had convulsions and is not responding",
+      "expected_intent": "seizure",
+      "expected_red_flag": true,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E024",
+      "text": "খিচুনি থামলেও এখনো অস্বাভাবিক",
+      "expected_intent": "seizure",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E025",
+      "text": "কোমরের ব্যথায় কাজ করতে পারছি না",
+      "expected_intent": "pain",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E026",
+      "text": "pet er dan pashe betha hocche",
+      "expected_intent": "pain",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E027",
+      "text": "My shoulder aches when I lift things",
+      "expected_intent": "pain",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E028",
+      "text": "মাথাটা ভার আর ব্যথা করছে",
+      "expected_intent": "pain",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E029",
+      "text": "রান্নাঘরে হাত পুড়ে ফোসকা হয়েছে",
+      "expected_intent": "injury_trauma",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E030",
+      "text": "cycle theke pore hat keteche",
+      "expected_intent": "injury_trauma",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E031",
+      "text": "He fell and struck his head hard, now vomiting",
+      "expected_intent": "injury_trauma",
+      "expected_red_flag": true,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E032",
+      "text": "দুর্ঘটনায় পায়ে আঘাত লেগেছে",
+      "expected_intent": "injury_trauma",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E033",
+      "text": "হঠাৎ মুখ বেঁকে গেছে আর হাত তুলতে পারছে না",
+      "expected_intent": "neurological_red_flag",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E034",
+      "text": "ek pashe jhim dhore, kotha joray",
+      "expected_intent": "neurological_red_flag",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E035",
+      "text": "Suddenly unable to speak clearly and one arm is weak",
+      "expected_intent": "neurological_red_flag",
+      "expected_red_flag": true,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E036",
+      "text": "হঠাৎ একপাশ অবশ হয়ে গেছে",
+      "expected_intent": "neurological_red_flag",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E037",
+      "text": "গর্ভের বাচ্চা আজ কম নড়ছে",
+      "expected_intent": "maternal_pregnancy",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E038",
+      "text": "pregnant obosthay pet e betha hocche",
+      "expected_intent": "maternal_pregnancy",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E039",
+      "text": "I am expecting and worried about my checkup",
+      "expected_intent": "maternal_pregnancy",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E040",
+      "text": "গর্ভাবস্থায় রক্ত যাচ্ছে আর মাথা ঘুরছে",
+      "expected_intent": "maternal_pregnancy",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E041",
+      "text": "হাতে লাল চুলকানির দাগ উঠেছে",
+      "expected_intent": "skin_problem",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E042",
+      "text": "gaye rash ber hoise chulkay",
+      "expected_intent": "skin_problem",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E043",
+      "text": "My skin has itchy patches after using soap",
+      "expected_intent": "skin_problem",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E044",
+      "text": "মুখে ছোট ছোট ফুসকুড়ি হয়েছে",
+      "expected_intent": "skin_problem",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E045",
+      "text": "বুকে চাপ লাগছে, ঘাম হচ্ছে",
+      "expected_intent": "chest_cardiac_warning",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E046",
+      "text": "buk dhorfor ar betha lagche",
+      "expected_intent": "chest_cardiac_warning",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E047",
+      "text": "I have squeezing chest pain now",
+      "expected_intent": "chest_cardiac_warning",
+      "expected_red_flag": true,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E048",
+      "text": "বুকের মাঝখানে ব্যথা থামছে না",
+      "expected_intent": "chest_cardiac_warning",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E049",
+      "text": "সুগারের রিপোর্টটা বুঝতে চাই",
+      "expected_intent": "diabetes_related",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E050",
+      "text": "diabetes er oshudh sesh hoye geche",
+      "expected_intent": "diabetes_related",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E051",
+      "text": "My glucose was higher than usual",
+      "expected_intent": "diabetes_related",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E052",
+      "text": "ডায়াবেটিসের জন্য কোথায় দেখাবো",
+      "expected_intent": "diabetes_related",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E053",
+      "text": "রক্তচাপ মাপার ব্যবস্থা আছে?",
+      "expected_intent": "hypertension_related",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E054",
+      "text": "pressure beshi bolse abar check korbo",
+      "expected_intent": "hypertension_related",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E055",
+      "text": "My blood pressure reading was high",
+      "expected_intent": "hypertension_related",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E056",
+      "text": "প্রেসারের ওষুধ নিয়মিত নিচ্ছি",
+      "expected_intent": "hypertension_related",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E057",
+      "text": "ডাক্তার দেখানোর খরচ জোগাড় হয়নি",
+      "expected_intent": "financial_barrier",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E058",
+      "text": "visit er taka ekhon dite parbo na",
+      "expected_intent": "financial_barrier",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E059",
+      "text": "We cannot pay for the clinic today",
+      "expected_intent": "financial_barrier",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E060",
+      "text": "ওষুধ কেনার মতো টাকা হাতে নেই",
+      "expected_intent": "financial_barrier",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E061",
+      "text": "ক্লিনিকে যাওয়ার কোনো গাড়ি পাচ্ছি না",
+      "expected_intent": "travel_barrier",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E062",
+      "text": "hospital jete onek shomoy lage gari nai",
+      "expected_intent": "travel_barrier",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E063",
+      "text": "The health centre is too far for us",
+      "expected_intent": "travel_barrier",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E064",
+      "text": "নদী পার হয়ে যেতে হয়, নৌকা নেই",
+      "expected_intent": "travel_barrier",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E065",
+      "text": "এখানে মোবাইল নেটওয়ার্ক একদম নেই",
+      "expected_intent": "connectivity",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E066",
+      "text": "internet off, pore message dibo",
+      "expected_intent": "connectivity",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E067",
+      "text": "My phone has no data signal here",
+      "expected_intent": "connectivity",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E068",
+      "text": "নেট আসলে তথ্য পাঠাবো",
+      "expected_intent": "connectivity",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E069",
+      "text": "আগামী সপ্তাহে আবার পরীক্ষা করাতে হবে",
+      "expected_intent": "routine_follow_up",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E070",
+      "text": "doctor bolse koyekdin pore abar dekhaite",
+      "expected_intent": "routine_follow_up",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E071",
+      "text": "I need to return for a review visit",
+      "expected_intent": "routine_follow_up",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": []
+    },
+    {
+      "id": "E072",
+      "text": "ওষুধ শেষ হলে আবার আসতে বলেছেন",
+      "expected_intent": "routine_follow_up",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E073",
+      "text": "amar bacchar shash nite koshto hocche na",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": [
+        "negation",
+        "child"
+      ]
+    },
+    {
+      "id": "E074",
+      "text": "shash nite ekdom problem nai",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": [
+        "negation"
+      ]
+    },
+    {
+      "id": "E075",
+      "text": "amar bacchar jor nai",
+      "expected_intent": "fever",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": [
+        "negation",
+        "child"
+      ]
+    },
+    {
+      "id": "E076",
+      "text": "বুকে ব্যথা নেই",
+      "expected_intent": "chest_cardiac_warning",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": [
+        "negation"
+      ]
+    },
+    {
+      "id": "E077",
+      "text": "খিচুনি হচ্ছে না",
+      "expected_intent": "seizure",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": [
+        "negation"
+      ]
+    },
+    {
+      "id": "E078",
+      "text": "vomit korche na",
+      "expected_intent": "diarrhea_vomiting",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": [
+        "negation"
+      ]
+    },
+    {
+      "id": "E079",
+      "text": "baccha shash nite partese na",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": [
+        "child",
+        "colloquial"
+      ]
+    },
+    {
+      "id": "E080",
+      "text": "শ্বাস নিতে কষ্ট হচ্ছে",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E081",
+      "text": "ডাক্তার দেখাতে চাই কিন্তু টাকা নেই",
+      "expected_intent": "financial_barrier",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E082",
+      "text": "hospital onek dure, gari bhara nai",
+      "expected_intent": "travel_barrier",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E083",
+      "text": "net nai pore case pathabo",
+      "expected_intent": "connectivity",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": []
+    },
+    {
+      "id": "E084",
+      "text": "জ্বর কমেছে, তিন দিন পরে আবার দেখাবো",
+      "expected_intent": "routine_follow_up",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": []
+    },
+    {
+      "id": "E085",
+      "text": "কিছু একটা ভালো লাগছে না",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": [
+        "ambiguous"
+      ]
+    },
+    {
+      "id": "E086",
+      "text": "not feeling right today",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "english",
+      "features": [
+        "ambiguous"
+      ]
+    },
+    {
+      "id": "E087",
+      "text": "hmm",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": [
+        "incomplete"
+      ]
+    },
+    {
+      "id": "E088",
+      "text": "",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "unknown",
+      "features": [
+        "empty"
+      ]
+    },
+    {
+      "id": "E089",
+      "text": "কালকে বাজার থেকে চাল এনেছি",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": [
+        "irrelevant"
+      ]
+    },
+    {
+      "id": "E090",
+      "text": "আমার কাশি আর জ্বর দুটোই আছে",
+      "expected_intent": "cough_respiratory",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": [
+        "multiple_symptoms"
+      ]
+    },
+    {
+      "id": "E091",
+      "text": "shash korte koshto, taka nai, net o nai",
+      "expected_intent": "breathing_difficulty",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": [
+        "multiple_symptoms"
+      ]
+    },
+    {
+      "id": "E092",
+      "text": "খিঁচুনি হচ্ছে, সাড়া দিচ্ছে না",
+      "expected_intent": "seizure",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": [
+        "red_flag"
+      ]
+    },
+    {
+      "id": "E093",
+      "text": "অনেক রক্ত পড়ছে বন্ধ হচ্ছে না",
+      "expected_intent": "injury_trauma",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": [
+        "red_flag"
+      ]
+    },
+    {
+      "id": "E094",
+      "text": "হঠাৎ কথা জড়িয়ে যাচ্ছে",
+      "expected_intent": "neurological_red_flag",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": [
+        "red_flag"
+      ]
+    },
+    {
+      "id": "E095",
+      "text": "pregnancy te bleeding hocche beshi",
+      "expected_intent": "maternal_pregnancy",
+      "expected_red_flag": true,
+      "language": "banglish",
+      "features": [
+        "red_flag"
+      ]
+    },
+    {
+      "id": "E096",
+      "text": "সাপে কামড় দিয়েছে",
+      "expected_intent": "unknown",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": [
+        "red_flag"
+      ]
+    },
+    {
+      "id": "E097",
+      "text": "ভুল করে বিষ পান করেছে",
+      "expected_intent": "unknown",
+      "expected_red_flag": true,
+      "language": "bangla",
+      "features": [
+        "red_flag"
+      ]
+    },
+    {
+      "id": "E098",
+      "text": "কী করব বুঝতে পারছি না",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "bangla",
+      "features": [
+        "vague"
+      ]
+    },
+    {
+      "id": "E099",
+      "text": "আমার problem হচ্ছে কিন্তু বলতে পারছি না",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "mixed",
+      "features": [
+        "vague"
+      ]
+    },
+    {
+      "id": "E100",
+      "text": "eita ki shorir kharap?",
+      "expected_intent": "unknown",
+      "expected_red_flag": false,
+      "language": "banglish",
+      "features": [
+        "ambiguous"
+      ]
+    }
+  ]
+}

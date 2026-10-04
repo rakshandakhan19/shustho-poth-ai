@@ -1,959 +1,229 @@
 {
-  "dataset": "evaluation_cases.csv",
-  "training_cases": 243,
-  "held_out_test_cases": 50,
-  "classifier_classes": [
-    "fever",
-    "breathing_difficulty",
-    "seizure",
-    "pain",
-    "financial_barrier",
-    "connectivity",
-    "travel_barrier",
-    "cough_respiratory",
-    "diarrhea_vomiting",
-    "dehydration",
-    "injury_trauma",
-    "neurological_red_flag",
-    "maternal_pregnancy",
-    "skin_problem",
-    "chest_cardiac_warning",
-    "diabetes_related",
-    "hypertension_related",
-    "routine_follow_up"
-  ],
-  "prototype_language_evaluation": {
-    "classifier": {
-      "accuracy": 0.8,
-      "correct": 40,
-      "total": 50,
-      "macro_f1": 0.8068,
-      "class_count": 18,
-      "per_intent": {
+  "dataset": "evaluation_cases.json",
+  "test_cases": 100,
+  "categorized_cases": 90,
+  "independent_synthetic_cases": true,
+  "training_text_overlaps": 0,
+  "prototype_evaluation_only": true,
+  "intent": {
+    "small_ai": {
+      "correct": 63,
+      "total": 90,
+      "accuracy": 0.7,
+      "per_class": {
+        "fever": {
+          "n": 5,
+          "correct": 4,
+          "accuracy": 0.8
+        },
         "breathing_difficulty": {
-          "precision": 0.5,
-          "recall": 1,
-          "f1": 0.6667,
-          "test_cases": 3
-        },
-        "chest_cardiac_warning": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 3
-        },
-        "connectivity": {
-          "precision": 0.75,
-          "recall": 1,
-          "f1": 0.8571,
-          "test_cases": 3
+          "n": 9,
+          "correct": 8,
+          "accuracy": 0.8889
         },
         "cough_respiratory": {
-          "precision": 1,
-          "recall": 0.5,
-          "f1": 0.6667,
-          "test_cases": 2
-        },
-        "dehydration": {
-          "precision": 0.5,
-          "recall": 1,
-          "f1": 0.6667,
-          "test_cases": 2
-        },
-        "diabetes_related": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
+          "n": 5,
+          "correct": 2,
+          "accuracy": 0.4
         },
         "diarrhea_vomiting": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 3
+          "n": 5,
+          "correct": 2,
+          "accuracy": 0.4
         },
-        "fever": {
-          "precision": 0.75,
-          "recall": 0.75,
-          "f1": 0.75,
-          "test_cases": 4
-        },
-        "financial_barrier": {
-          "precision": 0.6667,
-          "recall": 0.6667,
-          "f1": 0.6667,
-          "test_cases": 3
-        },
-        "hypertension_related": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "injury_trauma": {
-          "precision": 0.6667,
-          "recall": 0.6667,
-          "f1": 0.6667,
-          "test_cases": 3
-        },
-        "maternal_pregnancy": {
-          "precision": 1,
-          "recall": 0.5,
-          "f1": 0.6667,
-          "test_cases": 2
-        },
-        "neurological_red_flag": {
-          "precision": 1,
-          "recall": 0.75,
-          "f1": 0.8571,
-          "test_cases": 4
-        },
-        "pain": {
-          "precision": 1,
-          "recall": 0.25,
-          "f1": 0.4,
-          "test_cases": 4
-        },
-        "routine_follow_up": {
-          "precision": 0.75,
-          "recall": 1,
-          "f1": 0.8571,
-          "test_cases": 3
+        "dehydration": {
+          "n": 4,
+          "correct": 3,
+          "accuracy": 0.75
         },
         "seizure": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
+          "n": 6,
+          "correct": 3,
+          "accuracy": 0.5
+        },
+        "pain": {
+          "n": 4,
+          "correct": 2,
+          "accuracy": 0.5
+        },
+        "injury_trauma": {
+          "n": 5,
+          "correct": 2,
+          "accuracy": 0.4
+        },
+        "neurological_red_flag": {
+          "n": 5,
+          "correct": 4,
+          "accuracy": 0.8
+        },
+        "maternal_pregnancy": {
+          "n": 5,
+          "correct": 3,
+          "accuracy": 0.6
         },
         "skin_problem": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "chest_cardiac_warning": {
+          "n": 5,
+          "correct": 4,
+          "accuracy": 0.8
+        },
+        "diabetes_related": {
+          "n": 4,
+          "correct": 2,
+          "accuracy": 0.5
+        },
+        "hypertension_related": {
+          "n": 4,
+          "correct": 3,
+          "accuracy": 0.75
+        },
+        "financial_barrier": {
+          "n": 5,
+          "correct": 4,
+          "accuracy": 0.8
         },
         "travel_barrier": {
-          "precision": 1,
-          "recall": 0.6667,
-          "f1": 0.8,
-          "test_cases": 3
+          "n": 5,
+          "correct": 3,
+          "accuracy": 0.6
+        },
+        "connectivity": {
+          "n": 5,
+          "correct": 5,
+          "accuracy": 1
+        },
+        "routine_follow_up": {
+          "n": 5,
+          "correct": 5,
+          "accuracy": 1
         }
-      },
-      "errors": [
-        {
-          "id": "E007",
-          "text": "kashir jonno ghum hocche na",
-          "expected": "cough_respiratory",
-          "predicted": "breathing_difficulty",
-          "confidence": 0.18830234220747732
-        },
-        {
-          "id": "E016",
-          "text": "matha ta dhore ache shokal theke",
-          "expected": "pain",
-          "predicted": "fever",
-          "confidence": 0.413381941375905
-        },
-        {
-          "id": "E017",
-          "text": "My knees ache after walking",
-          "expected": "pain",
-          "predicted": "routine_follow_up",
-          "confidence": 0.12990390267340096
-        },
-        {
-          "id": "E020",
-          "text": "My child was hit on the head and is confused",
-          "expected": "injury_trauma",
-          "predicted": "dehydration",
-          "confidence": 0.1112892138828232
-        },
-        {
-          "id": "E024",
-          "text": "কথা বলতে গিয়ে শব্দ বের হচ্ছে না হঠাৎ",
-          "expected": "neurological_red_flag",
-          "predicted": "breathing_difficulty",
-          "confidence": 0.14670005563289115
-        },
-        {
-          "id": "E025",
-          "text": "গর্ভাবস্থায় রক্ত পড়ছে",
-          "expected": "maternal_pregnancy",
-          "predicted": "injury_trauma",
-          "confidence": 0.14771103339093586
-        },
-        {
-          "id": "E038",
-          "text": "We cannot afford the visit today",
-          "expected": "financial_barrier",
-          "predicted": "connectivity",
-          "confidence": 0.07171604743611856
-        },
-        {
-          "id": "E043",
-          "text": "গাড়ি ভাড়া নেই হাসপাতালে যাব কীভাবে",
-          "expected": "travel_barrier",
-          "predicted": "financial_barrier",
-          "confidence": 0.6013772944528205
-        },
-        {
-          "id": "E049",
-          "text": "Feeling odd and tired, not sure why",
-          "expected": "pain",
-          "predicted": "dehydration",
-          "confidence": 0.20811676001397986
-        },
-        {
-          "id": "E050",
-          "text": "বাচ্চা আজ খাবার কম খেয়েছে আর ঘুমাচ্ছে",
-          "expected": "fever",
-          "predicted": "breathing_difficulty",
-          "confidence": 0.13611758223995685
-        }
-      ]
+      }
     },
     "keyword_baseline": {
-      "accuracy": 0.7,
-      "correct": 35,
-      "total": 50,
-      "macro_f1": 0.7708,
-      "class_count": 18,
-      "per_intent": {
+      "correct": 56,
+      "total": 90,
+      "accuracy": 0.6222,
+      "per_class": {
+        "fever": {
+          "n": 5,
+          "correct": 2,
+          "accuracy": 0.4
+        },
         "breathing_difficulty": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 3
-        },
-        "chest_cardiac_warning": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 3
-        },
-        "connectivity": {
-          "precision": 1,
-          "recall": 0.3333,
-          "f1": 0.5,
-          "test_cases": 3
+          "n": 9,
+          "correct": 7,
+          "accuracy": 0.7778
         },
         "cough_respiratory": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "dehydration": {
-          "precision": 1,
-          "recall": 0.5,
-          "f1": 0.6667,
-          "test_cases": 2
-        },
-        "diabetes_related": {
-          "precision": 1,
-          "recall": 0.5,
-          "f1": 0.6667,
-          "test_cases": 2
+          "n": 5,
+          "correct": 4,
+          "accuracy": 0.8
         },
         "diarrhea_vomiting": {
-          "precision": 1,
-          "recall": 0.6667,
-          "f1": 0.8,
-          "test_cases": 3
+          "n": 5,
+          "correct": 4,
+          "accuracy": 0.8
         },
-        "fever": {
-          "precision": 0.75,
-          "recall": 0.75,
-          "f1": 0.75,
-          "test_cases": 4
-        },
-        "financial_barrier": {
-          "precision": 0.6667,
-          "recall": 0.6667,
-          "f1": 0.6667,
-          "test_cases": 3
-        },
-        "hypertension_related": {
-          "precision": 1,
-          "recall": 0.5,
-          "f1": 0.6667,
-          "test_cases": 2
-        },
-        "injury_trauma": {
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "test_cases": 3
-        },
-        "maternal_pregnancy": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "neurological_red_flag": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 4
-        },
-        "pain": {
-          "precision": 1,
-          "recall": 0.75,
-          "f1": 0.8571,
-          "test_cases": 4
-        },
-        "routine_follow_up": {
-          "precision": 1,
-          "recall": 0.6667,
-          "f1": 0.8,
-          "test_cases": 3
+        "dehydration": {
+          "n": 4,
+          "correct": 3,
+          "accuracy": 0.75
         },
         "seizure": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
+          "n": 6,
+          "correct": 5,
+          "accuracy": 0.8333
+        },
+        "pain": {
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "injury_trauma": {
+          "n": 5,
+          "correct": 1,
+          "accuracy": 0.2
+        },
+        "neurological_red_flag": {
+          "n": 5,
+          "correct": 5,
+          "accuracy": 1
+        },
+        "maternal_pregnancy": {
+          "n": 5,
+          "correct": 3,
+          "accuracy": 0.6
         },
         "skin_problem": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "chest_cardiac_warning": {
+          "n": 5,
+          "correct": 3,
+          "accuracy": 0.6
+        },
+        "diabetes_related": {
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "hypertension_related": {
+          "n": 4,
+          "correct": 3,
+          "accuracy": 0.75
+        },
+        "financial_barrier": {
+          "n": 5,
+          "correct": 1,
+          "accuracy": 0.2
         },
         "travel_barrier": {
-          "precision": 1,
-          "recall": 0.3333,
-          "f1": 0.5,
-          "test_cases": 3
+          "n": 5,
+          "correct": 1,
+          "accuracy": 0.2
+        },
+        "connectivity": {
+          "n": 5,
+          "correct": 1,
+          "accuracy": 0.2
+        },
+        "routine_follow_up": {
+          "n": 5,
+          "correct": 1,
+          "accuracy": 0.2
         }
-      },
-      "errors": [
-        {
-          "id": "E009",
-          "text": "pet kharap bomi hocche shara din",
-          "expected": "diarrhea_vomiting",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E012",
-          "text": "prosrab onekkhon hoy nai pani rakhte partese na",
-          "expected": "dehydration",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E018",
-          "text": "রান্না করতে গিয়ে হাতে কেটে গেছে",
-          "expected": "injury_trauma",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E019",
-          "text": "pore giye mathay legeche ar matha ghurche",
-          "expected": "injury_trauma",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E020",
-          "text": "My child was hit on the head and is confused",
-          "expected": "injury_trauma",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E033",
-          "text": "sugar beshi bolse abar check korbo",
-          "expected": "diabetes_related",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E035",
-          "text": "bp ta beshi eshechilo",
-          "expected": "hypertension_related",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E036",
-          "text": "doctor dekhaite gele poisha hobe na",
-          "expected": "financial_barrier",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E040",
-          "text": "মোবাইলে ডাটা শেষ তাই এখন পাঠাতে পারছি না",
-          "expected": "connectivity",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E041",
-          "text": "No signal here; I will send it later",
-          "expected": "connectivity",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E043",
-          "text": "গাড়ি ভাড়া নেই হাসপাতালে যাব কীভাবে",
-          "expected": "travel_barrier",
-          "predicted": "financial_barrier",
-          "confidence": null
-        },
-        {
-          "id": "E044",
-          "text": "There is no transport to the clinic",
-          "expected": "travel_barrier",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E045",
-          "text": "জ্বর কমেছে তিন দিন পরে আবার আসতে বলেছে",
-          "expected": "routine_follow_up",
-          "predicted": "fever",
-          "confidence": null
-        },
-        {
-          "id": "E049",
-          "text": "Feeling odd and tired, not sure why",
-          "expected": "pain",
-          "predicted": "unmatched",
-          "confidence": null
-        },
-        {
-          "id": "E050",
-          "text": "বাচ্চা আজ খাবার কম খেয়েছে আর ঘুমাচ্ছে",
-          "expected": "fever",
-          "predicted": "unmatched",
-          "confidence": null
-        }
-      ]
-    },
-    "red_flag_rules": {
-      "expected_warning_cases": 17,
-      "escalated_cases": 17,
-      "escalation_rate": 1,
-      "unexpected_escalations": 0,
-      "missed_expected_warning_cases": []
-    },
-    "low_confidence_threshold": 0.35,
-    "low_confidence_case_count": 20,
-    "low_confidence_cases": [
-      {
-        "id": "E003",
-        "text": "My mother cannot breathe comfortably now",
-        "expected": "breathing_difficulty",
-        "confidence": 0.1894
-      },
-      {
-        "id": "E007",
-        "text": "kashir jonno ghum hocche na",
-        "expected": "cough_respiratory",
-        "confidence": 0.1883
-      },
-      {
-        "id": "E010",
-        "text": "Loose motion since yesterday",
-        "expected": "diarrhea_vomiting",
-        "confidence": 0.2971
-      },
-      {
-        "id": "E017",
-        "text": "My knees ache after walking",
-        "expected": "pain",
-        "confidence": 0.1299
-      },
-      {
-        "id": "E018",
-        "text": "রান্না করতে গিয়ে হাতে কেটে গেছে",
-        "expected": "injury_trauma",
-        "confidence": 0.2582
-      },
-      {
-        "id": "E020",
-        "text": "My child was hit on the head and is confused",
-        "expected": "injury_trauma",
-        "confidence": 0.1113
-      },
-      {
-        "id": "E022",
-        "text": "hothat dan haat obosh ar kotha joracche",
-        "expected": "neurological_red_flag",
-        "confidence": 0.3292
-      },
-      {
-        "id": "E024",
-        "text": "কথা বলতে গিয়ে শব্দ বের হচ্ছে না হঠাৎ",
-        "expected": "neurological_red_flag",
-        "confidence": 0.1467
-      },
-      {
-        "id": "E025",
-        "text": "গর্ভাবস্থায় রক্ত পড়ছে",
-        "expected": "maternal_pregnancy",
-        "confidence": 0.1477
-      },
-      {
-        "id": "E026",
-        "text": "ami pregnant bacchar norachora kom mone hocche",
-        "expected": "maternal_pregnancy",
-        "confidence": 0.201
-      },
-      {
-        "id": "E027",
-        "text": "হাতে চুলকানির দাগ উঠেছে",
-        "expected": "skin_problem",
-        "confidence": 0.2872
-      },
-      {
-        "id": "E031",
-        "text": "There is a tight feeling in my chest",
-        "expected": "chest_cardiac_warning",
-        "confidence": 0.2289
-      },
-      {
-        "id": "E034",
-        "text": "প্রেসার মাপার জায়গা কোথায়",
-        "expected": "hypertension_related",
-        "confidence": 0.0937
-      },
-      {
-        "id": "E035",
-        "text": "bp ta beshi eshechilo",
-        "expected": "hypertension_related",
-        "confidence": 0.1754
-      },
-      {
-        "id": "E036",
-        "text": "doctor dekhaite gele poisha hobe na",
-        "expected": "financial_barrier",
-        "confidence": 0.2321
-      },
-      {
-        "id": "E038",
-        "text": "We cannot afford the visit today",
-        "expected": "financial_barrier",
-        "confidence": 0.0717
-      },
-      {
-        "id": "E041",
-        "text": "No signal here; I will send it later",
-        "expected": "connectivity",
-        "confidence": 0.1298
-      },
-      {
-        "id": "E047",
-        "text": "I came for a review visit",
-        "expected": "routine_follow_up",
-        "confidence": 0.2422
-      },
-      {
-        "id": "E049",
-        "text": "Feeling odd and tired, not sure why",
-        "expected": "pain",
-        "confidence": 0.2081
-      },
-      {
-        "id": "E050",
-        "text": "বাচ্চা আজ খাবার কম খেয়েছে আর ঘুমাচ্ছে",
-        "expected": "fever",
-        "confidence": 0.1361
       }
-    ],
-    "representative_classifier_failures": [
-      {
-        "id": "E007",
-        "text": "kashir jonno ghum hocche na",
-        "expected": "cough_respiratory",
-        "predicted": "breathing_difficulty",
-        "confidence": 0.18830234220747732
-      },
-      {
-        "id": "E016",
-        "text": "matha ta dhore ache shokal theke",
-        "expected": "pain",
-        "predicted": "fever",
-        "confidence": 0.413381941375905
-      },
-      {
-        "id": "E017",
-        "text": "My knees ache after walking",
-        "expected": "pain",
-        "predicted": "routine_follow_up",
-        "confidence": 0.12990390267340096
-      },
-      {
-        "id": "E020",
-        "text": "My child was hit on the head and is confused",
-        "expected": "injury_trauma",
-        "predicted": "dehydration",
-        "confidence": 0.1112892138828232
-      },
-      {
-        "id": "E024",
-        "text": "কথা বলতে গিয়ে শব্দ বের হচ্ছে না হঠাৎ",
-        "expected": "neurological_red_flag",
-        "predicted": "breathing_difficulty",
-        "confidence": 0.14670005563289115
-      },
-      {
-        "id": "E025",
-        "text": "গর্ভাবস্থায় রক্ত পড়ছে",
-        "expected": "maternal_pregnancy",
-        "predicted": "injury_trauma",
-        "confidence": 0.14771103339093586
-      },
-      {
-        "id": "E038",
-        "text": "We cannot afford the visit today",
-        "expected": "financial_barrier",
-        "predicted": "connectivity",
-        "confidence": 0.07171604743611856
-      },
-      {
-        "id": "E043",
-        "text": "গাড়ি ভাড়া নেই হাসপাতালে যাব কীভাবে",
-        "expected": "travel_barrier",
-        "predicted": "financial_barrier",
-        "confidence": 0.6013772944528205
-      },
-      {
-        "id": "E049",
-        "text": "Feeling odd and tired, not sure why",
-        "expected": "pain",
-        "predicted": "dehydration",
-        "confidence": 0.20811676001397986
-      },
-      {
-        "id": "E050",
-        "text": "বাচ্চা আজ খাবার কম খেয়েছে আর ঘুমাচ্ছে",
-        "expected": "fever",
-        "predicted": "breathing_difficulty",
-        "confidence": 0.13611758223995685
-      }
-    ]
-  },
-  "legacy_71_case_evaluation": {
-    "naive_bayes_top_class": {
-      "accuracy": 0.8592,
-      "correct": 61,
-      "total": 71,
-      "macro_f1": 0.7119,
-      "class_count": 18,
-      "per_intent": {
-        "breathing_difficulty": {
-          "precision": 0.7,
-          "recall": 1,
-          "f1": 0.8235,
-          "test_cases": 7
-        },
-        "chest_cardiac_warning": {
-          "precision": 0.6667,
-          "recall": 1,
-          "f1": 0.8,
-          "test_cases": 2
-        },
-        "connectivity": {
-          "precision": 0.8571,
-          "recall": 0.8571,
-          "f1": 0.8571,
-          "test_cases": 7
-        },
-        "cough_respiratory": {
-          "precision": 0.5,
-          "recall": 0.5,
-          "f1": 0.5,
-          "test_cases": 2
-        },
-        "dehydration": {
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "test_cases": 2
-        },
-        "diabetes_related": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "diarrhea_vomiting": {
-          "precision": 1,
-          "recall": 0.5,
-          "f1": 0.6667,
-          "test_cases": 2
-        },
-        "fever": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "financial_barrier": {
-          "precision": 0.875,
-          "recall": 1,
-          "f1": 0.9333,
-          "test_cases": 7
-        },
-        "hypertension_related": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "injury_trauma": {
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "test_cases": 2
-        },
-        "maternal_pregnancy": {
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "test_cases": 2
-        },
-        "neurological_red_flag": {
-          "precision": 0.6667,
-          "recall": 1,
-          "f1": 0.8,
-          "test_cases": 2
-        },
-        "pain": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "routine_follow_up": {
-          "precision": 0.5,
-          "recall": 0.5,
-          "f1": 0.5,
-          "test_cases": 2
-        },
-        "seizure": {
-          "precision": 0.875,
-          "recall": 1,
-          "f1": 0.9333,
-          "test_cases": 7
-        },
-        "skin_problem": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "travel_barrier": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        }
-      },
-      "errors": [
-        {
-          "id": "T279",
-          "text": "নেটওয়ার্ক না থাকায় এখন পাঠাতে পারছি না",
-          "expected": "connectivity",
-          "predicted": "financial_barrier",
-          "confidence": 0.4206719355503167
-        },
-        {
-          "id": "T293",
-          "text": "কাশির সঙ্গে গলা খুসখুস",
-          "expected": "cough_respiratory",
-          "predicted": "connectivity",
-          "confidence": 0.0737007007428378
-        },
-        {
-          "id": "T296",
-          "text": "diarrhoea for two days",
-          "expected": "diarrhea_vomiting",
-          "predicted": "cough_respiratory",
-          "confidence": 0.14281794482287397
-        },
-        {
-          "id": "T297",
-          "text": "জিহ্বা শুকনো লাগছে",
-          "expected": "dehydration",
-          "predicted": "breathing_difficulty",
-          "confidence": 0.1214369897499638
-        },
-        {
-          "id": "T298",
-          "text": "no urine since morning",
-          "expected": "dehydration",
-          "predicted": "chest_cardiac_warning",
-          "confidence": 0.28756251423942353
-        },
-        {
-          "id": "T299",
-          "text": "হাত পুড়ে গেছে",
-          "expected": "injury_trauma",
-          "predicted": "neurological_red_flag",
-          "confidence": 0.12426337784856994
-        },
-        {
-          "id": "T300",
-          "text": "injury from a fall",
-          "expected": "injury_trauma",
-          "predicted": "routine_follow_up",
-          "confidence": 0.08182623254891257
-        },
-        {
-          "id": "T303",
-          "text": "বাচ্চার নড়াচড়া কম মনে হচ্ছে",
-          "expected": "maternal_pregnancy",
-          "predicted": "breathing_difficulty",
-          "confidence": 0.27544778599812575
-        },
-        {
-          "id": "T304",
-          "text": "delivery pain hocche",
-          "expected": "maternal_pregnancy",
-          "predicted": "breathing_difficulty",
-          "confidence": 0.12705873519079589
-        },
-        {
-          "id": "T313",
-          "text": "পুনরায় দেখানোর সময় হয়েছে",
-          "expected": "routine_follow_up",
-          "predicted": "seizure",
-          "confidence": 0.17363671400731368
-        }
-      ]
-    },
-    "phrase_cue_review_category": {
-      "accuracy": 1,
-      "correct": 71,
-      "total": 71,
-      "macro_f1": 1,
-      "class_count": 18,
-      "per_intent": {
-        "breathing_difficulty": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "chest_cardiac_warning": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "connectivity": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "cough_respiratory": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "dehydration": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "diabetes_related": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "diarrhea_vomiting": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "fever": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "financial_barrier": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "hypertension_related": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "injury_trauma": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "maternal_pregnancy": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "neurological_red_flag": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "pain": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "routine_follow_up": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "seizure": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        },
-        "skin_problem": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 2
-        },
-        "travel_barrier": {
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "test_cases": 7
-        }
-      },
-      "errors": []
     }
   },
+  "safety": {
+    "expected_escalations": 31,
+    "escalated": 31,
+    "emergency_recall": 1,
+    "false_escalations": 0,
+    "false_escalation_rate": 0
+  },
+  "negation": {
+    "cases": 6,
+    "correct": 6,
+    "accuracy": 1,
+    "failures": []
+  },
+  "uncertainty": {
+    "threshold": 0.35,
+    "uncertain_cases": 67,
+    "rate": 0.67
+  },
   "limitations": [
-    "All language/evaluation rows are synthetic and were independently authored for a small prototype check.",
-    "This is not clinical validation, triage evaluation, safety validation, or evidence of deployment readiness.",
-    "Language, dialect, age and region coverage are limited; the test distribution is not representative.",
-    "The rule-based baseline uses direct phrase cues and returns unmatched when no configured cue matches.",
-    "Naive Bayes scores are uncalibrated relative scores, not probabilities."
+    "All cases are synthetic and authored separately from training data; independence is textual only and does not establish population representativeness.",
+    "Emergency recall and false escalation rate measure phrase-rule coverage against this labeled synthetic set, not clinical sensitivity or specificity.",
+    "Naive Bayes class scores are uncalibrated; the user interface does not show the raw score.",
+    "Keyword and model metrics are limited by small category samples and class imbalance.",
+    "Prototype evaluation only — not clinical validation."
   ]
 }

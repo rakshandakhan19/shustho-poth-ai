@@ -195,6 +195,29 @@ const TRAINING_CASES = [
 function normalizeText(text) {
   return (text || "").toLowerCase().replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit)).replace(/[।,!?;:()\-]/g, " ").replace(/\s+/g, " ").trim();
 }
+function normalizeRuleText(text) {
+  return (text || "").toLowerCase().replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit)).replace(/[।,.!?;:]+/g, " | ").replace(/\s+/g, " ").trim();
+}
+// Small, visible negation rule: only inspect a short phrase window around a matched cue.
+function isNegatedWindow(text, start, end) {
+  const before = text.slice(Math.max(0, start - 45), start).split(/[|,;.!?।]|\b(?:aar|and|but|kintu)\b/i).pop() || "";
+  const after = (text.slice(end, Math.min(text.length, end + 42)).split(/[|,;.!?।]|\b(?:aar|and|but|kintu)\b/i)[0] || "").trim().split(/\s+/).slice(0, 2).join(" ");
+  const negation = /(?:^(?:na|nei|nai|নাই|নেই|না)(?:\s|$)|^(?:no|not|without)(?:\s+\w+){0,2}$|\b(?:hoy|hocche|ache|korche)\s+na\b|হচ্ছে\s+না|আছে\s+না)/i;
+  const beforeTokens = before.trim().split(/\s+/).slice(-3).join(" ");
+  const matched = text.slice(start, end);
+  if (/(?:partese|parche|পারছে)\s*$/i.test(matched) && /^\s*na\b/i.test(after)) return false;
+  return negation.test(after.trim()) || negation.test(beforeTokens);
+}
+function hasPositiveMatch(text, pattern) {
+  const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
+  const re = new RegExp(pattern.source, flags);
+  for (const match of text.matchAll(re)) if (!isNegatedWindow(text, match.index, match.index + match[0].length)) return true;
+  return false;
+}
+function detectNegatedConcerns(text) {
+  const normalized = normalizeRuleText(text);
+  return CUE_RULES.filter(([, pattern]) => pattern.test(normalized) && !hasPositiveMatch(normalized, pattern)).map(([intent]) => intent);
+}
 function tokenize(text) { return normalizeText(text).split(/\s+/).filter(Boolean); }
 function trainNaiveBayes(rows) {
   const classes = [...new Set(rows.map(row => row[1]))], docs = {}, words = {}, total = {}, vocabulary = new Set();
@@ -218,14 +241,14 @@ function classify(text) {
 }
 
 const CUE_RULES = [
-  ["neurological_red_flag", /এক পাশের.*(দুর্বল|অবশ)|হঠাৎ.*(হাত|পা).*(দুর্বল|অবশ)|কথা জড়িয়ে|কথা বলতে.*(পারছে না|শব্দ বের হচ্ছে না)|মুখ.*বেঁকে|hothat ek pasher.*(durbol|obosh)|ek pasher haat pa durbol|hothat.*(obosh|joracche)|kotha bolte partese na|kotha joracche|one side.*(weak|numb)|sudden.*weak|slurred speech|face.*droop|drooping face/i],
-  ["breathing_difficulty", /শ্বাস.?কষ্ট|বুক ধর ধর|শ্বাস নিতে.*কষ্ট|দম নিতে.*কষ্ট|নিশ্বাস নিতে.*কষ্ট|শ্বাস নিতে পারছে না|shash nite koshto|shash koshto|shash kosto|nishash.*koshto|buk dhor|dom nite koshto|cannot breathe|can't breathe|cannot breathe comfortably|breath.*(difficulty|hard|trouble)|short of breath/i],
+  ["neurological_red_flag", /এক পাশের.*(দুর্বল|অবশ)|হঠাৎ.*(হাত|পা).*(দুর্বল|অবশ)|কথা জড়িয়ে|কথা বলতে.*(পারছে না|শব্দ বের হচ্ছে না)|মুখ.*বেঁকে|hothat ek pasher.*(durbol|obosh)|ek pasher haat pa durbol|ek pashe.*(jhim|obosh)|hothat.*(obosh|joracche)|kotha bolte partese na|kotha joracche|kotha joray|one side.*(weak|numb)|sudden.*weak|speech.*slurred|slurred speech|face.*droop|drooping face/i],
+  ["breathing_difficulty", /শ্বাস.?কষ্ট|বুক ধর ধর|শ্বাস নিতে.*কষ্ট|দম নিতে.*কষ্ট|দম নিতে পারছে না|নিশ্বাস নিতে.*কষ্ট|শ্বাস নিতে পারছে না|শ্বাস নিতে.*সমস্যা|শ্বাস নিতে কষ্ট|শ্বাস e কষ্ট|shash nite.*(?:koshto|kosto|problem|partese|parche)|shash korte koshto|shash e.*koshto|shash e.*kosto|shash koshto|shash kosto|nishash.*koshto|buk dhor|dom nite koshto|breathing problem|breath korte problem|cannot breathe|can't breathe|cannot breathe comfortably|breath.*(difficulty|hard|trouble)|short of breath/i],
   ["seizure", /খিঁচুনি|খিচুনি|khichuni|seizure|convulsion/i],
   ["chest_cardiac_warning", /বুকে চাপ|বুকের মাঝখানে ব্যথা|বুকে ব্যথা|buk.*(chap|betha)|chest (pain|pressure)|chest.*discomfort|tight feeling.*chest|tight.*chest/i],
   ["maternal_pregnancy", /গর্ভবতী|গর্ভাবস্থা|প্রসব|বাচ্চার নড়াচড়া কম|pregnan|pregnant|delivery pain|baby.*movement.*less/i],
-  ["dehydration", /পানি খেতে পারছে না|পানি খাচ্ছে না|পানিও রাখতে পারছে না|প্রস্রাব (হচ্ছে না|কম)|মুখ শুকিয়ে|জিহ্বা শুকনো|pani (khete|khaite|khaitese) partese na|prosrab kom|tongue dry|no urine|cannot keep fluids/i],
+  ["dehydration", /পানি খেতে পারছে না|পানি খাচ্ছে না|পানিও রাখতে পারছে না|পানি.*খেতে.*চায় না|প্রস্রাব (হচ্ছে না|কম)|মুখ শুকিয়ে|জিহ্বা শুকনো|pani (khete|khaite|khaitese) partese na|pani khaite iccha korche na|prosrab kom|tongue dry|no urine|cannot keep fluids/i],
   ["diarrhea_vomiting", /পাতলা পায়খানা|ডায়রিয়া|বমি|patla paykhana|diarr?hoea|diarrhea|loose motion|vomit/i],
-  ["injury_trauma", /দুর্ঘটনা|আঘাত|পড়ে গিয়ে|কেটে.*রক্ত|রক্তপাত|পুড়ে গেছে|accident|injur|wound|bleeding|cut.*blood|burnt/i],
+  ["injury_trauma", /দুর্ঘটনা|আঘাত|পড়ে গিয়ে|কেটে.*রক্ত|রক্তপাত|পুড়ে গেছে|accident|fell|struck|injur|wound|bleeding|cut.*blood|burnt/i],
   ["cough_respiratory", /কাশি|কফ|kashi|kof|cough|phlegm/i],
   ["skin_problem", /চুলকানি|ফুসকুড়ি|ত্বকে|চামড়ায়|র‍্যাশ|rash|itch|skin problem/i],
   ["diabetes_related", /ডায়াবেটিস|সুগার|রক্তে.*গ্লুকোজ|diabetes|glucose|blood sugar/i],
@@ -246,25 +269,27 @@ const INTENT_LABELS = {
   financial_barrier:"Financial access barrier", connectivity:"Connectivity barrier", travel_barrier:"Travel barrier", routine_follow_up:"Routine follow-up requested"
 };
 function detectConcerns(text) {
-  const normalized = normalizeText(text);
-  return CUE_RULES.filter(([, pattern]) => pattern.test(normalized)).map(([intent]) => intent);
+  const normalized = normalizeRuleText(text);
+  return CUE_RULES.filter(([, pattern]) => hasPositiveMatch(normalized, pattern)).map(([intent]) => intent);
 }
 function detectRedFlags(text, concerns, fields) {
-  const value = normalizeText(text);
+  const value = normalizeRuleText(text);
   const flags = [];
   const add = (id, label, reason) => flags.push({ id, label, reason });
   if (concerns.includes("neurological_red_flag")) add("possible_neurological_red_flag", "Possible sudden neurological warning sign", "Sudden one-sided weakness, face change, or speech difficulty was reported.");
   if (concerns.includes("breathing_difficulty")) add("reported_breathing_difficulty", "Breathing difficulty reported", "The reported words mention breathing difficulty; seek prompt human assessment.");
   if (concerns.includes("seizure")) add("seizure_report", "Seizure reported", "A seizure is reported; seek urgent human assessment and follow local emergency guidance.");
   if (concerns.includes("chest_cardiac_warning")) add("chest_discomfort_report", "Chest pain or pressure reported", "The reported words mention chest discomfort; seek prompt human assessment.");
-  if (/(অজ্ঞান|জ্ঞান নেই|সাড়া দিচ্ছে না|জাগানো যাচ্ছে না|unconscious|unresponsive|not waking|cannot wake|fainted and.*not|অচেতন)/i.test(value)) add("unconscious_report", "Unconsciousness or not responding reported", "The reported words describe not waking or not responding; seek urgent human help.");
-  if (/(বিভ্রান্ত|কথা বুঝতে পারছে না|হঠাৎ.*গুলিয়ে|confus(ed|ion)|altered consciousness|not making sense|খুব ঝিমুনি|অস্বাভাবিক ঘুমঘুম|অচেতন)/i.test(value)) add("confusion_report", "Confusion or altered awareness reported", "The reported words describe confusion or unusual drowsiness; seek prompt human assessment.");
-  if (/(অনেক রক্ত|প্রচুর রক্ত|রক্ত বন্ধ হচ্ছে না|রক্তপাত বন্ধ হচ্ছে না|রক্তে ভেসে|রক্ত ঝরছে|severe bleeding|heavy bleeding|bleeding.*won't stop|won't stop bleeding|lots of blood)/i.test(value)) add("severe_bleeding_report", "Heavy or ongoing bleeding reported", "The reported words describe heavy or ongoing bleeding; seek urgent human care.");
-  if (/(মাথায় জোরে আঘাত|মাথায় গুরুতর আঘাত|মাথায় পড়ে গেছে|মাথায় আঘাত.*অজ্ঞান|serious head injury|head injury|hit.*head|fall.*head|head trauma)/i.test(value)) add("head_injury_report", "Head injury reported", "A head injury was mentioned; urgent assessment may be needed, especially with loss of consciousness or confusion.");
+  if (hasPositiveMatch(value, /(অজ্ঞান|জ্ঞান নেই|সাড়া দিচ্ছে না|জাগানো যাচ্ছে না|unconscious|unresponsive|not responding|not waking|cannot wake|fainted and.*not|অচেতন)/i)) add("unconscious_report", "Unconsciousness or not responding reported", "The reported words describe not waking or not responding; seek urgent human help.");
+  if (hasPositiveMatch(value, /(বিভ্রান্ত|কথা বুঝতে পারছে না|হঠাৎ.*গুলিয়ে|confus(ed|ion)|altered consciousness|not making sense|খুব ঝিমুনি|অস্বাভাবিক ঘুমঘুম|অচেতন)/i)) add("confusion_report", "Confusion or altered awareness reported", "The reported words describe confusion or unusual drowsiness; seek prompt human assessment.");
+  if (hasPositiveMatch(value, /(অনেক রক্ত|প্রচুর রক্ত|রক্ত বন্ধ হচ্ছে না|রক্তপাত বন্ধ হচ্ছে না|রক্তে ভেসে|রক্ত ঝরছে|severe bleeding|heavy bleeding|bleeding.*won't stop|won't stop bleeding|lots of blood)/i)) add("severe_bleeding_report", "Heavy or ongoing bleeding reported", "The reported words describe heavy or ongoing bleeding; seek urgent human care.");
+  if (hasPositiveMatch(value, /(মাথায় জোরে আঘাত|মাথায় গুরুতর আঘাত|মাথায় পড়ে গেছে|মাথায় আঘাত.*অজ্ঞান|serious head injury|head injury|hit.*head|fall.*head|fell.*head|struck.*head|head trauma)/i)) add("head_injury_report", "Head injury reported", "A head injury was mentioned; urgent assessment may be needed, especially with loss of consciousness or confusion.");
   if (concerns.includes("maternal_pregnancy") && /গর্ভ.*(রক্ত|bleed)|pregnan.*bleed|রক্ত.*গর্ভ|গর্ভাবস্থায়.*রক্ত|প্রসবের ব্যথা|delivery pain|pregnancy.*(bleeding|severe pain)/i.test(value)) add("maternal_warning_report", "Pregnancy-related bleeding or labour warning reported", "Seek prompt human assessment under local emergency guidance.");
   if (concerns.includes("injury_trauma") && /রক্তপাত|অনেক রক্ত|রক্ত পড়|bleed|blood/i.test(value)) add("bleeding_report", "Bleeding reported after injury", "Heavy or ongoing bleeding needs urgent human assessment.");
-  if (/(মাথায়.*লেগেছে|mathay legeche|hit.*head|head injury|head trauma|পড়ে.*মাথায়)/i.test(value) && /(ঘুরছে|ghur|বমি|অজ্ঞান|confus|dizz|vomit|unconscious)/i.test(value)) add("head_injury_report", "Head injury with a concerning symptom reported", "A head injury and dizziness, vomiting, confusion, or loss of consciousness were reported; seek urgent human assessment.");
-  if (/প্রস্রাব (হচ্ছে না|কম)|no urine|prosrab.*(kom|hoy nai)|pani rakhte partese na|পানি খেতে পারছে না|pani (khete|khaite|khaitese) partese na|cannot keep fluids|unable to drink|চোখ বসে|চামড়া.*শুকনো/i.test(value)) add("fluid_or_urine_warning", "Unable to drink or very little/no urine reported", "The reported words describe difficulty drinking or reduced urine; seek prompt human assessment.");
+  if (hasPositiveMatch(value, /(মাথায়.*লেগেছে|mathay legeche|hit.*head|head injury|head trauma|পড়ে.*মাথায়)/i) && hasPositiveMatch(value, /(ঘুরছে|ghur|বমি|অজ্ঞান|confus|dizz|vomit|unconscious)/i)) add("head_injury_report", "Head injury with a concerning symptom reported", "A head injury and dizziness, vomiting, confusion, or loss of consciousness were reported; seek urgent human assessment.");
+  if (hasPositiveMatch(value, /প্রস্রাব.{0,12}(হচ্ছে না|কম)|no urine|prosrab.*(kom|hoy nai)|pani rakhte partese na|পানি খেতে পারছে না|pani (khete|khaite|khaitese) partese na|cannot keep fluids|unable to drink|চোখ বসে|চামড়া.*শুকনো/i)) add("fluid_or_urine_warning", "Unable to drink or very little/no urine reported", "The reported words describe difficulty drinking or reduced urine; seek prompt human assessment.");
+  if (hasPositiveMatch(value, /সাপে কামড়|সাপ কামড়|snake ?bite|bitten by a snake|venomous bite/i)) add("snakebite_report", "Snakebite reported", "Snakebite needs urgent human medical assessment; do not wait for app guidance.");
+  if (hasPositiveMatch(value, /বিষ খেয়েছে|বিষ পান|poison(ing)?|drank poison|ate poison|chemical ingestion|ওষুধ বেশি খেয়েছে/i)) add("poisoning_report", "Possible poisoning reported", "Possible poisoning needs urgent human assessment; contact emergency care now.");
   return flags;
 }
 
@@ -282,16 +307,16 @@ function extractFields(text) {
   const weeks = value.match(/(\d+)\s*(?:সপ্তাহ|week|weeks)/); if (weeks && /গর্ভ|pregnan|pregnant/i.test(value)) fields.pregnancy_weeks = weeks[1];
   if (/রক্ত যাচ্ছে|রক্তপাত|প্রসবের ব্যথা|rokto jacche|bleeding|labou?r pain|delivery pain/i.test(value)) fields.bleeding_or_labour_symptoms = "Reported — worker to clarify";
   if (/(খেতে|খাওয়া|খাচ্ছে|দুধ|পানি|খাবার|খাইতেছে|খাইতেসে|eat|khabar|khaitese|milk|water)/.test(value) && /(না|নেই|চায় না|পারছে না|partese na|not|no)/.test(value)) fields.reduced_intake = true;
-  fields.breathing_reported = /শ্বাস|বুক ধর|শ্বাসকষ্ট|শ্বাস নিতে|shash|nishash|breath/.test(value);
+  fields.breathing_reported = hasPositiveMatch(value, /শ্বাস.?কষ্ট|বুক ধর|শ্বাস নিতে|shash|nishash|breath/i);
   fields.financial_barrier = /টাকা (নাই|নেই|কম)|ভাড়া নেই|ভাড়া নাই|টাকা লাগবে|সামর্থ্য নেই|taka (nai|nei|kom)|vara nai|bhara nai|gari bhara nai|cost|can't afford|cannot afford/.test(value);
   fields.travel_barrier = /দূর|দুই ঘণ্টা|দুই ঘন্টা|ভাড়া|dure|ghonta|shomoy lage|gari nai|transport unavailable/.test(value);
   fields.offline_reported = /নেট নাই|নেট নেই|ইন্টারনেট নেই|সিঙ্ক|net nai|internet nai|sync|data sesh|নেটওয়ার্ক|pore.*pathabo|shared phone|phone.*shared/.test(value);
   return fields;
 }
 function analyzeCase(text) {
-  const prediction = classify(text), fields = extractFields(text), concerns = detectConcerns(text);
+  const prediction = classify(text), fields = extractFields(text), concerns = detectConcerns(text), negatedConcerns = detectNegatedConcerns(text);
   const urgentConcern = concerns.find(x => ["neurological_red_flag", "breathing_difficulty", "seizure", "chest_cardiac_warning"].includes(x));
-  const intent = urgentConcern || (concerns.includes("routine_follow_up") ? "routine_follow_up" : null) || (concerns.includes(prediction.intent) ? prediction.intent : null) || concerns[0] || prediction.intent;
+  const intent = urgentConcern || (concerns.includes("routine_follow_up") ? "routine_follow_up" : null) || (concerns.includes(prediction.intent) ? prediction.intent : null) || concerns[0] || (negatedConcerns.includes(prediction.intent) || prediction.confidence < .35 ? "unknown" : prediction.intent);
   const barriers = [];
   if (fields.financial_barrier || concerns.includes("financial_barrier")) barriers.push("financial");
   if (fields.travel_barrier || concerns.includes("travel_barrier")) barriers.push("travel");
@@ -305,10 +330,11 @@ function analyzeCase(text) {
   if (concerns.includes("maternal_pregnancy")) { required.add("pregnancy_weeks"); required.add("bleeding_or_labour_symptoms"); }
   const missing = [...required].filter(key => !fields[key]);
   const uncertainty = [];
-  if (prediction.confidence < .30) uncertainty.push("Low model score: confirm the concern in the patient's own words.");
-  else if (prediction.confidence < .55) uncertainty.push("Moderate model score: verify the selected concern.");
+  if (prediction.confidence < .35 || intent === "unknown") uncertainty.push("The model signal is uncertain; provide more information or seek human medical advice.");
   if (prediction.intent !== intent) uncertainty.push(`Model's top class (${INTENT_LABELS[prediction.intent] || prediction.intent}) differs from the directly matched concern; worker review is essential.`);
   if (missing.length) uncertainty.push("Some relevant information is not recorded yet.");
   const redFlags = detectRedFlags(text, concerns, fields);
-  return { intent, model_intent: prediction.intent, confidence: prediction.confidence, direct_matches: [...new Set(concerns)], concerns: [...new Set(concerns.length ? concerns : [prediction.intent])], fields, barriers, missing, uncertainty, red_flags: redFlags, safety_note: "Screening and documentation support only. Not a diagnosis or autonomous referral decision." };
+  const hasHealthCue = concerns.some(x => !["financial_barrier","travel_barrier","connectivity","routine_follow_up"].includes(x));
+  const uncertain = prediction.confidence < .35 || (!concerns.length && !hasHealthCue) || intent === "unknown";
+  return { intent, model_intent: prediction.intent, confidence: prediction.confidence, model_signal: uncertain ? "uncertain" : "strong_phrase_match", negated_concerns: [...new Set(negatedConcerns)], direct_matches: [...new Set(concerns)], concerns: [...new Set(concerns.length ? concerns : intent === "unknown" ? [] : [prediction.intent])], fields, barriers, missing, uncertainty, red_flags: redFlags, safety_note: "Screening and documentation support only. Not a diagnosis or autonomous referral decision." };
 }

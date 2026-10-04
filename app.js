@@ -1,6 +1,9 @@
 /* Shustho Poth AI — static browser workflow. No external services are called. */
 const DEMOS = [
   { label: "Breathing + cost", text: "amar bacchar shash nite koshto hocche, hospital e jawar taka nai" },
+  { label: "Breathing negation", text: "amar bacchar shash nite koshto hocche na" },
+  { label: "Seizure", text: "bacchar khichuni hocche" },
+  { label: "Routine follow-up", text: "doctor er kache follow up korte hobe" },
   { label: "Financial barrier", text: "doctor dekhaite chai kintu taka nai" },
   { label: "No internet", text: "net nai, pore case pathabo" },
   { label: "Travel barrier", text: "hospital onek dure, gari bhara nai" },
@@ -16,8 +19,12 @@ const FACILITY_FALLBACK = [
   { facility_id:"10014949", name:"Agla Union Health Center", name_bn:"আগলা ইউনিয়ন স্বাস্থ্য কেন্দ্র", type:"Union Health Center", division:"Dhaka", district:"Dhaka", upazila:"Nawabganj" },
   { facility_id:"10013142", name:"Sakhipur Union Health Sub Center", name_bn:"সখিপুর ইউনিয়ন উপ-স্বাস্থ্য কেন্দ্র", type:"Union Health Sub Center", division:"Dhaka", district:"Tangail", upazila:"Sakhipur" }
 ];
-let facilities = FACILITY_FALLBACK;
+let facilities = FACILITY_FALLBACK.map(f => ({...f,data_status:"REAL_SOURCE",location_name_bn:{"10000056":"কোতোয়ালী","10000057":"তেজগাঁও","10014947":"কেরাণীগঞ্জ","10014948":"কেরাণীগঞ্জ","10014949":"নবাবগঞ্জ","10013142":"সখিপুর"}[f.facility_id],division_name_bn:"ঢাকা",district_name_bn:f.district==="Tangail"?"টাঙ্গাইল":"ঢাকা"}));
+let locations = window.BD_LOCATIONS || null;
 let latestAnalysis = null;
+let inputSource = "Typed message";
+let speechRecognition = null;
+let speechErrorMessage = "";
 let draft = null;
 let simulatedConnection = false;
 const labels = INTENT_LABELS;
@@ -25,14 +32,16 @@ const byId = id => document.getElementById(id);
 const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]);
 const RECORD_KEY = "shustho_poth_health_record";
 const SHARE_KEY = "shustho_poth_share_demo";
+const LOCATION_KEY = "shustho_poth_location";
 let suggestedRecord = null;
 let recordHidden = false;
 const safeStorage = {
   read(key, fallback) { try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; } catch { return fallback; } },
   write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } }
 };
+let selectedLocation = safeStorage.read(LOCATION_KEY, {division:"",district:"",upazila:""});
 function caseId() { return `SP-${new Date().toISOString().replace(/\D/g, "").slice(2, 12)}-${Math.random().toString(36).slice(2, 5).toUpperCase()}`; }
-function setDemo(index) { byId("input").value = DEMOS[index]?.text || ""; byId("demoStatus").textContent = "Synthetic example loaded. Select ‘Structure this case’."; byId("input").focus(); }
+function setDemo(index) { byId("input").value = DEMOS[index]?.text || ""; inputSource="Typed message"; byId("demoStatus").textContent = "Synthetic example loaded. Select ‘Structure this case’."; byId("input").focus(); }
 function makeDemoButtons() { byId("demoButtons").innerHTML = DEMOS.map((demo, i) => `<button type="button" class="chip-button" onclick="setDemo(${i})">${escapeHTML(demo.label)}</button>`).join(""); }
 function formatDate(value) { if (!value) return "Not set"; const date = new Date(value); return Number.isNaN(date.getTime()) ? value : date.toLocaleString(); }
 function formatIntent(intent) { return labels[intent] || intent || "Concern not identified"; }
@@ -75,15 +84,16 @@ function renderResult() {
   const analysis = latestAnalysis;
   const flags = analysis.red_flags;
   const urgency = flags.length ? `<div class="alert alert-danger"><strong>⚠️ Potential emergency warning sign</strong><p><b>Please seek urgent human medical care.</b> If this is severe or life-threatening, call <b>999</b> or seek emergency medical care immediately. Financial planning, community support, or app use must not delay care.</p><p><a class="button danger" href="tel:999">Call 999</a></p>${flags.map(flag => `<p><b>${escapeHTML(flag.label)}:</b> ${escapeHTML(flag.reason)}</p>`).join("")}<p class="muted">Possible warning based on reported words only; not a diagnosis or live dispatch connection.</p></div>` : `<div class="alert"><strong>Screening support only.</strong> No rule-based warning phrase was recognized. This does not rule out risk. Contact a health professional if you are worried.</div>`;
-  const displayConcerns = analysis.direct_matches.length ? analysis.direct_matches : [analysis.model_intent];
-  const concerns = displayConcerns.map(intent => `<span class="tag">${escapeHTML(formatIntent(intent))}</span>`).join(" ");
-  const confidenceBand = analysis.confidence >= .65 ? "High model score" : analysis.confidence >= .35 ? "Moderate model score" : "Low model score";
-  const confidenceCaution = analysis.confidence < .35 ? `<p class="alert alert-danger"><b>AI is uncertain about this case. Do not rely on the AI classification.</b> Continue with human medical assessment.</p>` : "";
+  const displayConcerns = analysis.direct_matches.length ? analysis.direct_matches : analysis.intent === "unknown" ? [] : [analysis.model_intent];
+  const concerns = displayConcerns.map(intent => `<span class="tag">${escapeHTML(formatIntent(intent))}</span>`).join(" ") || `<p>No clear concern category identified. Please describe more or seek human medical advice.</p>`;
+  const signalText = analysis.model_signal === "uncertain" ? "Model signal: Uncertain" : "Model signal: Strong phrase match";
+  const confidenceCaution = analysis.model_signal === "uncertain" ? `<p class="alert alert-warn"><b>Model signal: Uncertain</b><br>The description does not provide enough information for a reliable category. Please provide more information or seek human medical advice.</p>` : "";
+  const accessBarrier = analysis.barriers.includes("financial") ? "You also mentioned difficulty paying for care." : analysis.barriers.includes("travel") ? "You also mentioned a transport barrier." : analysis.barriers.includes("connectivity") ? "You also mentioned a connectivity barrier." : "";
   byId("results").innerHTML = `
     <div class="section-heading"><div><span class="eyebrow">STEP 2 · CHECK WHAT WE UNDERSTOOD</span><h2>What we understood</h2><p>Your words are organized as possible presentation categories—not a diagnosis.</p></div><span class="case-id">${escapeHTML(draft.id)}</span></div>
+    <p class="voice-flow">${inputSource === "Voice transcript" ? "🎙️ Voice transcript" : "⌨️ Typed message"} → 🧠 Small AI interpretation → 🛡️ Safety check</p>
     <p class="safety-label">AI support only · Not a diagnosis · Human care decisions</p>
-    <div class="result-grid"><div><h3>Possible concern</h3><div>${concerns}</div><p class="muted">${analysis.direct_matches.length ? "Matched phrase cues" : "Model-only suggestion — no phrase cue matched; confirm with a health professional"}. ${confidenceBand}: <b>${Math.round(analysis.confidence * 100)}%</b>. Uncalibrated score, not a disease probability.</p>${confidenceCaution}<p class="muted">Naive Bayes top class: ${escapeHTML(formatIntent(analysis.model_intent))}${analysis.model_intent !== analysis.intent ? " · phrase cues show a different concern; review both" : ""}</p></div>
-      <div>${urgency}</div></div>
+    <div>${urgency}</div><div class="result-grid"><div><h3>Possible concern</h3><div>${concerns}</div><p class="muted"><b>${signalText}</b> · This is a model signal, not a medical diagnosis.</p>${confidenceCaution}${accessBarrier ? `<h3>Access barrier detected</h3><p>${escapeHTML(accessBarrier)}</p><p><a class="button secondary" href="#carePath">Find care information</a> <a class="button secondary" href="#communityHelp">Request community support</a> <a class="button light" href="#smsMode">Prepare SMS</a> <a class="button light" href="#financialTitle">Illustrative payment/support options</a></p>` : ""}</div></div>
     <div class="form-grid">
       <label>Age, if shared<input id="caseAge" value="${escapeHTML(draft.patient.age)}" placeholder="e.g., 4 years"></label>
       <label>Sex, if relevant and shared<select id="caseSex"><option value="">Not recorded</option><option>Female</option><option>Male</option><option>Another / not stated</option></select></label>
@@ -95,7 +105,7 @@ function renderResult() {
       <label>Can the patient drink?<select id="ableToDrink"><option value="">Not asked</option><option value="No / difficulty reported">No / difficulty reported</option><option value="Yes, reported">Yes, reported</option></select></label>
       <label>Urination / প্রস্রাব<select id="urination"><option value="">Not asked</option><option value="Usual, reported">Usual, reported</option><option value="Reduced / none reported">Reduced / none reported</option></select></label>
       <label>Pregnancy duration, if relevant<input id="pregnancyWeeks" inputmode="numeric" placeholder="weeks, if known" value="${escapeHTML(draft.patient.pregnancy_weeks)}"></label>
-      <label>Bleeding / labour symptoms<select id="maternalSymptoms"><option value="">Not asked</option><option value="Reported — worker to clarify">Reported — clarify with worker</option><option value="Not reported">Not reported</option></select></label>
+      <label>Bleeding / labour symptoms<select id="maternalSymptoms"><option value="">Not asked</option><option value="Reported — professional to clarify">Reported — ask a health professional</option><option value="Not reported">Not reported</option></select></label>
       <label class="wide">Possible concern categories (you may correct these)<textarea id="caseConcerns" rows="2">${escapeHTML(draft.patient.reported_concerns)}</textarea></label>
     </div>
     <p id="missingPreview" class="alert alert-warn" aria-live="polite"></p>
@@ -109,7 +119,7 @@ function renderResult() {
   updateMissingPreview();
 }
 function renderAccess() {
-  byId("facilitySelect").innerHTML = `<option value="">Choose from sample facilities (verify locally)</option>` + facilities.map(f => `<option value="${escapeHTML(f.facility_id)}">${escapeHTML(f.name)} · ${escapeHTML(f.district)} (${escapeHTML(f.upazila)})</option>`).join("");
+  renderCareOptions();
   byId("facilitySelect").onchange = () => { draft.facility_id = byId("facilitySelect").value; updatePlanSummary(); refreshSms(); };
   if (draft.facility_id) byId("facilitySelect").value = draft.facility_id;
   const selected = new Set(draft.barriers);
@@ -117,13 +127,52 @@ function renderAccess() {
   updatePlanSummary();
 }
 function selectedFacility() { return facilities.find(f => f.facility_id === (byId("facilitySelect")?.value || draft?.facility_id)); }
+function facilityValue(f, field) { return f[field] ?? ({name:f.facility_name,name_bn:f.facility_name_bn,type:f.facility_type}[field]); }
+function findCareOptions(location, concern) {
+  if (!location || !facilities.length) return {records:[],matchedLevel:null};
+  const eq=(a,b)=>String(a||"").trim().toLocaleLowerCase()===String(b||"").trim().toLocaleLowerCase();
+  if(location.upazila){const rows=facilities.filter(f=>eq(f.location_name_bn,location.upazila)||eq(f.upazila,location.upazila));if(rows.length)return {records:rows,matchedLevel:"upazila"};}
+  if(location.district){const rows=facilities.filter(f=>eq(f.district,location.district)||eq(f.district_name_bn,location.district));if(rows.length)return {records:rows,matchedLevel:"district"};}
+  if(location.division){const rows=facilities.filter(f=>eq(f.division,location.division)||eq(f.division_name_bn,location.division));if(rows.length)return {records:rows,matchedLevel:"division"};}
+  return {records:[],matchedLevel:null};
+}
+function renderCareOptions() {
+  const status=byId("careOptionStatus"),cards=byId("areaFacilityCards"),select=byId("facilitySelect");
+  if(!status||!cards||!select)return;
+  const result=findCareOptions(selectedLocation,latestAnalysis?.concerns);
+  const area=selectedLocation.upazila||selectedLocation.district||selectedLocation.division;
+  if(!area){status.textContent="Select an area to look for the small sample of source records. Records are incomplete; verify locally.";cards.innerHTML="";select.innerHTML='<option value="">Choose a record</option>';return;}
+  if(!result.records.length){status.textContent=`No bundled source facility records were found for ${area}. This sample does not cover every area; ask locally for current care options.`;cards.innerHTML="";select.innerHTML='<option value="">No records for selected area</option>';return;}
+  const level=result.matchedLevel, label={upazila:"Selected upazila",district:"District-level fallback",division:"Division-level fallback"}[level];
+  status.textContent=`${label}: ${area}. ${result.records.length} source record${result.records.length===1?"":"s"}; not a nearest-facility result. Confirm location, services, opening, and suitability locally.`;
+  cards.innerHTML=result.records.map(f=>`<article class="facility-card"><h3>${escapeHTML(facilityValue(f,"name"))}</h3><p class="bangla-name">${escapeHTML(facilityValue(f,"name_bn")||"")}</p><p>${escapeHTML(facilityValue(f,"type"))} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">${escapeHTML(f.data_status||"DEMO")} · ${escapeHTML(f.facility_id)} · verify locally</p></article>`).join("");
+  select.innerHTML='<option value="">Choose a source record</option>'+result.records.map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(facilityValue(f,"name"))} · ${escapeHTML(f.district)}</option>`).join("");
+}
+function renderLocationControls() {
+  if(!locations)return;
+  const division=byId("locationDivision"),district=byId("locationDistrict"),upazila=byId("locationUpazila");
+  division.innerHTML='<option value="">Choose division</option>'+locations.divisions.map(d=>`<option value="${escapeHTML(d.name_bn)}">${escapeHTML(d.name_bn)}</option>`).join("");
+  division.value=selectedLocation.division||"";
+  const currentDivision=locations.divisions.find(d=>d.name_bn===division.value);
+  district.innerHTML='<option value="">Choose district</option>'+(currentDivision?.districts||[]).map(d=>`<option value="${escapeHTML(d.name_bn)}">${escapeHTML(d.name_bn)}</option>`).join("");
+  district.disabled=!currentDivision;district.value=(currentDivision?.districts||[]).some(d=>d.name_bn===selectedLocation.district)?selectedLocation.district:"";
+  const currentDistrict=(currentDivision?.districts||[]).find(d=>d.name_bn===district.value);
+  upazila.innerHTML='<option value="">Choose upazila</option>'+(currentDistrict?.upazilas||[]).map(u=>`<option value="${escapeHTML(u)}">${escapeHTML(u)}</option>`).join("");
+  upazila.disabled=!currentDistrict;upazila.value=(currentDistrict?.upazilas||[]).includes(selectedLocation.upazila)?selectedLocation.upazila:"";
+  selectedLocation={division:division.value,district:district.value,upazila:upazila.value};
+  const text=[selectedLocation.upazila,selectedLocation.district,selectedLocation.division].filter(Boolean).join(", ");
+  byId("supportLocation").value=text;
+  safeStorage.write(LOCATION_KEY,selectedLocation);
+  byId("locationStatus").textContent=text?`Saved on this device: ${text}. No GPS location is collected.`:"Location is optional and stays on this device.";
+  renderCareOptions();
+}
 function updatePlanSummary() {
   if (!draft) return;
   const facility = selectedFacility();
   const barriers = checkedBarriers();
   draft.barriers = barriers;
   byId("accessSummary").textContent = `Reach: ${barriers.some(x => ["facility_distance","no_transport"].includes(x)) ? "barrier recorded" : "health professional to confirm"} · Afford: ${barriers.some(x => ["financial_cost","transport_cost"].includes(x)) ? "barrier recorded" : "worker to confirm"} · Connect: ${barriers.some(x => ["connectivity","shared_phone"].includes(x)) ? "barrier recorded" : "worker to confirm"} · Return: ${barriers.includes("continuity") ? "barrier recorded" : "worker to confirm"}.`;
-  byId("selectedFacilitySummary").textContent = facility ? `${facility.name} (${facility.name_bn}) · ${facility.district}, ${facility.upazila} · sample registry record; verify services, opening and capacity locally.` : "No facility selected. Check locally whether a facility is appropriate and available.";
+  byId("selectedFacilitySummary").textContent = facility ? `${facilityValue(facility,"name")} (${facilityValue(facility,"name_bn")||""}) · ${facility.district}, ${facility.upazila} · source registry sample; verify services, opening and capacity locally.` : "No facility selected. Check locally whether a facility is appropriate and available.";
   refreshSms();
 }
 function recordDecision(decision) {
@@ -185,11 +234,11 @@ function refreshSms() {
   const facility = selectedFacility();
   const red = draft.analysis.red_flags.length > 0;
   const smsLabels = { breathing_difficulty:"BREATHING CONCERN", neurological_red_flag:"NEURO WARNING", seizure:"SEIZURE REPORTED", chest_cardiac_warning:"CHEST CONCERN", dehydration:"HYDRATION CONCERN", diarrhea_vomiting:"DIARRHOEA/VOMITING", maternal_pregnancy:"MATERNAL CONCERN", injury_trauma:"INJURY REPORTED" };
-  const concern = smsLabels[draft.analysis.intent] || "WORKER REVIEW";
+  const concern = smsLabels[draft.analysis.intent] || "CARE REVIEW";
   const due = draft.follow_up?.due_at ? new Date(draft.follow_up.due_at).toLocaleDateString() : "You or a care professional can arrange";
   const facilityText = facility ? `FAC: ${facility.name}` : "FAC: to confirm";
-  let message = [`CASE ${draft.id}`, red ? "PROMPT WORKER REVIEW" : "WORKER REVIEW", concern, facilityText, `FOLLOW-UP: ${due}`].join("\n");
-  if (message.length > 160) message = [`CASE ${draft.id}`, red ? "PROMPT WORKER REVIEW" : "WORKER REVIEW", concern, facility ? `FAC: ${facility.name.slice(0, 20)}` : "FAC: confirm", `FOLLOW-UP: ${due}`].join("\n");
+  let message = red ? `POTENTIAL URGENT WARNING. SEEK MEDICAL CARE NOW. CALL 999 IF LIFE-THREATENING. CASE: ${draft.id}` : [`CASE ${draft.id}`, concern, facilityText, `FOLLOW-UP: ${due}`].join("\n");
+  if (message.length > 160) message = message.slice(0, 157) + "...";
   byId("smsMessage").value = message.slice(0, 160);
   if (byId("smsCount")) byId("smsCount").textContent = `${byId("smsMessage").value.length}/160 characters · financial details omitted`;
 }
@@ -334,11 +383,12 @@ function updateFollowup(id,changes) { const records=safeStorage.read("shustho_po
 function renderFacilities() {
   const chosenDistrict = byId("districtFilter").value;
   const visible = chosenDistrict === "all" ? facilities : facilities.filter(f => f.district === chosenDistrict);
-  byId("facilityCards").innerHTML = visible.map(f => `<article class="facility-card"><h3>${escapeHTML(f.name)}</h3><p class="bangla-name">${escapeHTML(f.name_bn || "")}</p><p>${escapeHTML(f.type)} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">ID ${escapeHTML(f.facility_id)} · Prototype facility data · Verify locally</p><button type="button" class="button-small" onclick="chooseFacility('${escapeHTML(f.facility_id)}')">Select for this case</button></article>`).join("") || `<p>No sample records for this district.</p>`;
+  byId("facilityCards").innerHTML = visible.map(f => `<article class="facility-card"><h3>${escapeHTML(facilityValue(f,"name"))}</h3><p class="bangla-name">${escapeHTML(facilityValue(f,"name_bn") || "")}</p><p>${escapeHTML(facilityValue(f,"type"))} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">${escapeHTML(f.data_status||"DEMO")} · ${escapeHTML(f.facility_id)} · Verify locally</p><button type="button" class="button-small" onclick="chooseFacility('${escapeHTML(f.facility_id)}')">Select for this case</button></article>`).join("") || `<p>No sample records for this district.</p>`;
   const select=byId("facilitySelect"), prior=select.value;
-  select.innerHTML=`<option value="">Choose a sample facility (verify locally)</option>`+facilities.map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(f.name)} · ${escapeHTML(f.district)} (${escapeHTML(f.upazila)})</option>`).join("");
+  select.innerHTML=`<option value="">Choose a sample facility (verify locally)</option>`+facilities.map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(facilityValue(f,"name"))} · ${escapeHTML(f.district)} (${escapeHTML(f.upazila)})</option>`).join("");
   select.value=prior;
-  select.onchange=()=>{if(draft){draft.facility_id=select.value;updatePlanSummary();refreshSms();}else{const f=facilities.find(row=>row.facility_id===select.value);byId("selectedFacilitySummary").textContent=f?`${f.name} · ${f.type} · ${f.district}, ${f.upazila}. Demo/sample record; independently verify services, hours, and suitability.`:"No facility selected.";}};
+  select.onchange=()=>{if(draft){draft.facility_id=select.value;updatePlanSummary();refreshSms();}else{const f=facilities.find(row=>row.facility_id===select.value);byId("selectedFacilitySummary").textContent=f?`${facilityValue(f,"name")} · ${facilityValue(f,"type")} · ${f.district}, ${f.upazila}. Source sample; independently verify services, hours, and suitability.`:"No facility selected.";}};
+  renderCareOptions();
 }
 function chooseFacility(id) { byId("facilitySelect").value=id; if (!draft) { byId("facilityHint").textContent = "Sample facility selected for discussion. Analyze a case to attach it to your local note."; byId("facilitySelect").dispatchEvent(new Event("change")); return; } draft.facility_id = id; updatePlanSummary(); byId("facilityHint").textContent = "Facility selected for this draft. Independently verify locally that it is appropriate and available."; }
 function renderIndicators(data) {
@@ -359,21 +409,112 @@ function renderIndicators(data) {
   const observationCount = data.source_observation_count ?? data.indicators.reduce((n, item) => n + item.observations.length, 0);
   byId("whoStatus").textContent = `${data.indicator_count || data.indicators.length} WHO indicators and ${observationCount} Bangladesh source observations are bundled locally (years ${data.source_year_start || Math.min(...data.indicators.flatMap(item => item.observations.map(row => row.year)))}–${data.source_year_end || Math.max(...data.indicators.flatMap(item => item.observations.map(row => row.year)))}). Cards show each indicator’s latest packaged year; the full source rows are preserved in the downloadable JSON. No WHO API is used.`;
 }
+function speechRecognitionConstructor() { return window.SpeechRecognition || window.webkitSpeechRecognition || null; }
+function setVoiceStatus(state,message) {
+  const status=byId("voiceStatus");
+  if(!status)return;
+  status.dataset.state=state;
+  byId("voiceStatusText").textContent=message;
+}
+function showTypeInstead(message="Typed message selected. The text-based Small AI workflow works offline.") {
+  try { speechRecognition?.abort(); } catch {}
+  speechRecognition=null;
+  byId("stopVoiceButton").disabled=true;
+  byId("recordVoiceButton").disabled=!speechRecognitionConstructor();
+  if(message)setVoiceStatus(speechRecognitionConstructor()?"ready":"unavailable",message);
+  byId("input").focus();
+}
+function startVoiceRecognition() {
+  const SpeechRecognition=speechRecognitionConstructor();
+  if(!SpeechRecognition) {
+    byId("voiceUnavailable").hidden=false;
+    byId("recordVoiceButton").disabled=true;
+    setVoiceStatus("unavailable","Voice unavailable · You can type your message instead.");
+    return;
+  }
+  byId("voiceUnavailable").hidden=true;
+  byId("voiceReview").hidden=true;
+  byId("voiceTranscript").value="";
+  speechErrorMessage="";
+  const recognition=new SpeechRecognition();
+  speechRecognition=recognition;
+  const choice=byId("voiceLanguage").value;
+  recognition.lang=choice==="en-US"?"en-US":"bn-BD";
+  recognition.continuous=false;
+  recognition.interimResults=false;
+  recognition.maxAlternatives=1;
+  recognition.onstart=()=>{
+    byId("recordVoiceButton").disabled=true;
+    byId("stopVoiceButton").disabled=false;
+    setVoiceStatus("listening","Listening… Speak naturally. Select Stop when finished.");
+  };
+  recognition.onresult=event=>{
+    const transcript=Array.from(event.results||[]).map(result=>result[0]?.transcript||"").join(" ").trim();
+    byId("voiceTranscript").value=transcript;
+    byId("voiceReview").hidden=false;
+    byId("voiceReviewStatus").textContent=transcript?"Transcript ready. Please check and edit it before continuing.":"No words were recognized. Try again or type your message instead.";
+    setVoiceStatus(transcript?"transcript-ready":"stopped",transcript?"Transcript ready · Review the words before use.":"Stopped · No transcript captured; you can try again or type.");
+  };
+  recognition.onerror=event=>{
+    const detail=event.error==="not-allowed"||event.error==="service-not-allowed"?"Microphone permission was not granted. You can type instead.":event.error==="network"?"The browser speech service reported a network problem. You can type instead.":`Voice recognition stopped (${event.error||"unknown error"}). You can type instead.`;
+    speechErrorMessage=detail;
+    setVoiceStatus("stopped",detail);
+  };
+  recognition.onend=()=>{
+    if(speechRecognition===recognition)speechRecognition=null;
+    byId("stopVoiceButton").disabled=true;
+    byId("recordVoiceButton").disabled=!speechRecognitionConstructor();
+    if(speechErrorMessage)setVoiceStatus("stopped",speechErrorMessage);
+    else if(!byId("voiceTranscript").value.trim())setVoiceStatus("stopped","Stopped · No transcript captured. Try again or type instead.");
+  };
+  try { recognition.start(); }
+  catch { speechRecognition=null;byId("stopVoiceButton").disabled=true;byId("recordVoiceButton").disabled=false;setVoiceStatus("unavailable","Voice could not start in this browser/device. You can type instead."); }
+}
+function stopVoiceRecognition() {
+  if(!speechRecognition)return;
+  try { speechRecognition.stop();setVoiceStatus("stopped","Stopped · Waiting for the transcript. Please check it before continuing."); }
+  catch { speechRecognition=null;byId("stopVoiceButton").disabled=true;setVoiceStatus("stopped","Stopped · Try again or type instead."); }
+}
+function useVoiceTranscript() {
+  const transcript=byId("voiceTranscript").value.trim();
+  if(!transcript){byId("voiceReviewStatus").textContent="There is no transcript to use. Try again or type your message.";return;}
+  byId("input").value=transcript;
+  byId("input").dispatchEvent(new Event("input",{bubbles:true}));
+  inputSource="Voice transcript";
+  byId("inputError").textContent="";
+  runAI();
+}
 function loadLocalResources() {
   if (!["http:","https:"].includes(location.protocol)) {
     renderFacilities();
+    if(locations)renderLocationControls();
     if (!window.SHU_WHO_SUMMARY) byId("whoStatus").textContent = "WHO indicator JSON is bundled locally. Core screening and case workflow work offline.";
     return;
   }
-  fetch("./facilities_dghs_sample.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { if (Array.isArray(data.records)) facilities = data.records; renderFacilities(); if (draft) renderAccess(); }).catch(() => renderFacilities());
-  fetch("./data/who_bangladesh_health_priorities.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(renderIndicators).catch(() => { if (!window.SHU_WHO_SUMMARY) byId("whoStatus").textContent = "WHO context file is bundled locally; the classifier and workflow work without it."; });
+  fetch("./data/health_access/bangladesh_health_facilities.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { if (Array.isArray(data.records)) facilities = data.records; renderFacilities(); if (draft) renderAccess(); }).catch(() => renderFacilities());
+  fetch("./data/geography/bangladesh_locations.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {locations=data;renderLocationControls();}).catch(()=>{if(locations)renderLocationControls();else byId("locationStatus").textContent="Bundled location file could not be loaded; core workflow still works.";});
+  fetch("./data/context/who_bangladesh_health_priorities.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(renderIndicators).catch(() => { if (!window.SHU_WHO_SUMMARY) byId("whoStatus").textContent = "WHO context file is bundled locally; the classifier and workflow work without it."; });
 }
 document.addEventListener("DOMContentLoaded", () => {
   makeDemoButtons(); renderFacilities(); renderQueue(); renderHealthRecord(); renderShareStatus(); renderFollowups(); updateNetworkStatus();
   if (window.SHU_WHO_SUMMARY) renderIndicators(window.SHU_WHO_SUMMARY);
+  renderLocationControls();
   loadLocalResources();
   byId("districtFilter").addEventListener("change", renderFacilities);
+  byId("locationDivision").addEventListener("change",()=>{selectedLocation={division:byId("locationDivision").value,district:"",upazila:""};renderLocationControls();});
+  byId("locationDistrict").addEventListener("change",()=>{selectedLocation={division:byId("locationDivision").value,district:byId("locationDistrict").value,upazila:""};renderLocationControls();});
+  byId("locationUpazila").addEventListener("change",()=>{selectedLocation={division:byId("locationDivision").value,district:byId("locationDistrict").value,upazila:byId("locationUpazila").value};renderLocationControls();});
   byId("runButton").addEventListener("click", runAI);
+  const speechAvailable=Boolean(speechRecognitionConstructor());
+  byId("recordVoiceButton").disabled=!speechAvailable;
+  if(!speechAvailable){byId("voiceUnavailable").hidden=false;setVoiceStatus("unavailable","Voice unavailable · You can type your message instead.");}
+  byId("recordVoiceButton").addEventListener("click",startVoiceRecognition);
+  byId("stopVoiceButton").addEventListener("click",stopVoiceRecognition);
+  byId("typeInsteadButton").addEventListener("click",()=>showTypeInstead());
+  document.querySelectorAll("[data-type-instead]").forEach(button=>button.addEventListener("click",()=>showTypeInstead()));
+  byId("retryVoiceButton").addEventListener("click",startVoiceRecognition);
+  byId("useVoiceMessageButton").addEventListener("click",useVoiceTranscript);
+  byId("input").addEventListener("input",()=>{inputSource="Typed message";});
   byId("saveCaseButton").addEventListener("click", saveCase);
   byId("prepareReferralButton").addEventListener("click",()=>{if(!draft){byId("saveStatus").textContent="Analyze your words first to prepare a case-specific note. No referral was sent.";byId("screen").scrollIntoView({behavior:"smooth"});return;}byId("smsCard").hidden=false;byId("smsCard").scrollIntoView({behavior:"smooth"});refreshSms();});
   byId("paymentButton").addEventListener("click", simulateContribution);

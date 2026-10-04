@@ -1,95 +1,91 @@
 # Shustho Poth AI
 
-## From local words to the next safe step.
+## One-sentence problem statement
 
-**Patient-controlled. Local-language. Offline-first. Safety-aware. Connected to care.**
+Shustho Poth AI helps a patient or caregiver move from describing a health concern in local words to considering a safe, human-guided next step toward care.
 
-> Because of Shustho Poth AI, people in low-connectivity communities can describe health concerns in their own Bangla or Banglish and identify a safer next step toward human care, while addressing practical barriers such as cost, transport and connectivity that can otherwise delay care.
+## Who it is for
 
-Shustho Poth AI is a static patient-facing health-navigation and continuity-of-care prototype for Bangladesh. A person describes what is happening in Bangla, Banglish, or English. A small local model structures the words; separate safety rules surface possible warning signs; the patient can explore access options and save/share a local record with explicit consent.
+Patients and caregivers in low-connectivity settings in Bangladesh. The prototype accepts Bangla, Banglish, English, and mixed short text. It is not a clinical tool for autonomous health-worker decisions.
 
-**It does not diagnose, prescribe, replace a doctor, make autonomous referral decisions, or connect to live emergency, NGO, hospital, payment, or SMS services.** If a situation is severe or life-threatening, call **999** or seek emergency medical care immediately. The app is not an emergency dispatcher.
+## The problem
 
-## Why it matters
+There can be a gap between “Something is wrong” and “I can reach appropriate care.” Language, uncertainty, cost, transport, connectivity, and continuity can make that gap harder to cross.
 
-The World Bank Small AI for Development Health challenge frames a setting with high patient load, crowded clinics, recordkeeping burden, limited primary care and clinician scarcity. In Bangladesh, distance, cost, connectivity, and digital-literacy constraints can make it harder to reach and continue care. This prototype explores a bounded, inspectable offline tool around that access gap; it does not claim measured impact or clinical effectiveness.
+## What the Small AI does
 
-## Patient journey
+A lightweight Naive Bayes classifier in `ai.js` organizes short text into a limited set of presentation and access categories. Separate explicit phrase rules surface possible warning signs; bounded negation handling suppresses some nearby negated symptom phrases. The app shows a qualitative model signal, not raw probabilities. It does not diagnose, prescribe, or decide whether or where someone should be referred.
 
-**TELL → CHECK → ACT → REACH → AFFORD → SHARE → FOLLOW UP**
+## Voice interaction
 
-1. Describe a concern naturally, for example: `amar bacchar shash nite koshto hocche, hospital e jawar taka nai`.
-2. Review possible presentation categories, structured fields, what is still unknown, and an uncalibrated model score.
-3. Read any separate potential-warning cue. For possible emergency warning signs, seek urgent human care; call 999 if severe or life-threatening. Financial or app steps must not delay care.
-4. Decide what next step you want, ask a health professional, and explore sample facility/access information.
-5. Optionally prepare a community support request, save/update a patient-controlled record, choose exactly what to share, and set a local follow-up.
-6. Continue offline, prepare a privacy-aware SMS draft, or simulate local queue sync. Nothing is transmitted.
+Patients can optionally describe a concern by voice. In supported browsers, speech is converted to text and then passed through the same local-language Small AI pipeline used for typed messages. The patient sees and can correct the transcript before choosing **Use this message**. Speech recognition is an input interface; the existing local Naive Bayes classifier and safety rules remain the interpretation and safety layers.
 
-## What the AI does
+Voice is an additional accessibility/input channel. The core intent classification and safety workflow remains text-based and locally executable. Browser speech recognition support varies by device/browser and may require connectivity. The prototype therefore does not depend on voice recognition for its core offline functionality. Bangla is configured with `bn-BD`; English uses `en-US`. Banglish/mixed input uses the Bangla setting and may be transcribed inconsistently. Voice input is currently an interface prototype; speech-recognition accuracy has not yet been independently benchmarked. Voice browser compatibility could not be fully automated in the available environment.
 
-`ai.js` keeps the existing lightweight multinomial Naive Bayes classifier and uses synthetic Bangla/Banglish/English examples for 18 narrow presentation/access labels. Transparent pattern rules separately identify phrase matches, extract a few reported fields, and surface potential warning cues. The class output and score are not diagnoses, calibrated probabilities, or triage. The classifier can be wrong, and absence of a warning cue is not reassurance. Low scores tell the user not to rely on the classification. A human professional makes all clinical decisions.
+The page does not save audio recordings. The browser/device speech service may process audio and may require connectivity. Avoid real sensitive health information.
 
-### Why Small AI, and why SMS?
+Future speech evaluation should separately measure Bangla and Banglish/code-switching accuracy, dialect and noise robustness, child/older-speaker speech, health vocabulary, and negation preservation. Mozilla Common Voice, FLEURS, and MMS are possible future references, not current model data.
 
-A fixed SMS form expects a person to know which category or field to choose. Shustho Poth accepts a natural local-language description and locally structures it with an auditable small model plus explicit phrase rules. It avoids open-ended diagnosis and prescription. It is lightweight, local, and can continue without a cloud model.
+## Why AI instead of SMS/spreadsheet/search
 
-**SMS is the delivery channel; Small AI is the interpretation layer.** SMS and telecom controls shown here are simulated. No message is sent.
+SMS can transmit a message. A spreadsheet can store a case. Search can retrieve information. The small local model interprets short Bangla/Banglish descriptions into limited concern and access labels. It runs on-device, while explicit safety rules and human judgment remain separate. In this prototype, SMS is only prepared locally and never sent.
 
-## Safety and urgent help
+## Offline-first architecture
 
-A separate phrase-based safety layer checks for reports including difficult breathing, seizure, not responding, confusion, heavy bleeding, inability to drink/reduced urination, chest discomfort, sudden weakness/face/speech changes, head injury, and pregnancy-related bleeding/labour warnings. Rules are incomplete and do not assess severity or diagnose. Any possible urgent sign should be assessed by a human; if severe or life-threatening, call 999 or seek emergency care immediately. The official Bangladesh government National Emergency Service is 999 ([Bangladesh Police Telecom](https://telecom-police.portal.gov.bd/pages/static-pages/695e3b0cc4774958d7b72321)). The `tel:999` link depends on the device and is not a live app integration.
+Static HTML, CSS, JavaScript, and bundled JSON run in the browser with no backend, database, login, or external AI API. Case text is processed locally. Browser `localStorage` holds optional case/record data. On GitHub Pages HTTPS, the service worker caches first-party resources after the initial successful load. Direct `file://` use does not provide service-worker caching; bundled JS snapshots keep core demo content available.
 
-## Continuity, sharing, and access
+## Safety and human oversight
 
-- **My Health Record:** patient-entered diagnoses, medicines, allergies, visits, tests, referrals, and follow-ups can be created/edited/deleted in local browser storage. AI suggestions are not saved unless the patient explicitly confirms; diagnoses require an additional health-professional confirmation.
-- **Share:** the patient selects a recipient and fields, explicitly consents, and creates a local demo code expiring after 24 hours. The “recipient view” shows only selected categories. It is a simulation, not authentication or a hospital EMR.
-- **Community help:** consent produces a structured support request with optional general location and separately optional relevant health information. It stays on this device; no CHW or NGO network is connected.
-- **Facilities:** a small sample of DGHS public registry records supports discussion only. It does not show live staff, services, stock, capacity, opening, distance, route, or availability. Verify locally.
-- **Affordability:** BDT 100/month and BDT 1,200/year are illustrative micro-health-protection examples; mobile-money contribution and payment-plan arithmetic are simulated. There is no insurance, payment, credit, provider, eligibility, or assistance guarantee.
-- **Follow-up:** local date/status/note can be added, completed, rescheduled, or edited. No reminder is sent.
-
-## Offline and privacy
-
-The app has no required runtime API, backend, database, login, or external AI service. HTML, CSS, JavaScript, classifier phrases, WHO context, and facility data are static/local. Case, health-record, support-request, and share-demo data use browser `localStorage`. The service worker caches static first-party assets on HTTPS after an initial successful load, so a later visit may work offline. `file://` supports the bundled snapshot but does not provide service-worker caching.
-
-**Local browser storage is not encrypted. Do not enter real sensitive patient information.** A person using a shared or lost device/browser profile may see stored data. Hide the record or clear local demo data. Production would need identity verification, secure authentication, encryption, role-based permissions, audit and consent records, revocation, retention controls, secure deletion, and security review.
+Potential warning signs lead to urgent human-care guidance before access or affordability options. “Call 999” is a device dial link only; no dispatch service is connected. Not detecting a warning phrase does not mean a person is safe. A patient and qualified health professional remain the decision-makers. This is not diagnosis, prescribing, clinical triage, or autonomous referral.
 
 ## Bangladesh localization
 
-Localization is not simply translating an English chatbot into Bangla. Shustho Poth AI is designed around Bangladesh-specific constraints: Bangla and Banglish communication, low-connectivity environments, mobile-money use, affordability and transport barriers, community-based care pathways, Bangladesh facility information and locally relevant health priorities. The prototype uses Bangladesh evidence for context and synthetic local-language data for the Small AI, while keeping clinical decisions with human professionals.
+Bangla/Banglish examples are locally oriented but synthetic. A bundled National Portal location list supports optional division → district → upazila selection without GPS. Six DGHS public registry records support a small care-navigation discussion; coverage is incomplete and records do not indicate live service availability. WHO Bangladesh indicators provide separate population context only.
 
-### Data and provenance
+## Data sources
 
-- **Context data — WHO Bangladesh:** 15 indicators / 351 source observations from the user-supplied `050_Bangladesh.zip`, preserved in `data/who_bangladesh_health_priorities.json`. Display-only population context; never classifier input, patient risk, diagnosis, or referral logic. The supplied archive lacked the separate leading-causes file; anomalies and absent bounds are disclosed. WHO does not endorse the app.
-- **Real source data — DGHS:** `facilities_dghs_sample.json` is a six-record sample from the public Facility Registry; incomplete and not live.
-- **Synthetic data — local language:** training and demo phrases are invented examples, not patient records. Held-out evaluation is a prototype language/classification evaluation only.
-- **Demo/simulated:** payment, community request, access code, SMS, connection, follow-up reminders, and sync do not reach external systems.
-- Bangladesh DHS, Global Findex/GSMA, OpenStreetMap, HDX, WorldPop, and multilingual speech/translation corpora are **not included as model data or app data in this prototype**. They may be considered later for clearly scoped access context or language robustness, subject to source, license, representativeness, and governance review. They are not Bangladesh clinical datasets by virtue of being multilingual/global.
+- Bangladesh National Portal administrative geography: 8 divisions, 64 districts, 499 upazila entries as listed on the downloaded portal page. Names are kept in Bangla; confirm district membership against current BBS geocodes before production use.
+- DGHS Public Facility Registry: six source sample records; no live lookup.
+- WHO Bangladesh country indicator package provided with the project: 15 indicators / 351 source observations; contextual display only. Package omissions and anomalies are documented in the data dictionary and source JSON.
 
-See [`DATA_DICTIONARY.md`](./DATA_DICTIONARY.md) for source, license, purpose, and limitations by file.
+## Data used to train/evaluate the model
 
-## Prototype language/classification evaluation
+Training phrases are synthetic and embedded in `ai.js`. `data/ai/local_language_dataset.csv` is a project phrase inventory; it is not evidence of actual patient records. `data/ai/independent_test_set.csv` mirrors the 100 synthetic cases in `evaluation_cases.json`. Neither WHO nor geography/facility data enter the classifier.
 
-[`results.json`](./results.json) is generated from the current JavaScript implementation and the independent held-out cases in `evaluation_cases.csv`. It reports classifier and simple keyword-baseline results, phrase-rule red-flag escalation, low-score cases, and sample errors. The cases are synthetic, narrow, and not representative. This is **not clinical validation, a safety evaluation, or evidence of deployment readiness**. Do not infer clinical performance from it.
+## Contextual evidence datasets
 
-## Architecture and technology
+WHO Bangladesh is the only contextual evidence dataset bundled. The Bangladesh Service Delivery Indicators, Global Findex, and GSMA files are marked `NOT_LOADED` because verified country-specific values and/or reuse terms were not included. MASSIVE is documented as an external NLP reference only; no benchmark records are bundled or used.
 
-Static HTML/CSS/JavaScript; local JSON/CSV; browser `localStorage`; local Naive Bayes; explicit rule-based extraction/safety layer; service worker for first-party static asset caching; GitHub Pages/Vercel static hosting. See [`architecture.md`](./architecture.md) and [`responsible_ai.md`](./responsible_ai.md).
+## Care facility data
 
-### Evidence/context → local-language synthetic phrases → Small AI → separate safety rules → Bangladesh facility/access layer
+`data/health_access/bangladesh_health_facilities.json` contains six DGHS registry records, marked `REAL_SOURCE`, with missing address/coordinates/contact/year explicitly null. “Care options in your selected area” matches upazila first, then district, then division and labels the level. It never estimates distance or calls a record “nearest.” The dataset is not a complete facility directory and says nothing about hours, capacity, staffing, stock, current services, or emergency suitability.
 
-WHO context data sit underneath this flow as prioritization evidence only, not as a patient-level clinical database.
+## Evaluation
 
-## Run and deploy
+Current stored evaluation (`results.json`; not overwritten in this work):
 
-- **Local:** open `index.html` in a modern browser. Core analysis and bundled context work offline. Browser security may limit localStorage or `file://` features in some configurations; use static hosting for the service worker.
-- **GitHub Pages:** serve the repository root. The site uses relative paths and needs no build step or backend. Enable Pages for the `main` branch/root in repository Settings → Pages.
-- **Vercel:** import the repository as a static site; no framework preset/build command/output directory is required (serve the root files). No backend environment variables are used.
+- Intent accuracy: **70.0% (63/90 categorized cases)**
+- Keyword baseline: **62.2% (56/90)**
+- Warning phrase escalation: **31/31 labeled warning cases**
+- False warning escalation: **0/69 other cases**
+- Negation suppression: **6/6**
+- Uncertainty signal: **67/100 cases**
+- **33 automated language/safety assertions** passed in the previously recorded run
+
+Prototype evaluation only — not clinical validation. The metrics describe a small synthetic set and phrase-rule coverage, not real-world sensitivity or clinical performance.
 
 ## Limitations
 
-Synthetic classifier data; narrow Bangla/Banglish and incomplete Sylheti, Chittagonian, and other dialect coverage; small synthetic evaluation; no clinical validation; incomplete facility sample; no production security; localStorage not encrypted; no hospital EMR; no live NGO/community network, emergency dispatch, real payment/mobile-money, insurer, or telecom integration; no real-time routing, price, availability, or guaranteed assistance.
+Synthetic/local-language training data; limited Bangla/Banglish spelling and dialect coverage; possible dialect bias and negation edge cases; incomplete facility sample and no live availability; no live emergency dispatch; no real NGO/CHW network, financial transaction, or insurance product; browser localStorage without production encryption/authentication; no clinical validation. Browser-based end-to-end testing could not be completed in the available environment. Mobile/browser testing limitations remain.
 
-## License
+## Future work
 
-Code is published under the MIT License. WHO and DGHS source data retain their source-specific attribution and terms; see the data dictionary and source files. MIT code licensing does not relicense third-party data.
+- Larger independently authored Bangladesh test set and clinician review of safety cases.
+- Validate the complete administrative hierarchy against current BBS geocodes.
+- Validate and expand Bangladesh facility data with source dates and reuse terms.
+- Improve community-reviewed Bangla/Banglish and regional-language coverage.
+- Independently evaluate Bangla/Banglish speech recognition and consider SMS deployment; build secure production health-record infrastructure.
+- Establish verified community-health and regulated financial/insurance partnerships before claiming them.
+
+See [DATA_DICTIONARY.md](./DATA_DICTIONARY.md), [architecture.md](./architecture.md), and [responsible_ai.md](./responsible_ai.md). No WHO endorsement is claimed.
+

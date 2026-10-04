@@ -1,52 +1,52 @@
 # Architecture
 
 ```text
-PATIENT / HOUSEHOLD
+PATIENT / CAREGIVER
+  ↓ Bangla · Banglish · English
+TEXT OR VOICE (optional browser input)
+  ↓ voice is converted to text; patient reviews/edits transcript
+LOCAL SMALL AI (Naive Bayes + limited information extraction)
+  ↓ interpretation layer only
+NEGATION HANDLING (existing text-level cues)
   ↓
-Bangla · Banglish · English · simulated SMS text
+SEPARATE SAFETY GATE (explicit phrase-based warning rules)
+  ↓ potential warning only; urgent human-care guidance first
+PATIENT NEXT STEP (human decision; no diagnosis or autonomous referral)
   ↓
-LOCAL SMALL AI (ai.js)
-  ├─ Naive Bayes: one of 18 presentation/access labels + uncalibrated score
-  ├─ transparent phrase cues and limited field extraction
-  └─ synthetic local-language training examples
+CARE NAVIGATION (optional division → district → upazila + partial static DGHS records)
+  ↓ fallback level is labeled; no “nearest” or live-availability claim
+ACCESS SUPPORT (cost / transport / connectivity discussion)
   ↓
-SEPARATE SAFETY GATE
-  ├─ explicit warning phrases: breathing, seizure, consciousness, bleeding,
-  │  fluids/urination, chest, neuro, head injury, pregnancy warning words
-  └─ urgent human care / call 999 if severe or life-threatening
+COMMUNITY SUPPORT (patient-controlled, separate consent, demo only)
   ↓
-PATIENT NEXT STEP (AI never decides)
-  ↓
-CARE NAVIGATION: static DGHS sample + prepare local note
-  ↓
-ACCESS TO CARE: cost · transport · distance · connectivity · continuity
-  ↓
-PATIENT-CONSENTED COMMUNITY SUPPORT DRAFT (demo network only)
-  ↓
-ILLUSTRATIVE HEALTH-PROTECTION / MOBILE-MONEY / PAYMENT-PLAN DEMOS
-  ↓
-PATIENT-CONTROLLED HEALTH RECORD (localStorage)
-  ↓
-SELECTED-FIELD SHARING + 24-HOUR DEMO ACCESS CODE (local only)
-  ↓
-OFFLINE QUEUE / SMS DRAFT / SIMULATED SYNC
-  ↓
-FOLLOW-UP NOTE / STATUS (local only)
-
-EVIDENCE UNDERNEATH, NOT IN THE CLASSIFIER:
-WHO Bangladesh context + DGHS facility sample
+PATIENT-CONTROLLED RECORD (local browser storage)
+  ↓ separate consent for sharing
+FOLLOW-UP / OFFLINE QUEUE / SMS DRAFT (local only; no transmission)
+  ↓ sync when connectivity exists: simulated only in this prototype
 ```
 
-## Components and trust boundaries
+Small AI is the interpretation layer. Explicit rules are the safety layer. Human healthcare professionals and the patient retain final authority. WHO Bangladesh indicators are contextual evidence only; they are not classifier inputs, diagnostic evidence, or referral rules.
 
-- **`index.html`:** patient-facing responsive interface, local forms, labels, consent controls and safety messages.
-- **`ai.js`:** the existing lightweight Naive Bayes classifier plus phrase detection, field extraction, missing-information hints and a separate red-flag rule layer. All input text is processed locally. No LLM/API is called.
-- **`app.js`:** display/workflow handlers, localStorage case queue, patient record and follow-up CRUD, explicit consented demo requests/sharing, facility reference, SMS/payment/sync simulations, static data loading.
-- **JSON/CSV:** synthetic labels/examples, referral safety boundaries, sample facilities, WHO context. WHO is never patient input or model data.
-- **`service-worker.js`:** caches same-origin static assets on HTTPS. First successful page load needs connectivity; service workers are not available on `file://`.
-- **Browser storage:** `localStorage` is local but unencrypted and accessible to users of the same browser profile. The share code is not authentication. No network transmission occurs.
-- **Static hosting:** relative paths support a repository project site such as `/shustho-poth-ai/` and Vercel static root, without a backend or build step.
+Voice recognition is an optional input interface, not a new AI model. It does not replace the existing text pipeline. The transcript passes through the same classifier, negation handling, and safety rules as typed input. Browser/device speech capability can be unavailable or connectivity-dependent; typing remains the offline fallback.
 
-## Operational limits
+## Offline-first behavior
 
-No live hospital, emergency dispatch, NGO, CHW, telecom, SMS, payment, insurance, database, authentication, or synchronization integration. Facility records and WHO context are static. The UI makes no clinical decision and no route, distance, live status, or guaranteed outcome calculation.
+Static HTML, CSS, JavaScript, embedded model phrases, bundled JSON, and bundled JS snapshots run without external APIs. The location selector can use the bundled local snapshot. HTTPS service-worker caching supports repeat visits offline after successful initial load. Opening `index.html` directly works for core functions but does not enable service-worker caching. Local case/record data are browser `localStorage`, not encrypted storage.
+
+## Data layers
+
+- `data/ai/`: phrase inventory, independent evaluation CSV mirror, and label schema. Runtime training examples remain in `ai.js`.
+- `data/geography/`: Bangla location hierarchy from the National Portal.
+- `data/health_access/`: partial DGHS facility sample and explicit NOT_LOADED SDI status.
+- `data/context/`: WHO Bangladesh context plus NOT_LOADED Findex/GSMA status.
+- `data/benchmarks/`: MASSIVE external reference metadata only.
+
+## Trust boundaries and components
+
+- `index.html`: patient flow, human oversight and warnings, geography selection, context and evaluation disclosures.
+- `ai.js`: existing Naive Bayes classifier, normalization, bounded negation, extraction, and separate warning phrase rules. Raw scores are uncalibrated and not shown.
+- `app.js`: local interactions, optional browser SpeechRecognition transcript interface, location-to-record fallback matching, local record/SMS/support simulations, WHO context rendering. Speech recognition is not trained or stored by this app.
+- `service-worker.js`: static same-origin caching on HTTPS; no server integration.
+- `tests/`: language/safety assertions and geography/data structure validation.
+
+No backend, API, database, login, cloud AI, live SMS, community partner, insurer, payment, emergency dispatch, or synchronization service is connected. GitHub Pages serves the static project without a build step; assets use project-relative URLs for repository subpaths.
