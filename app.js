@@ -557,3 +557,152 @@ document.addEventListener("DOMContentLoaded", () => {
   if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("./service-worker.js", { scope:"./" }).catch(() => {});
   window.addEventListener("online",updateNetworkStatus); window.addEventListener("offline",updateNetworkStatus);
 });
+async function findNearbyFacilities() {
+  const resultBox = document.getElementById("nearby-facilities");
+
+  if (!resultBox) return;
+
+  resultBox.innerHTML = `
+    <div class="notice">
+      Looking for your location…
+    </div>
+  `;
+
+  if (!navigator.geolocation) {
+    resultBox.innerHTML = `
+      <div class="notice">
+        Location is not available on this device.
+        Choose your area instead.
+      </div>
+    `;
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async position => {
+      const userLat = position.coords.latitude;
+      const userLon = position.coords.longitude;
+
+      try {
+        const response = await fetch("./facilities_georeferenced_demo.json");
+        const data = await response.json();
+
+        const facilities = data.records
+          .filter(
+            f =>
+              Number.isFinite(Number(f.latitude)) &&
+              Number.isFinite(Number(f.longitude))
+          )
+          .map(f => ({
+            ...f,
+            distance_km: haversineDistance(
+              userLat,
+              userLon,
+              Number(f.latitude),
+              Number(f.longitude)
+            )
+          }))
+          .sort((a, b) => a.distance_km - b.distance_km);
+
+        if (!facilities.length) {
+          resultBox.innerHTML = `
+            <div class="notice">
+              No georeferenced facilities are available in this prototype subset.
+            </div>
+          `;
+          return;
+        }
+
+        resultBox.innerHTML = `
+          <div class="nearby-result">
+            <strong>Nearest listed facility</strong>
+
+            <div class="facility-card">
+              <div class="facility-name">
+                ${escapeHtml(facilities[0].name)}
+              </div>
+
+              <div>
+                ${escapeHtml(facilities[0].type)}
+              </div>
+
+              <div class="distance">
+                ${facilities[0].distance_km.toFixed(1)} km away
+              </div>
+
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=${facilities[0].latitude},${facilities[0].longitude}"
+                target="_blank"
+                rel="noopener"
+              >
+                Get directions →
+              </a>
+            </div>
+
+            <div class="small-note">
+              Approximate straight-line distance, not travel time.
+              Facility information should be verified before travel.
+            </div>
+
+            <div class="small-note">
+              Prototype uses a small georeferenced facility subset.
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        resultBox.innerHTML = `
+          <div class="notice">
+            Nearby facility data could not be loaded.
+            Please try again or ask a health worker.
+          </div>
+        `;
+      }
+    },
+    () => {
+      resultBox.innerHTML = `
+        <div class="notice">
+          Location permission was not provided.
+          You can still choose your area or ask a health worker.
+        </div>
+      `;
+    },
+    {
+      enableHighAccuracy: false,
+      timeout: 10000,
+      maximumAge: 300000
+    }
+  );
+}
+
+
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const earthRadiusKm = 6371;
+
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return earthRadiusKm * c;
+}
+
+
+function toRadians(value) {
+  return value * Math.PI / 180;
+}
+
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
