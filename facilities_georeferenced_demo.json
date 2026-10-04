@@ -1,0 +1,34 @@
+{
+  "source": "DGHS Facility Registry",
+  "source_url": "https://hrm.dghs.gov.bd/public/facility-registry",
+  "purpose": "Prototype georeferenced subset for demonstrating proximity calculations",
+  "note": "Coordinates are included only for this prototype subset. Distance is approximate straight-line distance, not travel time. Verify facility information before travel.",
+  "records": [
+    {
+      "facility_id": "10000056",
+      "name": "Sir Salimullah Medical College Mitford Hospital",
+      "name_bn": "স্যার সলিমুল্লাহ মেডিকেল কলেজ মিটফোর্ড হাসপাতাল",
+      "type": "Medical College Hospital",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Kotwali",
+      "is_private": false,
+      "latitude": 23.7088,
+      "longitude": 90.4071
+    },
+    {
+      "facility_id": "10000057",
+      "name": "Tejgaon Health Complex, Dhaka",
+      "name_bn": "তেজগাঁও স্বাস্থ্য কমপ্লেক্স, ঢাকা",
+      "type": "31-bed Hospital",
+      "agency": "DGHS",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Tejgaon",
+      "is_private": false,
+      "latitude": 23.7639,
+      "longitude": 90.3914
+    }
+  ]
+}
