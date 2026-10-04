@@ -19,10 +19,21 @@
 <header class="topbar">
   <div class="shell">
     <div class="brandrow"><div class="brand"><div class="mark" aria-hidden="true">+</div><div><h1>Shustho Poth AI</h1><p class="tagline">From local words to the next safe step.</p></div></div>
-      <div class="topstatus"><span class="badge" id="networkBadge">● Checking connection…</span><span class="badge">বাংলা · Banglish · English</span><span class="badge">Prototype · synthetic/demo data · not for clinical use</span></div>
-    </div>
-    <nav class="nav" aria-label="Main sections"><a href="#screen">Health Help</a><a href="#healthRecord">My Record</a><a href="#carePath">Reach Care</a><a href="#communityHelp">Community Help</a><a href="#followupCard">Follow-up</a><a href="#smsMode">SMS / Offline</a><a href="#responsible">Privacy</a></nav>
-  </div>
+      <div class="topstatus">
+  <span class="badge" id="networkBadge">● Checking connection…</span>
+
+  <label class="badge" for="languageSelector">
+    🌐 Language / ভাষা
+    <select id="languageSelector" aria-label="Choose language"
+      style="margin-left:6px;background:#ffffff18;color:#fff;border:1px solid #ffffff45;border-radius:7px;padding:4px 7px;">
+      <option value="bn">বাংলা</option>
+      <option value="banglish">Banglish</option>
+      <option value="en" selected>English</option>
+    </select>
+  </label>
+
+  <span class="badge">Prototype · synthetic/demo data · not for clinical use</span>
+</div>
 </header>
 <a class="sr-only" href="#screen">Skip to case screening</a>
 <main class="shell">
