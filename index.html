@@ -168,8 +168,111 @@
 
   <section class="card"><span class="eyebrow">BANGLADESH LOCALIZATION</span><h2>Why these data?</h2><ul><li><b>Local language phrases</b> are synthetic prototype examples for the classifier; they are not patient records.</li><li><b>Bangladesh National Portal geography</b> powers optional division → district → upazila selection; it is not proof that care exists nearby.</li><li><b>DGHS Facility Registry</b> contributes 20,509 selected active public records across 8 divisions and 64 named districts for care navigation. It does not report live services or capacity; Bangla-to-English locality matching remains limited.</li><li><b>WHO Bangladesh indicators</b> are population context only, never classifier or individual-level evidence.</li><li><b>Service Delivery Indicators, Global Findex and GSMA</b> have no verified Bangladesh values bundled in this version.</li></ul><p>These indicators inform the prototype's priority areas. They are contextual health evidence, not diagnostic evidence.</p></section>
 
-  <section class="card" aria-labelledby="evaluationTitle"><span class="eyebrow">HOW I TEST WHETHER SMALL AI IS USEFUL</span><h2 id="evaluationTitle">Independent prototype evaluation</h2><p><b>INDEPENDENT TEST SET</b><br>100 synthetic cases · Bangla · Banglish · typos · negation · mixed language · ambiguous input · 10 unclassified edge cases</p><p>↓ <b>COMPARE</b><br>Small AI vs keyword baseline</p><div class="metric-grid"><article class="metric"><span class="eyebrow">Intent accuracy · Small AI</span><p class="metric-value">70.0% (63/90)</p><p class="muted">on 90 categorized cases; 10 vague/empty/off-topic examples are excluded</p></article><article class="metric"><span class="eyebrow">Intent accuracy · keyword baseline</span><p class="metric-value">62.2% (56/90)</p></article><article class="metric"><span class="eyebrow">Emergency recall</span><p class="metric-value">100% (31/31)</p></article><article class="metric"><span class="eyebrow">False escalation rate</span><p class="metric-value">0% (0/69)</p></article><article class="metric"><span class="eyebrow">Negation cue suppression</span><p class="metric-value">100% (6/6)</p><p class="muted">in explicit negation cases</p></article><article class="metric"><span class="eyebrow">Uncertain / abstention signal</span><p class="metric-value">67% (67/100)</p><p class="muted">thresholded prototype model signal</p></article></div><p>Per-class results and errors: <a href="./results.json">results.json</a> · <a href="./evaluation_cases.json">independent evaluation cases</a>.</p><p class="alert"><b>Prototype evaluation only — not clinical validation.</b> Evaluation tests language interpretation and phrase-rule coverage. It does not establish clinical safety or diagnostic accuracy. Emergency recall and false escalation measure only this synthetic set.</p><h3 class="subhead">Separate 150-case language evaluation</h3><p>Production classifier and safety rules · Bangla 76.9% (50/65) · Banglish 80.0% (28/35) · mixed 75.0% (24/32).</p><p>Intent accuracy 78.0% (117/150) · emergency recall 71.9% (41/57) · false escalation 0/93 · negation accuracy 10/10.</p><p><a href="./evaluation_results_independent.json">Full per-class results (JSON)</a> · <a href="./evaluation_cases_independent.json">150 independent cases</a> · <a href="./run_independent_evaluation.py">Evaluation runner</a></p><p class="alert"><b>Prototype evaluation — not clinical validation.</b> Synthetic case labels do not establish clinical safety or real-world performance. Low recall in this synthetic emergency-labeled set must not be interpreted as safety assurance.</p></section>
+<section class="card" aria-labelledby="evaluationTitle">
+  <span class="eyebrow">HOW I TEST WHETHER SMALL AI IS USEFUL</span>
 
+  <h2 id="evaluationTitle">Independent prototype evaluation</h2>
+
+  <h3 class="subhead">Held-out language evaluation — 150 synthetic cases</h3>
+
+  <p>
+    Production classifier and safety rules · Bangla · Banglish · mixed language
+  </p>
+
+  <div class="metric-grid">
+    <article class="metric">
+      <span class="eyebrow">Intent accuracy</span>
+      <p class="metric-value">78.0% (117/150)</p>
+      <p class="muted">Overall accuracy across the held-out language evaluation.</p>
+    </article>
+
+    <article class="metric">
+      <span class="eyebrow">Emergency recall</span>
+      <p class="metric-value">71.9% (41/57)</p>
+      <p class="muted">Emergency-labeled cases detected by the production rules.</p>
+    </article>
+
+    <article class="metric">
+      <span class="eyebrow">False escalation</span>
+      <p class="metric-value">0/93</p>
+      <p class="muted">No emergency escalation among the 93 non-emergency cases.</p>
+    </article>
+
+    <article class="metric">
+      <span class="eyebrow">Negation accuracy</span>
+      <p class="metric-value">10/10</p>
+      <p class="muted">Explicit negation cases correctly handled.</p>
+    </article>
+  </div>
+
+  <p>
+    <b>Language breakdown:</b>
+    Bangla 76.9% (50/65) ·
+    Banglish 80.0% (28/35) ·
+    mixed 75.0% (24/32)
+  </p>
+
+  <p>
+    <b>What this test showed:</b>
+    Emergency-language generalization remains the main limitation.
+    The prototype therefore treats its output as language support rather
+    than clinical triage and directs uncertain or potentially concerning
+    cases toward human assessment.
+  </p>
+
+  <p>
+    <a href="./evaluation_results_independent.json">Full per-class results (JSON)</a>
+    ·
+    <a href="./evaluation_cases_independent.json">150 held-out cases</a>
+    ·
+    <a href="./run_independent_evaluation.py">Evaluation runner</a>
+  </p>
+
+  <div class="divider"></div>
+
+  <h3 class="subhead">Development / in-distribution evaluation — 100 cases</h3>
+
+  <p>
+    Earlier development testing used 100 synthetic cases covering Bangla,
+    Banglish, typos, negation, mixed language, ambiguous input, and
+    unclassified edge cases.
+  </p>
+
+  <p>
+    <b>Small AI intent accuracy:</b> 70.0% (63/90)
+    ·
+    <b>Keyword baseline:</b> 62.2% (56/90)
+  </p>
+
+  <p>
+    <b>Emergency recall:</b> 100% (31/31)
+    ·
+    <b>False escalation:</b> 0% (0/69)
+    ·
+    <b>Negation cue suppression:</b> 100% (6/6)
+  </p>
+
+  <p class="muted">
+    This development set is shown separately because it was part of
+    prototype development and is not directly comparable with the
+    held-out evaluation above.
+  </p>
+
+  <p>
+    Per-class results and development errors:
+    <a href="./results.json">results.json</a>
+    ·
+    <a href="./evaluation_cases.json">development evaluation cases</a>
+  </p>
+
+  <p class="alert">
+    <b>Prototype evaluation only — not clinical validation.</b>
+    Synthetic case labels do not establish clinical safety or real-world
+    performance. The emergency recall result must not be interpreted as
+    safety assurance. A warning phrase may be missed, and absence of a
+    warning does not mean that a person is safe.
+  </p>
+</section>
   <section id="responsible" class="card"><span class="eyebrow">SAFETY · PRIVACY · LIMITATIONS</span><h2>Responsible AI and shared-device privacy</h2><div class="two-col"><div><h3>Safety</h3><ul><li>No diagnosis, prescription, or autonomous referral.</li><li>Potential warning signs are based on reported words and require urgent human assessment where appropriate.</li><li>No warning phrase detected does not mean a person is safe.</li><li>Health professionals remain the final decision-makers.</li><li>Examples are synthetic and do not represent clinical evidence or all Bangladeshi dialects.</li></ul></div><div><h3>Where data sits / who can read it</h3><ul><li>Health records and case data are stored in this browser’s localStorage on this device.</li><li>Anyone with access to the device/browser profile may potentially read them.</li><li>LocalStorage is not encrypted. Shared or lost phones create privacy risk.</li><li>Use Hide record or Clear local demo data when appropriate.</li><li>Production needs encryption, authentication, role-based access, consent records, audit logs, revocation, and secure deletion.</li></ul></div></div><h3 class="subhead">Other limits</h3><ul><li>No clinical validation, hospital integration, live NGO integration, or live emergency dispatch.</li><li>Facility sample data are incomplete and not live; verify services and location locally.</li><li>Financial transaction, community request, access code, SMS, and sync are simulations, not real services.</li><li>No real NGO, insurer, mobile-money, transport, or care partnership is claimed.</li><li>Deployment needs local clinical, regulatory, privacy, security, and implementation review.</li></ul></section>
 
   <section class="card"><span class="eyebrow">DATA LABELS</span><h2>What is real, synthetic, illustrative, or simulated?</h2><div class="table-wrap"><table><thead><tr><th>Data / function</th><th>Type</th><th>How it is used</th></tr></thead><tbody><tr><td>WHO Bangladesh health indicators</td><td>Real source data</td><td>Population-level prioritization context only; never diagnostic training data.</td></tr><tr><td>DGHS facility records</td><td>REAL_SOURCE snapshot</td><td>20,509 selected active public records; verify location and services; not live.</td></tr><tr><td>Bangla/Banglish classifier phrases</td><td>Synthetic</td><td>Local prototype training and evaluation, not real patient records.</td></tr><tr><td>BDT 100 protection/contribution example</td><td>Illustrative demo data</td><td>No real product, policy, price, transfer, or financial advice.</td></tr><tr><td>SMS, sync, and connection controls</td><td>Simulated</td><td>Local demonstration; nothing is sent.</td></tr></tbody></table></div></section>
