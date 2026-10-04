@@ -169,7 +169,7 @@
   <section class="card"><span class="eyebrow">BANGLADESH LOCALIZATION</span><h2>Why these data?</h2><ul><li><b>Local language phrases</b> are synthetic prototype examples for the classifier; they are not patient records.</li><li><b>Bangladesh National Portal geography</b> powers optional division → district → upazila selection; it is not proof that care exists nearby.</li><li><b>DGHS Facility Registry</b> contributes 20,509 selected active public records across 8 divisions and 64 named districts for care navigation. It does not report live services or capacity; Bangla-to-English locality matching remains limited.</li><li><b>WHO Bangladesh indicators</b> are population context only, never classifier or individual-level evidence.</li><li><b>Service Delivery Indicators, Global Findex and GSMA</b> have no verified Bangladesh values bundled in this version.</li></ul><p>These indicators inform the prototype's priority areas. They are contextual health evidence, not diagnostic evidence.</p></section>
 
 <section class="card" aria-labelledby="evaluationTitle">
-  <span class="eyebrow">HOW I TEST WHETHER SMALL AI IS USEFUL</span>
+  <span class="eyebrow">HOW THE SMALL AI PROTOTYPE WAS TESTED</span>
 
   <h2 id="evaluationTitle">Independent prototype evaluation</h2>
 
@@ -189,13 +189,13 @@
     <article class="metric">
       <span class="eyebrow">Emergency recall</span>
       <p class="metric-value">71.9% (41/57)</p>
-      <p class="muted">Emergency-labeled cases detected by the production rules.</p>
+      <p class="muted">Emergency-labeled cases detected in the reported evaluation.</p>
     </article>
 
     <article class="metric">
       <span class="eyebrow">False escalation</span>
       <p class="metric-value">0/93</p>
-      <p class="muted">No emergency escalation among the 93 non-emergency cases.</p>
+      <p class="muted">No emergency escalation among the reported non-emergency cases.</p>
     </article>
 
     <article class="metric">
@@ -214,10 +214,17 @@
 
   <p>
     <b>What this test showed:</b>
-    Emergency-language generalization remains the main limitation.
-    The prototype therefore treats its output as language support rather
-    than clinical triage and directs uncertain or potentially concerning
-    cases toward human assessment.
+    Emergency-language generalization remains an important limitation.
+    The prototype therefore does not treat a lack of a warning phrase as
+    evidence that a person is safe. Uncertain or potentially concerning
+    cases should be reviewed by a qualified health professional.
+  </p>
+
+  <p class="alert">
+    <b>Safety reminder:</b>
+    If symptoms are severe, rapidly worsening, or you are worried,
+    seek urgent medical care or call 999. The absence of a warning
+    from this prototype does not mean that a person is safe.
   </p>
 
   <p>
@@ -253,13 +260,13 @@
   </p>
 
   <p class="muted">
-    This development set is shown separately because it was part of
-    prototype development and is not directly comparable with the
-    held-out evaluation above.
+    This development set differs from the held-out evaluation in both
+    size and case composition. Its results are therefore shown separately
+    rather than treated as a direct performance comparison.
   </p>
 
   <p>
-    Per-class results and development errors:
+    Per-class development results:
     <a href="./results.json">results.json</a>
     ·
     <a href="./evaluation_cases.json">development evaluation cases</a>
@@ -267,10 +274,8 @@
 
   <p class="alert">
     <b>Prototype evaluation only — not clinical validation.</b>
-    Synthetic case labels do not establish clinical safety or real-world
-    performance. The emergency recall result must not be interpreted as
-    safety assurance. A warning phrase may be missed, and absence of a
-    warning does not mean that a person is safe.
+    All evaluation cases are synthetic. These results do not establish
+    clinical safety, diagnostic accuracy, or real-world performance.
   </p>
 </section>
   <section id="responsible" class="card"><span class="eyebrow">SAFETY · PRIVACY · LIMITATIONS</span><h2>Responsible AI and shared-device privacy</h2><div class="two-col"><div><h3>Safety</h3><ul><li>No diagnosis, prescription, or autonomous referral.</li><li>Potential warning signs are based on reported words and require urgent human assessment where appropriate.</li><li>No warning phrase detected does not mean a person is safe.</li><li>Health professionals remain the final decision-makers.</li><li>Examples are synthetic and do not represent clinical evidence or all Bangladeshi dialects.</li></ul></div><div><h3>Where data sits / who can read it</h3><ul><li>Health records and case data are stored in this browser’s localStorage on this device.</li><li>Anyone with access to the device/browser profile may potentially read them.</li><li>LocalStorage is not encrypted. Shared or lost phones create privacy risk.</li><li>Use Hide record or Clear local demo data when appropriate.</li><li>Production needs encryption, authentication, role-based access, consent records, audit logs, revocation, and secure deletion.</li></ul></div></div><h3 class="subhead">Other limits</h3><ul><li>No clinical validation, hospital integration, live NGO integration, or live emergency dispatch.</li><li>Facility sample data are incomplete and not live; verify services and location locally.</li><li>Financial transaction, community request, access code, SMS, and sync are simulations, not real services.</li><li>No real NGO, insurer, mobile-money, transport, or care partnership is claimed.</li><li>Deployment needs local clinical, regulatory, privacy, security, and implementation review.</li></ul></section>
