@@ -1,10 +1,11 @@
-const CACHE_NAME = "shustho-poth-static-v7";
+const CACHE_NAME = "shustho-poth-static-v8";
 const LOCAL_ASSETS = [
   "./",
   "./index.html",
   "./ai.js",
   "./app.js",
   "./facilities_dghs_sample.json",
+  "./facilities_georeferenced_demo.json",
   "./facilities_demo.json",
   "./data/ai/local_language_dataset.csv",
   "./data/ai/independent_test_set.csv",
