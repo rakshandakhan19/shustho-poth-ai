@@ -1,45 +1,37 @@
-# Responsible AI
+# Responsible AI and patient safety
 
-## Clinical safety
+## Intended use and human oversight
 
-- The tool is a prototype for screening/documentation support, not diagnosis or prescription.
-- Naive Bayes labels and phrase-rule flags describe reported wording; neither establishes a disease or severity.
-- Explicit warning phrases prompt human confirmation under local protocol. Phrase rules are incomplete; no match is not reassurance.
-- Model scores are uncalibrated, not probabilities of illness, and may disagree with cue-matched concerns.
-- A health worker is the final decision-maker for assessment, referral, follow-up, and protocol use.
-- Financial, transport, or follow-up planning must not delay a worker’s response to a reported potential warning sign.
+Shustho Poth AI is a static health-navigation and continuity-of-care prototype. It organizes patient-reported Bangla/Banglish/English wording into narrow presentation/access labels and displays possible warning cues. It does not diagnose, prescribe, determine severity, or make a referral decision. A qualified human health professional is responsible for clinical assessment and care decisions; the patient remains in control of personal records and sharing.
 
-## Data and intended use
+## Safety layer and uncertainty
 
-- The classifier phrases and demo cases are synthetic; there are no patient records in the training CSV.
-- The 15 WHO Bangladesh indicators are real source data used only for population-level health-priority context. They are never training labels, patient-level risk inputs, diagnosis, or referral logic.
-- The supplied WHO archive omitted the separate leading-causes dataset; repeated TB values and duplicate wasting observations are disclosed, not silently repaired.
-- DGHS facility files contain a small sample, not live or complete coverage. Verify facility location, services, opening, and capacity locally.
-- BDT contribution, micro-protection, support routes, and payment arithmetic are illustrative. No insurer/NGO/provider partnership, eligibility, advice, loan, or real payment is offered.
-- SMS, connection, and synchronization controls are local simulations; no external API/gateway is connected.
+Explicit phrase-based warning rules run separately from the Naive Bayes classifier. Possible emergency-related phrases (difficult breathing, seizure, not responding, confusion, severe bleeding, inability to drink/reduced urine, chest discomfort, sudden weakness/face/speech change, head injury, and pregnancy-related bleeding/labour warning words) direct attention to urgent human care. Rules are incomplete, may miss or misread wording, and are not a validated triage protocol. No detected warning is not reassurance. For severe/life-threatening situations, the UI advises calling Bangladesh emergency service 999 or seeking emergency medical care. No dispatch integration exists.
 
-## Bias, localization, and evaluation
+Classifier scores are relative and uncalibrated, not disease probabilities. When the score is low, the UI explicitly says not to rely on the AI classification and to continue with human medical assessment. AI never automatically alters medical records: health-record suggestions require patient confirmation; suspected diagnosis also asks whether a health professional made it.
 
-- Bangla/Banglish examples include a limited range of spellings and colloquial forms. They do not represent all dialects, literacy levels, ages, or regions of Bangladesh.
-- Synthetic tests are small and uneven (two held-out examples for each new class) and are not clinical validation or deployment evidence.
-- Real-world use would require representative local language evaluation, clinical governance, prospective safety review, and monitored implementation.
+## Data limitations, bias, localization
 
-## Privacy and shared devices
+All classifier training phrases and demo cases are synthetic. The held-out evaluation is also synthetic and narrow; none is clinical validation. Coverage of Bangla, romanized Bangla/Banglish, colloquial spelling and mixed language is incomplete. Sylheti, Chittagonian, other regional language varieties, literacy levels, ages, disabilities and household contexts are not adequately represented. Errors can be systematic and may exclude people who phrase concerns differently.
 
-- Case data stay in this browser’s localStorage; localStorage is not encrypted by this prototype.
-- Anyone with access to the device/browser profile may potentially read stored cases. Shared/lost phones are a risk.
-- Avoid names, phone numbers, NID, and unnecessary financial details. The default SMS omits financial data.
-- The app requests no PIN, OTP, payment credentials, or bank password. A local clear-data control is provided.
-- Production requires encryption, authentication, session controls, access management, data-retention rules, secure deletion, and security review.
+The 15 WHO Bangladesh indicators (351 packaged observations) are population-level context only, not training labels, patient-level inference, diagnosis, triage, or referral. Source-package omissions and anomalies are documented. No Bangladesh DHS, Global Findex, GSMA, OSM, HDX, WorldPop, connectivity, or speech corpus is included in this prototype. DGHS data are a six-record static sample and may be incomplete or outdated.
+
+## Patient safety and access
+
+Urgent cases are directed toward human emergency care/999. Financial planning, insurance concepts, community support, app use, and connectivity must never delay urgent care. `tel:999` depends on the device and carrier; no live emergency dispatch is integrated. Community support request controls only prepare local drafts; no NGO/CHW network is connected.
+
+Facilities do not show live availability or suitability. Users must verify locally. No guaranteed treatment, transport, referral acceptance, or assistance is promised.
 
 ## Financial safety
 
-- No real payment, insurance sale, loan approval, or financial advice.
-- The micro-health protection example is not an insurance contract. Pricing, coverage, eligibility, exclusions, claims, and regulation are undetermined.
-- Any real assistance or subsidized care must be independently verified for current availability and eligibility.
+BDT contributions, micro-health protection, mobile-money, and payment-plan arithmetic are illustrative. They are not insurance, an offer, a quote, financial advice, a loan, a credit decision, or a real payment. No PIN, OTP, password, or payment credentials are requested. No insurer, mobile-money, NGO, or care provider partnership is claimed.
 
-## Connectivity
+## Privacy, consent and shared devices
 
-- Core classifier and case workflow are local; the static site can be cached by the service worker after a successful HTTPS load.
-- Same-origin WHO/facility JSON adds local context on static hosting, but failure does not block classification or worker workflow.
-- SMS-ready copy and sync are prepared/simulated only. No SMS is sent and no case is synchronized to a server.
+Case and record data are stored in browser `localStorage`, which is not encrypted. A person using a shared or lost phone/browser profile may read them. The demo recipient view and 24-hour code operate locally; they are not secure authentication and nothing is transmitted. Community help drafts are stored locally only after explicit consent; health details have a separate optional consent control. Sharing can be revoked locally.
+
+Do not enter real sensitive patient information. Production would require identity verification, secure authentication, encryption, role-based permissions, consent records, audit logs, revocation, retention limits, secure deletion, threat modeling, and independent security review.
+
+## Offline and simulated features
+
+The classifier and core browser workflow are local. HTTPS service-worker caching may allow repeat visits offline after a successful initial load. Browser storage may be unavailable or cleared, especially in private browsing. SMS, telecom, sync, connection restoration, community request, recipient access, and mobile-money controls are demos only. They have no external service connection.

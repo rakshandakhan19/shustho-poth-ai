@@ -1,9 +1,12 @@
-# Current prototype evaluation
+# Prototype language/classification evaluation
 
-The current synthetic dataset has **171 training phrases** and **71 held-out phrases** across 18 labels. The test set covers the seven original categories with seven examples each and the eleven added labels with two examples each.
+The current Naive Bayes training set contains **243 synthetic phrases** across 18 labels. `evaluation_cases.csv` is a separately authored 50-case synthetic held-out set with Bangla, Banglish, English, barriers, ambiguous inputs, and potential-warning examples.
 
-The Naive Bayes model’s top class matches **57/71 (80.3%)**, with **62.0% macro-F1**. Fourteen model top-class errors are retained in `results.json`. One original connectivity phrase is still classified as a financial barrier.
+Results are generated from the current `ai.js` execution and recorded in `results.json`:
 
-The phrase-overlay, safety-prioritized output matched all 71 curated labels on this small test split. The new categories have only two held-out examples each, and examples deliberately contain cue words. This result is not representative language evaluation, clinical validation, or evidence of safe deployment.
+- Naive Bayes top-class accuracy: 40/50 (80.0%); macro-F1 is included in the JSON.
+- Simple phrase-keyword baseline: 35/50 (70.0%); first configured direct phrase cue, or unmatched.
+- Separate warning phrase rules escalated 17/17 cases labeled as potential warning examples in this small set. This is test-set coverage only, not a measured real-world sensitivity or safety guarantee.
+- 20/50 model scores were below the prototype low-score threshold of 0.35. Scores are uncalibrated.
 
-Every training and held-out phrase is synthetic. The dataset does not cover all Bangla dialects, code-switching, ages, conditions, literacy levels, or real clinical environments. See `local_language_dataset.csv`, `results.json`, and the main README for limitations.
+The older 71-case `local_language_dataset.csv` evaluation is also retained in `results.json` for continuity. Every row is synthetic. Neither evaluation is representative language evaluation, clinical validation, triage validation, or evidence of safe deployment. See the main README and responsible AI notes for limitations.

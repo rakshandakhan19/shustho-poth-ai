@@ -1,53 +1,32 @@
-# Data dictionary
+# Data dictionary and provenance
 
-All classifier/demo text is synthetic. No supplied dataset is a patient record. The browser can store user-entered case text locally; avoid personal identifiers.
+Data types use the project labels **REAL SOURCE DATA**, **SYNTHETIC DATA**, **DEMO DATA**, **SIMULATED FUNCTION**, and **CONTEXT DATA**. No dataset is a clinical validation set unless a row is explicitly described as prototype synthetic evaluation.
 
-## `local_language_dataset.csv` — synthetic language set
+| File / data | Type | Source, geography, language, size, year, license | Purpose | What it does not represent |
+|---|---|---|---|---|
+| `ai.js` `TRAINING_CASES` | SYNTHETIC DATA | Maintained in this repository; Bangladesh-oriented Bangla, Banglish/romanized Bangla and English; 243 examples after this update; no external dataset/license | Train the browser Naive Bayes prototype across 18 narrow labels | Not actual Bangladeshi patient data, representative dialect data, or clinical evidence |
+| `evaluation_cases.csv` | SYNTHETIC DATA | Independently authored in this repository; 50 held-out short phrases in Bangla/Banglish/English; no external license | Prototype language/classification evaluation only | Not clinical validation, representative prevalence, safety validation, or deployment evidence |
+| `local_language_dataset.csv` | SYNTHETIC DATA | Existing curated prototype data; train/test splits and current model predictions | Legacy evaluation/data inventory; see results for the new independent set | Not actual patient data; legacy test phrases may overlap in style with training |
+| `demo_cases.csv` | SYNTHETIC DEMO DATA | Seven example reports plus any original demo rows; Bangla/Banglish/English | Demonstrate user journey | Not patient reports or clinical cases |
+| `data/who_bangladesh_health_priorities.json` | REAL SOURCE DATA / CONTEXT DATA | WHO Bangladesh country package supplied as `050_Bangladesh.zip`; 15 indicators, 351 source observations, years vary by indicator (1952–2024 across package); dataset-specific terms in archive state CC BY 4.0 | Display population-level health-priority context; preserve source rows, dimensions, bounds, metadata and row references | Not model training, patient-level inference, diagnosis, individual risk, triage or referral guidance; archive lacks its leading-causes dataset and has source anomalies disclosed in JSON |
+| `data/who_bangladesh_health_priorities_summary.js` | DEMO DISPLAY SNAPSHOT / CONTEXT DATA | Generated from the WHO JSON; 15 latest-year indicator snapshots; generated locally | Render context cards from `file://` and provide offline fallback | Not a separate source, live WHO feed, classifier input or patient-level information |
+| `data/who_health_priority_mapping.json` | DEMO NARRATIVE / CONTEXT DATA | Authored mapping against the WHO indicator IDs; 18 presentation/access labels | Explain broad, cautious theme links for scenario planning | Not statistical inference, clinical mapping, training input or WHO-endorsed recommendations |
+| `facilities_dghs_sample.json` | REAL SOURCE DATA / DEMO SAMPLE | Public DGHS Facility Registry sample; six records; English and Bangla names/locations; retrieval/source notes in file; see source terms | Small facility-type/location reference for patient discussion | Not complete national coverage, live services, staff, hours, stock, beds, suitability, routes, price or availability |
+| `facilities_demo.json` | DEMO DATA | Retained six-record copy of the sample facility JSON | Compatibility with prior prototype | Not a separate or larger facility dataset |
+| `intents.json` | DEMO DATA / LABEL SCHEMA | Project-maintained descriptions for 18 labels | Define presentation/access label meanings | Not a taxonomy of diseases or diagnostic output |
+| `referral_rules.json` | DEMO SAFETY DOCUMENTATION | Project-authored warning boundaries and safe-use rules | Document that app does not diagnose or automate referral | Not a clinical guideline, triage protocol, or operational referral rule engine |
+| Browser localStorage keys | SIMULATED FUNCTION / USER-ENTERED LOCAL DATA | Current browser profile on this device; no external storage | Store case notes, record items, follow-ups, support request drafts, temporary sharing demo | Not encrypted, authenticated, backed up, synchronized to a server, or safe for real sensitive patient data |
+| SMS, call link, community request, share code, mobile money, payment plan, connection and sync | SIMULATED FUNCTION | Static browser interactions only; no provider integration | Demonstrate consent and access workflows | No SMS/telecom transmission, emergency dispatch, NGO network, access security, real payment, insurer, lending, or remote sync |
+| Bangladesh DHS, Global Findex/GSMA, OpenStreetMap, HDX, WorldPop, connectivity products, MASSIVE/FLORES/NLLB/Common Voice/FLEURS/MMS | NOT INCLUDED | No such project dataset is shipped or used in the model | Potential future research only after data, licensing, representativeness and governance review | They are not used to substantiate current prototype behavior or clinical performance |
 
-| Field | Description | Source / type | Limits / intended use |
-|---|---|---|---|
-| `id` | Stable synthetic row ID (`T###`) | Curated demo data | Not a patient identifier |
-| `split` | `train` or held-out `test` | Synthetic split | 171 training rows; 71 held-out rows |
-| `text` | Bangla/Banglish/English sample phrase | Synthetic | Narrow phrase coverage; not representative |
-| `intent` | Expected one of 18 presentation/access labels | Synthetic annotation | Not a disease diagnosis |
-| `predicted_intent` | Naive Bayes top class for held-out rows | Computed by current `ai.js` | May be wrong; not clinical performance |
-| `correct` | Whether model top class matches expected intent | Computed | Test labels uneven: 7 old classes × 7 cases, 11 added classes × 2 cases |
-| `confidence` | Naive Bayes softmax top-class score | Computed, uncalibrated | Not disease probability or calibrated confidence |
+## WHO source caveats
 
-## `demo_cases.csv` — synthetic demos
+The supplied package did not contain a separate leading-causes-of-death dataset. No causes or rankings are reconstructed. The source TB file repeats values across years and the wasting file contains duplicate year/sex rows; source values and missing bounds remain intact and are described in the JSON notes. WHO data are context only. WHO does not endorse this application.
 
-`id` is a synthetic case key; `text` is an example phrase; `expected_intent` is the safety-prioritized/display label; `expected_concerns` lists additional cue labels. Demos exercise the workflow but are not evaluation patients or clinical protocols.
+## Facility source caveats
 
-## `data/who_bangladesh_health_priorities.json` — real source data
+Six sample DGHS records are included. A patient must independently verify facility location, services, opening, capacity, and suitability. No distance, waiting time, staffing, or real-time availability is calculated.
 
-Extracted from the user-supplied WHO Bangladesh country package on 4 October 2026. The selected 15 indicators contain 351 Bangladesh observations. Every observation includes `year`, original dimension values such as `sex`/`age` where supplied, the source value and any source lower/upper bounds, plus `source_row` to trace back to its packaged CSV. Indicator records include source `indicator_id`, `indicator_codes`, original name, unit, metadata coverage/update date, dataset/metadata/license filenames, and source attribution.
+## Privacy
 
-All point estimates and bounds are preserved as supplied without recalculation. Missing bounds stay `null` (69 observations contain no lower or upper bound). The archive lacked its separate leading-causes-of-death data. Some CSVs extend past metadata temporal coverage; TB values repeat; wasting has duplicate year/sex rows. See dataset `notes` and README. Dataset-specific license PDFs in the archive state **CC BY 4.0**. Source: World Health Organization, Bangladesh indicator datasets, `050_Bangladesh.zip` supplied 4 October 2026. Use: population context only, never classifier training, individual risk, diagnosis, or referral.
-
-## `data/who_bangladesh_health_priorities_summary.js` — offline display snapshot
-
-Generated from the full WHO JSON. It contains the latest-year rows and observation count for each selected indicator so context cards can render when the page is opened directly from disk (`file://`). On GitHub Pages the app attempts to load the full local JSON. This summary is display-only and not classifier input.
-
-## `data/who_health_priority_mapping.json` — narrative mapping
-
-`indicator_id` joins the local WHO JSON; `priority` names the population topic; `prototype_intent` lists a broad presentation label only where an illustrative thematic link is useful; `relationship` is context-only/service-context-only; `reason` explains the boundary. The mapping is not loaded by the classifier. WHO mortality/TB/malaria data are not patient-level labels.
-
-## `facilities_dghs_sample.json` — real registry sample
-
-The top-level `source`, `source_url`, `retrieved`, `records`, and limitation note describe the sample. Each `records[]` item includes facility ID, English/Bangla names, type, agency, division, district, upazila, and private/status fields where supplied. Six sample records only. They do not confirm service availability, capacity, distance, or referral suitability. Source: public DGHS Facility Registry. Intended use: worker reference after local verification.
-
-## `facilities_demo.json` — retained sample copy
-
-This is currently an exact six-record copy of `facilities_dghs_sample.json` (facility IDs and attributes match). It is retained for compatibility; the UI loads `facilities_dghs_sample.json`. Both remain a small non-live DGHS public-registry sample, not model training data.
-
-## Browser case record — localStorage
-
-Key `shustho_poth_cases` stores up to 100 local records; `shustho_poth_last_case` stores the latest draft. Each record may contain `id`, original `text`, analysis labels/model score/fields/red flags, worker-editable `patient` fields, `worker_decision`, `facility_id`, selected `barriers`, illustrative `support_pathways`, optional `payment_demo`/`payment_plan`, `follow_up`, creation/update timestamps, and local/simulated status. It contains no required name/phone/NID. Browser localStorage is not encrypted and may be visible to anyone using that browser profile. “Clear local case data” removes both keys.
-
-## Finance / access / communication examples — demo or simulated
-
-BDT 100 monthly and BDT 1,200 yearly protection examples, bKash contribution simulation, plan calculator inputs/results, and support routes are illustrative; no provider, product, eligibility, payment, loan, or financial advice is supplied. Copyable SMS text, offline queue, restored-connection state, and sync completion are simulated; no message or record is transmitted. Follow-up dates are local notes without notifications.
-
-## `results.json` — synthetic evaluation
-
-Training/test counts, current model top-class predictions, per-class precision/recall/F1, errors, and test-coverage note. Current Naive Bayes top class: 57/71 (80.3%) accuracy; macro-F1 62.0%. Cue-prioritized display output is reported separately and must not be mistaken for generalization. Not clinical validation.
+The browser stores original reported text and other patient-entered fields if saved. Avoid real names, phone numbers, NID, or real sensitive case information. Shared/lost device users may access `localStorage`. It is not encrypted. Production needs encryption, identity verification/authentication, role-based access, consent/audit logs, revocation, retention policies, and secure deletion.

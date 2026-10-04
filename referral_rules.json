@@ -1,22 +1,24 @@
 {
-  "purpose": "Prototype safety guardrails and phrase-trigger notes only. This is not clinical guidance, a validated triage protocol, or a referral decision engine.",
+  "purpose": "Patient-facing prototype safety boundaries and phrase-trigger descriptions only. This is not clinical guidance, a validated triage protocol, or an automated referral decision engine.",
   "rules": [
-    "The model structures reported words; it does not diagnose, prescribe, or assess a condition probability.",
-    "Potential warning phrases must be confirmed by a human health worker and handled under current local clinical protocol.",
-    "A missing phrase match does not rule out urgency or risk.",
-    "Human health worker makes the final assessment, referral, and follow-up decision.",
-    "Potential warning assessment must not be delayed by cost, payment, transport, or access planning.",
-    "Low model scores or disagreement between classifier and directly matched cues require worker review.",
-    "Age, duration, temperature, respiratory rate, drinking, urination, and pregnancy details are prompts to ask where relevant; missing information is not a reason to delay urgent assessment.",
-    "Facility entries are a small sample and must be verified for current location, opening, service, and capacity.",
-    "WHO population indicators are context only and must never be used to infer an individual diagnosis, risk, or referral.",
-    "Support and financial options must be independently verified. The app does not infer insurance or eligibility.",
-    "SMS, mobile-money payment, connection, and sync controls are demonstrations; no real transfer or transmission occurs."
+    "The Naive Bayes model structures reported Bangla/Banglish/English words; it does not diagnose, prescribe, assess disease probability, or select care.",
+    "Explicit phrase-based safety checks operate separately from the classifier and may surface potential warning words.",
+    "Potential warning words include difficult breathing, seizure, unconsciousness, confusion, heavy bleeding, inability to drink or very little/no urine, chest discomfort, sudden weakness/face/speech change, concerning head injury, and pregnancy-related bleeding/labour terms.",
+    "A missing phrase match does not rule out urgency, and a match does not establish severity or a diagnosis.",
+    "For severe or life-threatening situations, seek urgent human medical care or call Bangladesh National Emergency Service 999. The app has no emergency dispatch integration.",
+    "Financial planning, community support, sharing, SMS, and app interaction must not delay urgent care.",
+    "Low uncalibrated model scores tell the patient not to rely on the AI classification and to continue with human medical assessment.",
+    "Age, duration, severity, consciousness, temperature, respiratory rate, fluid intake, urination, and pregnancy context are optional prompts where relevant; missing information is not a reason to delay urgent assessment.",
+    "Health record suggestions are never silently saved. Patient confirmation is required; a diagnosis suggestion additionally asks if a health professional diagnosed it.",
+    "Facility entries are a small sample and must be independently verified for location, opening, service, and capacity.",
+    "WHO population indicators are context only and must never be used to infer an individual diagnosis, risk, urgency, or referral.",
+    "Support, community, and financial options are illustrative. Availability and eligibility must be checked locally.",
+    "SMS, access code, mobile-money payment, connection, community request, and sync are demonstrations; no real transfer, authentication, dispatch, or transmission occurs."
   ],
-  "allowed_worker_decisions": [
-    "Refer",
-    "Follow up",
-    "Need more information",
-    "Manage according to protocol"
+  "patient_choices_recorded": [
+    "I plan to seek care",
+    "I plan a follow-up",
+    "I need help understanding options",
+    "I will speak with a health professional"
   ]
 }

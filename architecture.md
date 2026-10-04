@@ -1,47 +1,52 @@
 # Architecture
 
 ```text
-NOOR / PATIENT
-  ↓ Bangla / Banglish conversation (entered by worker; minimal identifiers)
-LOCAL SMALL AI — Naive Bayes text model (static ai.js; 18 narrow labels)
-  ├─ top class + uncalibrated relative score
-  ├─ explicit phrase cues → possible presentation/access topics
-  └─ transparent field extraction → missing-information prompts
+PATIENT / HOUSEHOLD
   ↓
-POTENTIAL WARNING PHRASES + UNCERTAINTY (not a triage protocol)
+Bangla · Banglish · English · simulated SMS text
   ↓
-HUMAN HEALTH WORKER REVIEW → final human decision
+LOCAL SMALL AI (ai.js)
+  ├─ Naive Bayes: one of 18 presentation/access labels + uncalibrated score
+  ├─ transparent phrase cues and limited field extraction
+  └─ synthetic local-language training examples
   ↓
-REFERRAL OR FOLLOW-UP RECORD (choice recorded; no autonomous action)
+SEPARATE SAFETY GATE
+  ├─ explicit warning phrases: breathing, seizure, consciousness, bleeding,
+  │  fluids/urination, chest, neuro, head injury, pregnancy warning words
+  └─ urgent human care / call 999 if severe or life-threatening
   ↓
-ACCESS TO CARE: can reach? afford? connect? return?
-  ├─ facility: small DGHS sample, worker selects and verifies
-  ├─ finance: illustrative support/protection/payment arithmetic only
-  └─ travel: worker records transport/distance barriers
+PATIENT NEXT STEP (AI never decides)
   ↓
-LOCAL CASE STORAGE / OFFLINE QUEUE (browser localStorage)
-  ├─ SMS-ready text (prepared/copied only, no gateway)
-  ├─ follow-up date (no reminder service)
-  └─ sync simulation (status only; no transmission)
+CARE NAVIGATION: static DGHS sample + prepare local note
+  ↓
+ACCESS TO CARE: cost · transport · distance · connectivity · continuity
+  ↓
+PATIENT-CONSENTED COMMUNITY SUPPORT DRAFT (demo network only)
+  ↓
+ILLUSTRATIVE HEALTH-PROTECTION / MOBILE-MONEY / PAYMENT-PLAN DEMOS
+  ↓
+PATIENT-CONTROLLED HEALTH RECORD (localStorage)
+  ↓
+SELECTED-FIELD SHARING + 24-HOUR DEMO ACCESS CODE (local only)
+  ↓
+OFFLINE QUEUE / SMS DRAFT / SIMULATED SYNC
+  ↓
+FOLLOW-UP NOTE / STATUS (local only)
 
-SEPARATE CONTEXT DATA:
-WHO Bangladesh indicators → population-level health-priority evidence only
-Synthetic language examples → classifier training/evaluation only
-DGHS sample records → reference lookup only, never model training
+EVIDENCE UNDERNEATH, NOT IN THE CLASSIFIER:
+WHO Bangladesh context + DGHS facility sample
 ```
 
-## Layers and trust boundaries
+## Components and trust boundaries
 
-- **Runtime input:** worker-entered Bangla, Banglish, or English text; avoid direct identifiers.
-- **Small AI:** `ai.js` runs in the page with local synthetic training examples. `classify()` returns the Naive Bayes top class and uncalibrated score. Explicit phrase rules can expose multiple concerns and a safety-prioritized display label. No model output is a diagnosis or an autonomous referral.
-- **Documentation:** worker-editable fields are rendered in `app.js`; missing fields prompt confirmation. The worker decides and edits the record.
-- **Safety rules:** `referral_rules.json` and direct phrase checks document/surface guardrails, not a validated triage protocol. Absence of a rule match cannot rule out danger.
-- **Access:** worker-selected barrier checkboxes and a sample-facility reference connect a case to practical access planning. The app does not calculate routes or verify service.
-- **Finance:** illustrative micro-protection, mobile-money, and payment-plan controls can only record local demo discussion/events; none contacts a provider or transfers money.
-- **Offline/continuity:** records are stored in device browser `localStorage`; message and sync actions do not transmit. Follow-up records a date but sends no notification. `service-worker.js` caches static first-party assets on HTTPS after a successful load.
-- **Context data:** WHO static JSON supports population-level Bangladesh prioritization. It is not included in training, runtime classification, patient risk estimates, or referral logic. No WHO API is called.
-- **Facility data:** `facilities_dghs_sample.json` is a six-record sample reference. It is not complete, live, or a claim of availability.
+- **`index.html`:** patient-facing responsive interface, local forms, labels, consent controls and safety messages.
+- **`ai.js`:** the existing lightweight Naive Bayes classifier plus phrase detection, field extraction, missing-information hints and a separate red-flag rule layer. All input text is processed locally. No LLM/API is called.
+- **`app.js`:** display/workflow handlers, localStorage case queue, patient record and follow-up CRUD, explicit consented demo requests/sharing, facility reference, SMS/payment/sync simulations, static data loading.
+- **JSON/CSV:** synthetic labels/examples, referral safety boundaries, sample facilities, WHO context. WHO is never patient input or model data.
+- **`service-worker.js`:** caches same-origin static assets on HTTPS. First successful page load needs connectivity; service workers are not available on `file://`.
+- **Browser storage:** `localStorage` is local but unencrypted and accessible to users of the same browser profile. The share code is not authentication. No network transmission occurs.
+- **Static hosting:** relative paths support a repository project site such as `/shustho-poth-ai/` and Vercel static root, without a backend or build step.
 
-## Static hosting
+## Operational limits
 
-`index.html` loads `./ai.js` and `./app.js`, and fetches same-origin static JSON with relative paths. GitHub Pages can serve it beneath `/shustho-poth-ai/` without a build step. Core text processing does not depend on those fetches. On `file://`, JSON `fetch()` and service workers may be blocked; the classifier works and uses its embedded facility fallback. On Pages HTTPS, service-worker caching supports a later offline visit after the initial successful load.
+No live hospital, emergency dispatch, NGO, CHW, telecom, SMS, payment, insurance, database, authentication, or synchronization integration. Facility records and WHO context are static. The UI makes no clinical decision and no route, distance, live status, or guaranteed outcome calculation.

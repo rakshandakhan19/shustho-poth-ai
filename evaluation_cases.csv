@@ -1,0 +1,51 @@
+case_id,language,text,expected_intent,expected_red_flag
+E001,Banglish,amar dom nite koshto hoy raat theke,breathing_difficulty,true
+E002,Bangla,বাচ্চাটার শ্বাস নিতে খুব কষ্ট হচ্ছে,breathing_difficulty,true
+E003,English,My mother cannot breathe comfortably now,breathing_difficulty,true
+E004,Bangla,সকাল থেকে গা গরম আর জ্বর জ্বর লাগছে,fever,false
+E005,Banglish,jor ta kal theke komche na,fever,false
+E006,Bangla,কাশি হচ্ছে কিন্তু কফ নেই,cough_respiratory,false
+E007,Banglish,kashir jonno ghum hocche na,cough_respiratory,false
+E008,Bangla,আজ বারবার পাতলা পায়খানা হয়েছে,diarrhea_vomiting,false
+E009,Banglish,pet kharap bomi hocche shara din,diarrhea_vomiting,false
+E010,English,Loose motion since yesterday,diarrhea_vomiting,false
+E011,Bangla,মুখ শুকিয়ে গেছে পানি খেতে পারছে না,dehydration,true
+E012,Banglish,prosrab onekkhon hoy nai pani rakhte partese na,dehydration,true
+E013,Bangla,এখনই খিঁচুনি শুরু হয়েছে,seizure,true
+E014,Banglish,abar khichuni holo kichukhon age,seizure,true
+E015,Bangla,কোমরে ব্যথা কয়েক দিন ধরে,pain,false
+E016,Banglish,matha ta dhore ache shokal theke,pain,false
+E017,English,My knees ache after walking,pain,false
+E018,Bangla,রান্না করতে গিয়ে হাতে কেটে গেছে,injury_trauma,false
+E019,Banglish,pore giye mathay legeche ar matha ghurche,injury_trauma,true
+E020,English,My child was hit on the head and is confused,injury_trauma,true
+E021,Bangla,হঠাৎ মুখের এক পাশ বেঁকে গেছে,neurological_red_flag,true
+E022,Banglish,hothat dan haat obosh ar kotha joracche,neurological_red_flag,true
+E023,English,One side of her body suddenly feels weak,neurological_red_flag,true
+E024,Bangla,কথা বলতে গিয়ে শব্দ বের হচ্ছে না হঠাৎ,neurological_red_flag,true
+E025,Bangla,গর্ভাবস্থায় রক্ত পড়ছে,maternal_pregnancy,true
+E026,Banglish,ami pregnant bacchar norachora kom mone hocche,maternal_pregnancy,false
+E027,Bangla,হাতে চুলকানির দাগ উঠেছে,skin_problem,false
+E028,Banglish,"gaye rash ber hoise,chulkay",skin_problem,false
+E029,Bangla,বুকে চাপ আর ব্যথা হচ্ছে এখন,chest_cardiac_warning,true
+E030,Banglish,buk betha sathe gham hocche,chest_cardiac_warning,true
+E031,English,There is a tight feeling in my chest,chest_cardiac_warning,true
+E032,Bangla,রক্তে সুগার মেপে দেখতে চাই,diabetes_related,false
+E033,Banglish,sugar beshi bolse abar check korbo,diabetes_related,false
+E034,Bangla,প্রেসার মাপার জায়গা কোথায়,hypertension_related,false
+E035,Banglish,bp ta beshi eshechilo,hypertension_related,false
+E036,Banglish,doctor dekhaite gele poisha hobe na,financial_barrier,false
+E037,Bangla,ওষুধ কেনার সামর্থ্য নেই,financial_barrier,false
+E038,English,We cannot afford the visit today,financial_barrier,false
+E039,Banglish,net nai message pore pathabo,connectivity,false
+E040,Bangla,মোবাইলে ডাটা শেষ তাই এখন পাঠাতে পারছি না,connectivity,false
+E041,English,No signal here; I will send it later,connectivity,false
+E042,Banglish,hospital onek dure hete jawa mushkil,travel_barrier,false
+E043,Bangla,গাড়ি ভাড়া নেই হাসপাতালে যাব কীভাবে,travel_barrier,false
+E044,English,There is no transport to the clinic,travel_barrier,false
+E045,Bangla,জ্বর কমেছে তিন দিন পরে আবার আসতে বলেছে,routine_follow_up,false
+E046,Banglish,porer shoptah e follow up korte hobe,routine_follow_up,false
+E047,English,I came for a review visit,routine_follow_up,false
+E048,Banglish,ga gorom lagche but fever kina bujhtesi na,fever,false
+E049,English,"Feeling odd and tired, not sure why",pain,false
+E050,Bangla,বাচ্চা আজ খাবার কম খেয়েছে আর ঘুমাচ্ছে,fever,false
