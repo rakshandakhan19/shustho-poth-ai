@@ -1,0 +1,10 @@
+{
+  "dataset": "World Bank Service Delivery Indicators — Bangladesh health",
+  "status": "NOT_LOADED",
+  "source": "World Bank Service Delivery Indicators country reports and data",
+  "source_url": "https://www.worldbank.org/en/programs/service-delivery-indicators/health/country-reports-and-data",
+  "country": "Bangladesh",
+  "year": null,
+  "indicators": [],
+  "note": "Bangladesh-specific Service Delivery Indicator data were not available in the selected source; this evidence layer is therefore not used to make Bangladesh-specific claims. No other-country values are substituted."
+}

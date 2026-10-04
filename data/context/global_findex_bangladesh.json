@@ -1,0 +1,10 @@
+{
+  "dataset": "Global Findex — Bangladesh",
+  "status": "NOT_LOADED",
+  "source": "World Bank Global Findex Database",
+  "source_url": "https://www.worldbank.org/en/publication/globalfindex",
+  "country": "Bangladesh",
+  "year": null,
+  "indicators": [],
+  "note": "Bangladesh-specific values are not bundled. Source file, selected indicators, year, and license need verification before inclusion."
+}

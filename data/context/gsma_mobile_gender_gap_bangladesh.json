@@ -1,0 +1,10 @@
+{
+  "dataset": "GSMA Mobile Gender Gap — Bangladesh",
+  "status": "NOT_LOADED",
+  "source": "GSMA Mobile Gender Gap Report",
+  "source_url": "https://www.gsma.com/r/gender-gap/",
+  "country": "Bangladesh",
+  "year": null,
+  "indicators": [],
+  "note": "No source values bundled. Verify country coverage, report year, exact metric, and reuse terms before inclusion."
+}

@@ -1,0 +1,155 @@
+{
+  "label": "Prototype evaluation — not clinical validation.",
+  "source": "evaluation_cases_independent.json; separate synthetic cases, not used for training",
+  "classifier": "Existing production ai.js analyzeCase() and its explicit red-flag safety rules",
+  "case_count": 150,
+  "overall_accuracy": {
+    "value": 0.78,
+    "correct": 117,
+    "total": 150
+  },
+  "per_class": {
+    "breathing_difficulty": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.888888888888889,
+      "support": 10
+    },
+    "chest_cardiac_warning": {
+      "precision": 0.875,
+      "recall": 0.7,
+      "f1": 0.7777777777777777,
+      "support": 10
+    },
+    "connectivity": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 0
+    },
+    "cough_respiratory": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 10
+    },
+    "dehydration": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.7499999999999999,
+      "support": 10
+    },
+    "diarrhea_vomiting": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 10
+    },
+    "fever": {
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1": 0.9523809523809523,
+      "support": 10
+    },
+    "financial_barrier": {
+      "precision": 0.875,
+      "recall": 0.7,
+      "f1": 0.7777777777777777,
+      "support": 10
+    },
+    "injury_trauma": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "support": 10
+    },
+    "maternal_pregnancy": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.7499999999999999,
+      "support": 10
+    },
+    "neurological_red_flag": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 10
+    },
+    "pain": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 0
+    },
+    "routine_follow_up": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.7499999999999999,
+      "support": 10
+    },
+    "seizure": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.888888888888889,
+      "support": 10
+    },
+    "travel_barrier": {
+      "precision": 0.8333333333333334,
+      "recall": 0.5,
+      "f1": 0.625,
+      "support": 10
+    },
+    "unknown": {
+      "precision": 0.4418604651162791,
+      "recall": 0.95,
+      "f1": 0.6031746031746031,
+      "support": 20
+    }
+  },
+  "emergency_recall": {
+    "precision": 1.0,
+    "recall": 0.7192982456140351,
+    "f1": 0.8367346938775511,
+    "support": 57
+  },
+  "false_escalation_rate": {
+    "value": 0.0,
+    "false_escalations": 0,
+    "non_emergency_cases": 93
+  },
+  "negation_accuracy": {
+    "value": 1.0,
+    "correct": 10,
+    "total": 10,
+    "definition": "Negated test cases with no warning escalation and unknown concern category"
+  },
+  "language_accuracy": {
+    "bangla": {
+      "accuracy": 0.7692307692307693,
+      "correct": 50,
+      "total": 65
+    },
+    "banglish": {
+      "accuracy": 0.8,
+      "correct": 28,
+      "total": 35
+    },
+    "mixed": {
+      "accuracy": 0.75,
+      "correct": 24,
+      "total": 32
+    }
+  },
+  "unknown_handling": {
+    "correct_unknown": 19,
+    "unknown_cases": 20,
+    "unknown_recall": 0.95,
+    "predicted_unknown": 43,
+    "uncertain_signal_count": 102
+  },
+  "limitations": [
+    "Synthetic language evaluation only; not clinical validation.",
+    "Expected labels are prototype evaluation labels, not diagnoses.",
+    "Browser, microphone and mobile end-to-end testing were not run by this script."
+  ]
+}

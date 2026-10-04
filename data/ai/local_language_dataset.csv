@@ -1,0 +1,315 @@
+id,split,text,intent,predicted_intent,correct,confidence
+T001,train,বাচ্চার জ্বর আছে,fever,fever,true,0.861753
+T002,train,আমার মেয়ের জ্বর হয়েছে,fever,fever,true,0.905392
+T003,train,তিন দিন ধরে জ্বর,fever,fever,true,0.839636
+T004,train,বাচ্চার গা গরম,fever,fever,true,0.728810
+T005,train,জ্বরের জন্য খুব দুর্বল,fever,fever,true,0.453585
+T006,train,বাচ্চার জ্বর আর খেতে চায় না,fever,fever,true,0.961463
+T007,train,ছেলের দুই দিন ধরে জ্বর,fever,fever,true,0.893565
+T008,train,মেয়ের শরীর গরম হয়ে আছে,fever,fever,true,0.817618
+T009,train,জ্বরটা কমছে না,fever,fever,true,0.282060
+T010,train,বাচ্চার জ্বর হয়েছে গতকাল,fever,fever,true,0.917023
+T011,train,baby'r jor ache,fever,fever,true,0.623028
+T012,train,bacchar jor hocche,fever,fever,true,0.476838
+T013,train,tin din dhore jor,fever,fever,true,0.680915
+T014,train,bacchar body gorom,fever,fever,true,0.480296
+T015,train,jor komche na,fever,fever,true,0.610872
+T016,train,বাচ্চার শ্বাস নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,0.983233
+T017,train,শ্বাসকষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,0.277724
+T018,train,বুক ধর ধর করছে,breathing_difficulty,breathing_difficulty,true,0.803358
+T019,train,বাচ্চা ঠিকমতো শ্বাস নিতে পারছে না,breathing_difficulty,breathing_difficulty,true,0.986839
+T020,train,শ্বাস খুব দ্রুত চলছে,breathing_difficulty,breathing_difficulty,true,0.681072
+T021,train,বুক চাপ চাপ লাগছে আর কাশি আছে,breathing_difficulty,breathing_difficulty,true,0.829499
+T022,train,শ্বাস নিতে গেলে কষ্ট হয়,breathing_difficulty,breathing_difficulty,true,0.967616
+T023,train,বাচ্চার নিশ্বাস নিতে সমস্যা,breathing_difficulty,breathing_difficulty,true,0.876634
+T024,train,দম নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,0.903434
+T025,train,বাচ্চার বুকটা ধরছে,breathing_difficulty,breathing_difficulty,true,0.420032
+T026,train,bacchar shash nite koshto,breathing_difficulty,breathing_difficulty,true,0.904741
+T027,train,shash koshto hocche,breathing_difficulty,breathing_difficulty,true,0.710403
+T028,train,buk dhor dhor korche,breathing_difficulty,breathing_difficulty,true,0.670185
+T029,train,nishash nite parছে na,breathing_difficulty,breathing_difficulty,true,0.633381
+T030,train,bacchar breath korte koshto,breathing_difficulty,breathing_difficulty,true,0.665458
+T031,train,ছেলের খিঁচুনি হচ্ছে,seizure,seizure,true,0.737656
+T032,train,বাচ্চার খিঁচুনি হয়েছে,seizure,seizure,true,0.715430
+T033,train,আজ খিঁচুনি হয়েছে,seizure,seizure,true,0.826140
+T034,train,শরীর কাঁপতে কাঁপতে খিঁচুনি হয়েছে,seizure,seizure,true,0.975976
+T035,train,আবার খিঁচুনি হচ্ছে,seizure,seizure,true,0.819750
+T036,train,খিঁচুনি দেখে ভয় পেয়েছি,seizure,seizure,true,0.874169
+T037,train,মেয়ের খিঁচুনি হয়েছিল,seizure,seizure,true,0.741783
+T038,train,খিঁচুনি এখন থেমেছে,seizure,seizure,true,0.752210
+T039,train,বাচ্চা হঠাৎ খিঁচুনি দিল,seizure,seizure,true,0.838293
+T040,train,খিঁচুনির মতো কাঁপছে,seizure,seizure,true,0.390560
+T041,train,bacchar khichuni hocche,seizure,seizure,true,0.531813
+T042,train,cheler khichuni hoyeche,seizure,seizure,true,0.699331
+T043,train,aj khichuni holo,seizure,seizure,true,0.704519
+T044,train,baccha hotat khichuni dilo,seizure,seizure,true,0.872950
+T045,train,khichuni abar hocche,seizure,seizure,true,0.737508
+T046,train,বাচ্চার পেট ব্যথা করছে,pain,pain,true,0.953195
+T047,train,পেটে অনেক ব্যথা,pain,pain,true,0.791701
+T048,train,দুই দিন ধরে পেট ব্যথা,pain,pain,true,0.910430
+T049,train,ছেলের পেটে ব্যথা আর বমি,pain,pain,true,0.909017
+T050,train,পেট মোচড় দিচ্ছে,pain,pain,true,0.593274
+T051,train,পেটটা খুব ব্যথা করছে,pain,pain,true,0.920381
+T052,train,আজ সকাল থেকে পেটে ব্যথা,pain,pain,true,0.942757
+T053,train,বাচ্চার পেটের ব্যথা কমছে না,pain,pain,true,0.762631
+T054,train,পেটে ব্যথা হচ্ছে,pain,pain,true,0.769749
+T055,train,মেয়ের পেট ব্যথা করছে,pain,pain,true,0.950308
+T056,train,pet betha korche,pain,pain,true,0.835987
+T057,train,dui din dhore pet betha,pain,pain,true,0.980815
+T058,train,bacchar pet betha,pain,pain,true,0.800376
+T059,train,pet mochra diye betha,pain,pain,true,0.910851
+T060,train,pet onek betha,pain,pain,true,0.868983
+T061,train,ডাক্তারের কাছে যাওয়ার টাকা নাই,financial_barrier,financial_barrier,true,0.973642
+T062,train,হাসপাতালে যাওয়ার টাকা নেই,financial_barrier,financial_barrier,true,0.960829
+T063,train,চিকিৎসার খরচ দিতে পারব না,financial_barrier,financial_barrier,true,0.974173
+T064,train,ডাক্তারের ভাড়া নেই,financial_barrier,financial_barrier,true,0.784981
+T065,train,হাসপাতালে যেতে টাকা লাগবে কিন্তু টাকা নেই,financial_barrier,financial_barrier,true,0.993684
+T066,train,টাকা না থাকায় ডাক্তার দেখাতে পারছি না,financial_barrier,financial_barrier,true,0.985414
+T067,train,চিকিৎসার জন্য টাকা নাই,financial_barrier,financial_barrier,true,0.878171
+T068,train,বাচ্চাকে ডাক্তার দেখানোর সামর্থ্য নেই,financial_barrier,financial_barrier,true,0.878598
+T069,train,যাওয়ার ভাড়া দিতে পারব না,financial_barrier,financial_barrier,true,0.977924
+T070,train,ডাক্তারের কাছে যাওয়ার খরচ নেই,financial_barrier,financial_barrier,true,0.975209
+T071,train,doctor dekhanor taka nai,financial_barrier,financial_barrier,true,0.939463
+T072,train,hospital e jawar taka nai,financial_barrier,financial_barrier,true,0.892133
+T073,train,treatment er taka nei,financial_barrier,financial_barrier,true,0.809215
+T074,train,doctor er vara nai,financial_barrier,financial_barrier,true,0.873117
+T075,train,chikitsa korte taka nai,financial_barrier,financial_barrier,true,0.868140
+T076,train,নেট নাই,connectivity,connectivity,true,0.414902
+T077,train,ইন্টারনেট নেই,connectivity,connectivity,true,0.415977
+T078,train,নেট এলে রিপোর্ট পাঠাব,connectivity,connectivity,true,0.905193
+T079,train,এখন নেট নেই পরে পাঠাব,connectivity,connectivity,true,0.980089
+T080,train,কেসটা পরে সিঙ্ক করব,connectivity,connectivity,true,0.691073
+T081,train,ফোনে নেট আসছে না,connectivity,connectivity,true,0.759659
+T082,train,ডাটা শেষ হয়ে গেছে,connectivity,connectivity,true,0.520808
+T083,train,এখন অনলাইনে পাঠানো সম্ভব না,connectivity,connectivity,true,0.785125
+T084,train,নেটওয়ার্ক নেই,connectivity,connectivity,true,0.321961
+T085,train,সংযোগ ফিরে এলে কেস পাঠাব,connectivity,connectivity,true,0.882791
+T086,train,net nai,connectivity,connectivity,true,0.521823
+T087,train,internet nai,connectivity,connectivity,true,0.353018
+T088,train,net ashle pathabo,connectivity,connectivity,true,0.563174
+T089,train,pore sync korbo,connectivity,connectivity,true,0.349233
+T090,train,mobile data sesh,connectivity,connectivity,true,0.491593
+T091,train,ক্লিনিকে যেতে অনেক দূর,travel_barrier,travel_barrier,true,0.977804
+T092,train,ডাক্তারের কাছে যেতে দুই ঘণ্টা লাগে,travel_barrier,travel_barrier,true,0.949089
+T093,train,হাসপাতাল অনেক দূরে,travel_barrier,travel_barrier,true,0.767992
+T094,train,ক্লিনিকে যাওয়ার রাস্তা অনেক দূর,travel_barrier,travel_barrier,true,0.959844
+T095,train,যেতে অনেক সময় লাগে,travel_barrier,travel_barrier,true,0.968894
+T096,train,হাসপাতালে যেতে দূর পথ,travel_barrier,travel_barrier,true,0.946139
+T097,train,ডাক্তারের কাছে যেতে কষ্ট হয় কারণ অনেক দূর,travel_barrier,travel_barrier,true,0.997098
+T098,train,ক্লিনিক থেকে বাড়ি অনেক দূরে,travel_barrier,travel_barrier,true,0.904209
+T099,train,যাতায়াতের পথ অনেক লম্বা,travel_barrier,travel_barrier,true,0.861432
+T100,train,হাসপাতালে পৌঁছাতে অনেক সময় লাগে,travel_barrier,travel_barrier,true,0.973832
+T101,train,clinic onek dure,travel_barrier,travel_barrier,true,0.837891
+T102,train,doctor er kache jete dui ghonta lage,travel_barrier,travel_barrier,true,0.932468
+T103,train,hospital onek dure,travel_barrier,travel_barrier,true,0.830082
+T104,train,jete onek shomoy lage,travel_barrier,travel_barrier,true,0.885760
+T105,train,clinic e jete dure,travel_barrier,travel_barrier,true,0.924614
+T106,train,কাশি হচ্ছে,cough_respiratory,cough_respiratory,true,0.265813
+T107,train,অনেক কাশি আর কফ আছে,cough_respiratory,cough_respiratory,true,0.679243
+T108,train,শুকনো কাশি হচ্ছে,cough_respiratory,cough_respiratory,true,0.432099
+T109,train,baccha kashi ditese,cough_respiratory,cough_respiratory,true,0.399667
+T110,train,kashi ar kof hocche,cough_respiratory,cough_respiratory,true,0.570810
+T111,train,cough for three days,cough_respiratory,cough_respiratory,true,0.510472
+T112,train,পাতলা পায়খানা হচ্ছে,diarrhea_vomiting,diarrhea_vomiting,true,0.442941
+T113,train,বমি আর পাতলা পায়খানা,diarrhea_vomiting,diarrhea_vomiting,true,0.610897
+T114,train,৩ দিন ধরে ডায়রিয়া,diarrhea_vomiting,diarrhea_vomiting,true,0.285008
+T115,train,patla paykhana hocche,diarrhea_vomiting,diarrhea_vomiting,true,0.542221
+T116,train,bacchar bomi hocche,diarrhea_vomiting,diarrhea_vomiting,true,0.233901
+T117,train,loose motion hocche,diarrhea_vomiting,diarrhea_vomiting,true,0.542221
+T118,train,পানি খেতে পারছে না আর প্রস্রাব কম,dehydration,dehydration,true,0.898703
+T119,train,মুখ শুকিয়ে গেছে পানি খাচ্ছে না,dehydration,dehydration,true,0.838959
+T120,train,প্রস্রাব হচ্ছে না,dehydration,dehydration,true,0.242100
+T121,train,"pani khaitese na, prosrab kom",dehydration,dehydration,true,0.864932
+T122,train,baccha pani khete partese na,dehydration,dehydration,true,0.695920
+T123,train,very thirsty and weak,dehydration,dehydration,true,0.491722
+T124,train,পড়ে গিয়ে মাথায় লেগেছে,injury_trauma,injury_trauma,true,0.553760
+T125,train,হাতে কেটে রক্ত পড়ছে,injury_trauma,injury_trauma,true,0.428316
+T126,train,দুর্ঘটনায় পায়ে আঘাত পেয়েছে,injury_trauma,injury_trauma,true,0.536370
+T127,train,pore giye mathay legeche,injury_trauma,injury_trauma,true,0.788653
+T128,train,accident e pa kete geche,injury_trauma,injury_trauma,true,0.779739
+T129,train,রক্তপাত হচ্ছে,injury_trauma,breathing_difficulty,false,0.153272
+T130,train,হঠাৎ এক পাশের হাত পা দুর্বল,neurological_red_flag,neurological_red_flag,true,0.822215
+T131,train,কথা জড়িয়ে যাচ্ছে হঠাৎ,neurological_red_flag,neurological_red_flag,true,0.741664
+T132,train,মুখ একদিকে বেঁকে গেছে,neurological_red_flag,neurological_red_flag,true,0.384890
+T133,train,hothat ek pasher haat pa durbol,neurological_red_flag,neurological_red_flag,true,0.809743
+T134,train,kotha bolte partese na,neurological_red_flag,neurological_red_flag,true,0.442816
+T135,train,suddenly one side feels weak,neurological_red_flag,neurological_red_flag,true,0.760682
+T136,train,"আমি গর্ভবতী, পেটে ব্যথা",maternal_pregnancy,pain,false,0.611199
+T137,train,গর্ভাবস্থায় রক্ত যাচ্ছে,maternal_pregnancy,maternal_pregnancy,true,0.245402
+T138,train,প্রসবের ব্যথা শুরু হয়েছে,maternal_pregnancy,maternal_pregnancy,true,0.350453
+T139,train,"ami pregnant, rokto jacche",maternal_pregnancy,maternal_pregnancy,true,0.637883
+T140,train,pregnancy te pet betha,maternal_pregnancy,maternal_pregnancy,true,0.444246
+T141,train,pregnant and bleeding,maternal_pregnancy,maternal_pregnancy,true,0.438174
+T142,train,গায়ে চুলকানি আর ফুসকুড়ি,skin_problem,skin_problem,true,0.452846
+T143,train,ত্বকে লাল দাগ উঠেছে,skin_problem,skin_problem,true,0.628931
+T144,train,চামড়ায় ঘা হয়েছে,skin_problem,skin_problem,true,0.215073
+T145,train,gaye chulkani hocche,skin_problem,skin_problem,true,0.234098
+T146,train,skin e rash uthse,skin_problem,skin_problem,true,0.530884
+T147,train,itchy rash on body,skin_problem,skin_problem,true,0.612852
+T148,train,বুকে চাপ আর ব্যথা হচ্ছে,chest_cardiac_warning,chest_cardiac_warning,true,0.786990
+T149,train,বুকের মাঝখানে ব্যথা,chest_cardiac_warning,chest_cardiac_warning,true,0.398651
+T150,train,হাঁটলে বুকে চাপ লাগে,chest_cardiac_warning,chest_cardiac_warning,true,0.808624
+T151,train,buk e chap ar betha,chest_cardiac_warning,chest_cardiac_warning,true,0.783766
+T152,train,buk betha hocche,chest_cardiac_warning,chest_cardiac_warning,true,0.439310
+T153,train,chest pressure since morning,chest_cardiac_warning,chest_cardiac_warning,true,0.684210
+T154,train,রক্তে সুগার বেশি বলেছে,diabetes_related,diabetes_related,true,0.521222
+T155,train,"ডায়াবেটিস আছে, দুর্বল লাগে",diabetes_related,diabetes_related,true,0.315566
+T156,train,সুগার মাপতে চাই,diabetes_related,diabetes_related,true,0.322291
+T157,train,"diabetes ache, durbol lage",diabetes_related,diabetes_related,true,0.386879
+T158,train,blood sugar beshi,diabetes_related,diabetes_related,true,0.511948
+T159,train,sugar check korte chai,diabetes_related,diabetes_related,true,0.561189
+T160,train,রক্তচাপ বেশি এসেছে,hypertension_related,hypertension_related,true,0.362253
+T161,train,প্রেসার মাপতে চাই,hypertension_related,hypertension_related,true,0.332565
+T162,train,আগে থেকে উচ্চ রক্তচাপ আছে,hypertension_related,hypertension_related,true,0.609825
+T163,train,pressure beshi esheche,hypertension_related,hypertension_related,true,0.595028
+T164,train,blood pressure check korte chai,hypertension_related,hypertension_related,true,0.911937
+T165,train,high pressure bola hoyeche,hypertension_related,hypertension_related,true,0.751274
+T166,train,"জ্বর কমেছে, তিন দিন পরে দেখাতে বলেছে",routine_follow_up,routine_follow_up,true,0.941293
+T167,train,আবার এক সপ্তাহ পরে আসতে বলেছে,routine_follow_up,routine_follow_up,true,0.920238
+T168,train,আগের ভিজিটের ফলোআপ করতে চাই,routine_follow_up,routine_follow_up,true,0.549249
+T169,train,jor komeche abar dekhate hobe,routine_follow_up,routine_follow_up,true,0.673282
+T170,train,3 din pore follow up ache,routine_follow_up,routine_follow_up,true,0.601067
+T171,train,come back next week for review,routine_follow_up,routine_follow_up,true,0.844304
+T172,train,jor jor lagche aj shokal theke,fever,fever,true,0.977288
+T173,train,আমার বাচ্চার গা পুড়ে যাচ্ছে জ্বর,fever,fever,true,0.987739
+T174,train,"fever ase, matha gorom",fever,fever,true,0.616629
+T175,train,কাল রাত থেকে জ্বর আর কাঁপুনি,fever,fever,true,0.942257
+T176,train,amar dom nite kosto hocche,breathing_difficulty,breathing_difficulty,true,0.814187
+T177,train,বাচ্চা ঠিকমতো নিশ্বাস নিতে পারছে না,breathing_difficulty,breathing_difficulty,true,0.978256
+T178,train,shash ta choto choto hocche,breathing_difficulty,breathing_difficulty,true,0.893665
+T179,train,"can't breathe comfortably, বুক ধরে",breathing_difficulty,breathing_difficulty,true,0.769850
+T180,train,kashi hocche onek din dhore,cough_respiratory,cough_respiratory,true,0.607205
+T181,train,বুকে কফ জমেছে মনে হয়,cough_respiratory,cough_respiratory,true,0.669851
+T182,train,কাশি থামছে না ভাই,cough_respiratory,cough_respiratory,true,0.467667
+T183,train,bacchar dry cough hocche,cough_respiratory,cough_respiratory,true,0.428510
+T184,train,patla paykhana bar bar hocche,diarrhea_vomiting,diarrhea_vomiting,true,0.919598
+T185,train,বমি হচ্ছে কিছু রাখতে পারছি না,diarrhea_vomiting,diarrhea_vomiting,true,0.639446
+T186,train,pet kharap ar loose motion,diarrhea_vomiting,diarrhea_vomiting,true,0.695818
+T187,train,"diarrhoea, আজ তিনবার হয়েছে",diarrhea_vomiting,diarrhea_vomiting,true,0.308224
+T188,train,mukh jibh shukiye jacche,dehydration,dehydration,true,0.412127
+T189,train,পানি খেলেই বমি করে দিচ্ছে,dehydration,dehydration,true,0.704430
+T190,train,prosrab ajke khub kom,dehydration,dehydration,true,0.634157
+T191,train,not drinking and barely passing urine,dehydration,dehydration,true,0.805173
+T192,train,আজকে আবার খিঁচুনি হলো,seizure,seizure,true,0.905145
+T193,train,baccha chokh ulte khichuni dicche,seizure,seizure,true,0.930985
+T194,train,khichuni porar por ghumacche,seizure,seizure,true,0.834779
+T195,train,convulsion abar start hoise,seizure,seizure,true,0.634367
+T196,train,pet betha ta onek,pain,pain,true,0.920270
+T197,train,হাত-পায়ে খুব যন্ত্রণা,pain,pain,true,0.568984
+T198,train,back e betha dui din,pain,pain,true,0.894402
+T199,train,matha dhore ache,pain,pain,true,0.354117
+T200,train,pore giye hat kete gese,injury_trauma,injury_trauma,true,0.831974
+T201,train,রাস্তায় পড়ে হাঁটুতে আঘাত,injury_trauma,injury_trauma,true,0.650523
+T202,train,গরম পানিতে হাত পুড়েছে,injury_trauma,injury_trauma,true,0.395998
+T203,train,accident e mathay legeche,injury_trauma,injury_trauma,true,0.743273
+T204,train,mukh ta ek dike neme geche,neurological_red_flag,neurological_red_flag,true,0.772915
+T205,train,হঠাৎ কথা আটকে যাচ্ছে,neurological_red_flag,neurological_red_flag,true,0.741664
+T206,train,one arm suddenly numb hoye gese,neurological_red_flag,neurological_red_flag,true,0.870772
+T207,train,face droop and kotha jorano,neurological_red_flag,neurological_red_flag,true,0.669626
+T208,train,ami ma hote jacchi pet betha,maternal_pregnancy,maternal_pregnancy,true,0.703899
+T209,train,গর্ভের বাচ্চা নড়ছে কম,maternal_pregnancy,maternal_pregnancy,true,0.394152
+T210,train,pregnancy te halka bleeding hocche,maternal_pregnancy,maternal_pregnancy,true,0.735718
+T211,train,delivery er somoy hoyeche,maternal_pregnancy,maternal_pregnancy,true,0.382951
+T212,train,chulkay pura shorir,skin_problem,skin_problem,true,0.288413
+T213,train,হাতে লাল লাল ফুসকুড়ি,skin_problem,skin_problem,true,0.828605
+T214,train,rash ta barbe mone hocche,skin_problem,skin_problem,true,0.668756
+T215,train,চামড়ার সমস্যা দেখাবো,skin_problem,skin_problem,true,0.274513
+T216,train,বুকের ভেতর চাপ চাপ লাগে,chest_cardiac_warning,chest_cardiac_warning,true,0.930197
+T217,train,buk betha ar gham hocche,chest_cardiac_warning,chest_cardiac_warning,true,0.812534
+T218,train,chest feels tight since morning,chest_cardiac_warning,chest_cardiac_warning,true,0.842838
+T219,train,বুকে অস্বস্তি আর ব্যথা,chest_cardiac_warning,chest_cardiac_warning,true,0.617711
+T220,train,sugar beshi dekhacche,diabetes_related,diabetes_related,true,0.568513
+T221,train,ডায়াবেটিসের ওষুধ নিচ্ছি,diabetes_related,diabetes_related,true,0.290898
+T222,train,glucose reading high,diabetes_related,diabetes_related,true,0.271697
+T223,train,sugar check korbo kothay,diabetes_related,diabetes_related,true,0.732193
+T224,train,pressure bere geche mone hocche,hypertension_related,hypertension_related,true,0.670577
+T225,train,প্রেসারটা মাপতে হবে,hypertension_related,hypertension_related,true,0.362253
+T226,train,BP beshi boleche,hypertension_related,hypertension_related,true,0.337854
+T227,train,high blood pressure check korte chai,hypertension_related,hypertension_related,true,0.953132
+T228,train,taka nai doctor dekhab kivabe,financial_barrier,financial_barrier,true,0.967101
+T229,train,ভিজিটের খরচ দিতে পারব না,financial_barrier,financial_barrier,true,0.960872
+T230,train,oshudh kinar poisha nai,financial_barrier,financial_barrier,true,0.730452
+T231,train,cost is too much for us,financial_barrier,financial_barrier,true,0.762703
+T232,train,net nai ekhono,connectivity,connectivity,true,0.686869
+T233,train,ইন্টারনেট চলছে না পরে পাঠাবো,connectivity,connectivity,true,0.866439
+T234,train,phone e data nai,connectivity,connectivity,true,0.671932
+T235,train,no network right now,connectivity,connectivity,true,0.560060
+T236,train,hospital e jawa onek kothin dure,travel_barrier,travel_barrier,true,0.970426
+T237,train,গাড়ি পাচ্ছি না হাসপাতালে যাবো কীভাবে,travel_barrier,travel_barrier,true,0.722088
+T238,train,"gari bhara beshi, dure jete parbo na",travel_barrier,travel_barrier,true,0.971266
+T239,train,transport is not available nearby,travel_barrier,travel_barrier,true,0.636345
+T240,train,abar checkup korte hobe agami shoptaho,routine_follow_up,routine_follow_up,true,0.816879
+T241,train,আগামী তিন দিন পরে আবার দেখাতে বলেছে,routine_follow_up,routine_follow_up,true,0.983591
+T242,train,followup date ta mone nai,routine_follow_up,routine_follow_up,true,0.407820
+T243,train,come back after a few days,routine_follow_up,routine_follow_up,true,0.850744
+T244,test,আমার বাচ্চার তিন দিন ধরে গা গরম,fever,fever,true,0.985047
+T245,test,ছেলের জ্বরটা দুই দিন হলো,fever,fever,true,0.461323
+T246,test,জ্বরের সঙ্গে কিছু খেতে চাচ্ছে না,fever,fever,true,0.253031
+T247,test,বাচ্চার শরীর খুব গরম হয়ে আছে,fever,fever,true,0.904502
+T248,test,মেয়ের কাল থেকে জ্বর,fever,fever,true,0.841496
+T249,test,baby'r jor tin din dhore,fever,fever,true,0.805235
+T250,test,amar meyer body gorom ar jor,fever,fever,true,0.668028
+T251,test,বাচ্চা শ্বাস নিতে পারছে না ঠিকমতো,breathing_difficulty,breathing_difficulty,true,0.986839
+T252,test,বুকটা ধর ধর করছে আর নিশ্বাস ছোট হয়ে যাচ্ছে,breathing_difficulty,breathing_difficulty,true,0.813472
+T253,test,দম নিতে কষ্ট হচ্ছে,breathing_difficulty,breathing_difficulty,true,0.903434
+T254,test,ছেলের শ্বাস খুব দ্রুত চলছে,breathing_difficulty,breathing_difficulty,true,0.605831
+T255,test,বাচ্চার বুক চাপ চাপ করছে,breathing_difficulty,breathing_difficulty,true,0.845542
+T256,test,bacchar shash nite koshto hocche,breathing_difficulty,breathing_difficulty,true,0.944192
+T257,test,"buk dhor dhor korche, nishash choto",breathing_difficulty,breathing_difficulty,true,0.916860
+T258,test,আজ সকালে বাচ্চার খিঁচুনি হয়েছিল,seizure,seizure,true,0.776695
+T259,test,মেয়েটা হঠাৎ কাঁপতে কাঁপতে খিঁচুনি দিল,seizure,seizure,true,0.963302
+T260,test,খিঁচুনি আবার শুরু হয়েছে,seizure,seizure,true,0.874008
+T261,test,বাচ্চার শরীর কাঁপছে খিঁচুনির মতো,seizure,seizure,true,0.540619
+T262,test,ছেলের খিঁচুনি থেমে গেছে,seizure,seizure,true,0.567198
+T263,test,bacchar khichuni hoyeche,seizure,seizure,true,0.618963
+T264,test,chele hotat khichuni dilo,seizure,seizure,true,0.716413
+T265,test,ছেলের পেটটা আজ থেকে ব্যথা করছে,pain,pain,true,0.958353
+T266,test,বাচ্চার পেটে মোচড় দিয়ে ব্যথা হচ্ছে,pain,pain,true,0.919518
+T267,test,দুই দিন হলো পেটটা খুব ব্যথা,pain,pain,true,0.876559
+T268,test,মেয়ের পেটে ব্যথা আর বমি,pain,pain,true,0.903075
+T269,test,পেটের ব্যথা কমছে না,pain,pain,true,0.691535
+T270,test,pet betha korche dui din,pain,pain,true,0.973880
+T271,test,bacchar pet mochra diye betha,pain,pain,true,0.937186
+T272,test,ডাক্তার দেখানোর টাকা নাই,financial_barrier,financial_barrier,true,0.884879
+T273,test,হাসপাতালে যাওয়ার ভাড়া জোগাড় করতে পারছি না,financial_barrier,financial_barrier,true,0.914333
+T274,test,চিকিৎসার জন্য টাকা নেই,financial_barrier,financial_barrier,true,0.926921
+T275,test,ডাক্তারের কাছে যাওয়ার সামর্থ্য নেই,financial_barrier,financial_barrier,true,0.951618
+T276,test,টাকা না থাকায় হাসপাতালে যেতে পারছি না,financial_barrier,financial_barrier,true,0.971460
+T277,test,doctor dekhanor taka nai,financial_barrier,financial_barrier,true,0.939463
+T278,test,hospital e jawar vara nai,financial_barrier,financial_barrier,true,0.733822
+T279,test,নেটওয়ার্ক না থাকায় এখন পাঠাতে পারছি না,connectivity,financial_barrier,false,0.420672
+T280,test,ইন্টারনেট আসলে কেসটা পাঠাব,connectivity,connectivity,true,0.656304
+T281,test,মোবাইল ডাটা শেষ,connectivity,connectivity,true,0.243748
+T282,test,এখন কানেকশন নেই পরে সিঙ্ক হবে,connectivity,connectivity,true,0.825578
+T283,test,নেট পাচ্ছি না,connectivity,connectivity,true,0.424545
+T284,test,"net nai, pore case pathabo",connectivity,connectivity,true,0.794337
+T285,test,internet nai ekhon,connectivity,connectivity,true,0.354167
+T286,test,ক্লিনিকটা আমাদের বাড়ি থেকে অনেক দূরে,travel_barrier,travel_barrier,true,0.816188
+T287,test,হাসপাতালে যেতে অনেক সময় লাগে,travel_barrier,travel_barrier,true,0.989967
+T288,test,ডাক্তার দেখাতে যেতে দুই ঘণ্টা লাগে,travel_barrier,travel_barrier,true,0.729058
+T289,test,দূর পথ বলে হাসপাতালে যাওয়া কঠিন,travel_barrier,travel_barrier,true,0.753652
+T290,test,ক্লিনিকে পৌঁছাতে অনেক দূর যেতে হয়,travel_barrier,travel_barrier,true,0.992687
+T291,test,clinic onek dure,travel_barrier,travel_barrier,true,0.837891
+T292,test,hospital e jete onek shomoy lage,travel_barrier,travel_barrier,true,0.975469
+T293,test,কাশির সঙ্গে গলা খুসখুস,cough_respiratory,connectivity,false,0.073701
+T294,test,shukna kashi hocche,cough_respiratory,cough_respiratory,true,0.292252
+T295,test,bar bar bomi hocche,diarrhea_vomiting,diarrhea_vomiting,true,0.710594
+T296,test,diarrhoea for two days,diarrhea_vomiting,cough_respiratory,false,0.142818
+T297,test,জিহ্বা শুকনো লাগছে,dehydration,breathing_difficulty,false,0.121437
+T298,test,no urine since morning,dehydration,chest_cardiac_warning,false,0.287563
+T299,test,হাত পুড়ে গেছে,injury_trauma,neurological_red_flag,false,0.124263
+T300,test,injury from a fall,injury_trauma,routine_follow_up,false,0.081826
+T301,test,মুখ বেঁকে কথা বলতে কষ্ট,neurological_red_flag,neurological_red_flag,true,0.309033
+T302,test,sudden weakness in one arm,neurological_red_flag,neurological_red_flag,true,0.225779
+T303,test,বাচ্চার নড়াচড়া কম মনে হচ্ছে,maternal_pregnancy,breathing_difficulty,false,0.275448
+T304,test,delivery pain hocche,maternal_pregnancy,breathing_difficulty,false,0.127059
+T305,test,চামড়ায় ফোস্কা পড়েছে,skin_problem,skin_problem,true,0.092005
+T306,test,skin problem hocche,skin_problem,skin_problem,true,0.132566
+T307,test,বুকে ব্যথা আর ঘাম হচ্ছে,chest_cardiac_warning,chest_cardiac_warning,true,0.466269
+T308,test,chest pain and discomfort,chest_cardiac_warning,chest_cardiac_warning,true,0.112427
+T309,test,ডায়াবেটিস নিয়ে কথা বলতে চাই,diabetes_related,diabetes_related,true,0.158685
+T310,test,my glucose reading was high,diabetes_related,diabetes_related,true,0.289574
+T311,test,প্রেসার নিয়ে পরামর্শ চাই,hypertension_related,hypertension_related,true,0.158437
+T312,test,my BP reading was high,hypertension_related,hypertension_related,true,0.215963
+T313,test,পুনরায় দেখানোর সময় হয়েছে,routine_follow_up,seizure,false,0.173637
+T314,test,follow up korte eshechi,routine_follow_up,routine_follow_up,true,0.216736

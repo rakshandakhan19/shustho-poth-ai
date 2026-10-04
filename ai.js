@@ -192,11 +192,22 @@ const TRAINING_CASES = [
   ["abar checkup korte hobe agami shoptaho", "routine_follow_up"], ["আগামী তিন দিন পরে আবার দেখাতে বলেছে", "routine_follow_up"], ["followup date ta mone nai", "routine_follow_up"], ["come back after a few days", "routine_follow_up"],
 ];
 
+// Canonicalize a small set of common Romanized Bangla spelling variants for
+// matching only. The caller's original text is never changed or replaced.
+function normalizeBanglishVariants(text) {
+  return String(text || "").toLowerCase()
+    .replace(/\b(?:sas|shas)\b/g, "shash")
+    .replace(/\b(?:kosto|kosht)\b/g, "koshto")
+    .replace(/\b(?:bacha)\b/g, "baccha")
+    .replace(/\b(?:hoise|hoyese|hoyeche)\b/g, "hocche")
+    .replace(/\bnei\b/g, "nai")
+    .replace(/\bhospitaal\b/g, "hospital");
+}
 function normalizeText(text) {
-  return (text || "").toLowerCase().replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit)).replace(/[।,!?;:()\-]/g, " ").replace(/\s+/g, " ").trim();
+  return normalizeBanglishVariants(text).replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit)).replace(/[।,!?;:()\-]/g, " ").replace(/\s+/g, " ").trim();
 }
 function normalizeRuleText(text) {
-  return (text || "").toLowerCase().replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit)).replace(/[।,.!?;:]+/g, " | ").replace(/\s+/g, " ").trim();
+  return normalizeBanglishVariants(text).replace(/[০-৯]/g, digit => "০১২৩৪৫৬৭৮৯".indexOf(digit)).replace(/[।,.!?;:]+/g, " | ").replace(/\s+/g, " ").trim();
 }
 // Small, visible negation rule: only inspect a short phrase window around a matched cue.
 function isNegatedWindow(text, start, end) {
@@ -242,7 +253,7 @@ function classify(text) {
 
 const CUE_RULES = [
   ["neurological_red_flag", /এক পাশের.*(দুর্বল|অবশ)|হঠাৎ.*(হাত|পা).*(দুর্বল|অবশ)|কথা জড়িয়ে|কথা বলতে.*(পারছে না|শব্দ বের হচ্ছে না)|মুখ.*বেঁকে|hothat ek pasher.*(durbol|obosh)|ek pasher haat pa durbol|ek pashe.*(jhim|obosh)|hothat.*(obosh|joracche)|kotha bolte partese na|kotha joracche|kotha joray|one side.*(weak|numb)|sudden.*weak|speech.*slurred|slurred speech|face.*droop|drooping face/i],
-  ["breathing_difficulty", /শ্বাস.?কষ্ট|বুক ধর ধর|শ্বাস নিতে.*কষ্ট|দম নিতে.*কষ্ট|দম নিতে পারছে না|নিশ্বাস নিতে.*কষ্ট|শ্বাস নিতে পারছে না|শ্বাস নিতে.*সমস্যা|শ্বাস নিতে কষ্ট|শ্বাস e কষ্ট|shash nite.*(?:koshto|kosto|problem|partese|parche)|shash korte koshto|shash e.*koshto|shash e.*kosto|shash koshto|shash kosto|nishash.*koshto|buk dhor|dom nite koshto|breathing problem|breath korte problem|cannot breathe|can't breathe|cannot breathe comfortably|breath.*(difficulty|hard|trouble)|short of breath/i],
+  ["breathing_difficulty", /শ্বাস.?কষ্ট|বুক ধর ধর|শ্বাস নিতে.*কষ্ট|দম নিতে.*কষ্ট|দম নিতে পারছে না|নিশ্বাস নিতে.*কষ্ট|শ্বাস নিতে পারছে না|শ্বাস নিতে.*সমস্যা|শ্বাস নিতে কষ্ট|শ্বাস e কষ্ট|shash nite.*(?:koshto|kosto|problem|partese|parche)|shash korte koshto|shash e.*koshto|shash e.*kosto|shash koshto|shash kosto|nishash.*koshto|buk dhor|dom nite koshto|breathing(?:\s+\w+){0,2}\s+(?:problem|difficulty|trouble)|breathing problem|breath korte problem|cannot breathe|can't breathe|cannot breathe comfortably|breath.*(difficulty|hard|trouble)|short of breath/i],
   ["seizure", /খিঁচুনি|খিচুনি|khichuni|seizure|convulsion/i],
   ["chest_cardiac_warning", /বুকে চাপ|বুকের মাঝখানে ব্যথা|বুকে ব্যথা|buk.*(chap|betha)|chest (pain|pressure)|chest.*discomfort|tight feeling.*chest|tight.*chest/i],
   ["maternal_pregnancy", /গর্ভবতী|গর্ভাবস্থা|প্রসব|বাচ্চার নড়াচড়া কম|pregnan|pregnant|delivery pain|baby.*movement.*less/i],

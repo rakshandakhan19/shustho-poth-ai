@@ -1,0 +1,56 @@
+{
+  "fever": {
+    "description": "Reported fever / febrile concern; not a disease label."
+  },
+  "breathing_difficulty": {
+    "description": "Breathing difficulty reported in the conversation."
+  },
+  "cough_respiratory": {
+    "description": "Cough or respiratory concern reported; no cause inferred."
+  },
+  "diarrhea_vomiting": {
+    "description": "Diarrhoea or vomiting reported; no cause inferred."
+  },
+  "dehydration": {
+    "description": "Possible hydration concern based on reported intake/urination words; worker confirms."
+  },
+  "seizure": {
+    "description": "Seizure reported; worker confirms whether current or recurring."
+  },
+  "pain": {
+    "description": "Pain reported; no cause inferred."
+  },
+  "injury_trauma": {
+    "description": "Injury or trauma reported; no severity inferred."
+  },
+  "neurological_red_flag": {
+    "description": "Possible sudden neurological warning words; prompt human assessment, no diagnosis."
+  },
+  "maternal_pregnancy": {
+    "description": "Pregnancy or maternal concern reported; worker reviews local protocol."
+  },
+  "skin_problem": {
+    "description": "Skin concern reported; no cause inferred."
+  },
+  "chest_cardiac_warning": {
+    "description": "Chest discomfort reported; not a cardiac diagnosis."
+  },
+  "diabetes_related": {
+    "description": "Diabetes or glucose concern reported; no diagnosis or measurement interpretation."
+  },
+  "hypertension_related": {
+    "description": "Blood-pressure concern reported; no diagnosis or reading interpretation."
+  },
+  "financial_barrier": {
+    "description": "Financial access barrier reported; insurance status is not inferred."
+  },
+  "connectivity": {
+    "description": "Connectivity or offline store-and-forward concern."
+  },
+  "travel_barrier": {
+    "description": "Travel or distance barrier reported."
+  },
+  "routine_follow_up": {
+    "description": "Routine follow-up requested or reported."
+  }
+}

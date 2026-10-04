@@ -1,0 +1,10 @@
+{
+  "dataset": "MASSIVE multilingual intent benchmark",
+  "status": "PLANNED_REFERENCE_ONLY",
+  "source": "Amazon Science MASSIVE dataset",
+  "source_url": "https://github.com/alexa/massive",
+  "country": "Multilingual benchmark; not Bangladesh clinical data",
+  "used_for_training": false,
+  "used_for_evaluation": false,
+  "note": "External NLP intent-classification reference only. No MASSIVE records are included or mapped to this health classifier."
+}

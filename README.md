@@ -22,7 +22,7 @@ Patients can optionally describe a concern by voice. In supported browsers, spee
 
 Voice is an additional accessibility/input channel. The core intent classification and safety workflow remains text-based and locally executable. Browser speech recognition support varies by device/browser and may require connectivity. The prototype therefore does not depend on voice recognition for its core offline functionality. Bangla is configured with `bn-BD`; English uses `en-US`. Banglish/mixed input uses the Bangla setting and may be transcribed inconsistently. Voice input is currently an interface prototype; speech-recognition accuracy has not yet been independently benchmarked. Voice browser compatibility could not be fully automated in the available environment.
 
-The page does not save audio recordings. The browser/device speech service may process audio and may require connectivity. Avoid real sensitive health information.
+The page does not save audio recordings. The browser/device speech service may process audio and may require connectivity. Avoid real sensitive health information. The main screen explicitly offers **Type** and **Speak**; a transcript must be reviewed and can be edited before it reaches the existing analysis flow. Bangla/Banglish support is being evaluated across different spellings and ways of describing symptoms; coverage is not comprehensive.
 
 Future speech evaluation should separately measure Bangla and Banglish/code-switching accuracy, dialect and noise robustness, child/older-speaker speech, health vocabulary, and negation preservation. Mozilla Common Voice, FLEURS, and MMS are possible future references, not current model data.
 
@@ -40,17 +40,17 @@ Potential warning signs lead to urgent human-care guidance before access or affo
 
 ## Bangladesh localization
 
-Bangla/Banglish examples are locally oriented but synthetic. A bundled National Portal location list supports optional division → district → upazila selection without GPS. Six DGHS public registry records support a small care-navigation discussion; coverage is incomplete and records do not indicate live service availability. WHO Bangladesh indicators provide separate population context only.
+Bangla/Banglish examples are locally oriented but synthetic. A bundled National Portal location list supports optional division → district → upazila selection without GPS. A static DGHS snapshot contains 20,509 selected active public care-facility records across 8 divisions and all 64 named districts; it is not live and does not report facility availability. WHO Bangladesh indicators provide separate population context only.
 
 ## Data sources
 
 - Bangladesh National Portal administrative geography: 8 divisions, 64 districts, 499 upazila entries as listed on the downloaded portal page. Names are kept in Bangla; confirm district membership against current BBS geocodes before production use.
-- DGHS Public Facility Registry: six source sample records; no live lookup.
+- DGHS Facility Registry public table: 20,509 active public records in selected facility types, retrieved 2026-10-04; no live lookup. Redistribution terms were not identified in the registry interface and require review before production use.
 - WHO Bangladesh country indicator package provided with the project: 15 indicators / 351 source observations; contextual display only. Package omissions and anomalies are documented in the data dictionary and source JSON.
 
 ## Data used to train/evaluate the model
 
-Training phrases are synthetic and embedded in `ai.js`. `data/ai/local_language_dataset.csv` is a project phrase inventory; it is not evidence of actual patient records. `data/ai/independent_test_set.csv` mirrors the 100 synthetic cases in `evaluation_cases.json`. Neither WHO nor geography/facility data enter the classifier.
+Training phrases are synthetic and embedded in `ai.js`. `data/ai/local_language_dataset.csv` is a project phrase inventory; it is not evidence of actual patient records. `data/ai/independent_test_set.csv` mirrors the 100 synthetic cases in `evaluation_cases.json`. A separate 150-case synthetic language set in `evaluation_cases_independent.json` is not training data and is evaluated by `run_independent_evaluation.py` against production `ai.js`; its output is `evaluation_results_independent.json`. Neither WHO nor geography/facility data enter the classifier.
 
 ## Contextual evidence datasets
 
@@ -58,7 +58,7 @@ WHO Bangladesh is the only contextual evidence dataset bundled. The Bangladesh S
 
 ## Care facility data
 
-`data/health_access/bangladesh_health_facilities.json` contains six DGHS registry records, marked `REAL_SOURCE`, with missing address/coordinates/contact/year explicitly null. “Care options in your selected area” matches upazila first, then district, then division and labels the level. It never estimates distance or calls a record “nearest.” The dataset is not a complete facility directory and says nothing about hours, capacity, staffing, stock, current services, or emergency suitability.
+`data/health_access/bangladesh_health_facilities.json` contains 20,509 active public DGHS Facility Registry records in selected care-facility types, marked `REAL_SOURCE`, across all 8 divisions and 64 named districts. Unavailable address/coordinates/union/source year remain null. “Care options in your selected area” tries upazila, then district, then division; the selector uses Bangla geography while registry locality labels are English, so exact district/upazila matching is limited and this limitation is displayed. Fallback never silently selects Dhaka. The interface limits visible cards for performance. It never estimates distance or calls a record “nearest.” This snapshot does not report hours, capacity, staffing, stock, current services, or emergency suitability. The registry interface did not expose a reuse license; confirm redistribution terms before production use.
 
 ## Evaluation
 
@@ -74,9 +74,15 @@ Current stored evaluation (`results.json`; not overwritten in this work):
 
 Prototype evaluation only — not clinical validation. The metrics describe a small synthetic set and phrase-rule coverage, not real-world sensitivity or clinical performance.
 
+The newly run separate evaluation is in `evaluation_results_independent.json` (150 synthetic sentence-level cases). It executes the current production JavaScript analysis and safety rules; it does not alter the existing `results.json`. Read every metric with the case labels and limitations in that report. The result is prototype evaluation only, not clinical validation.
+
+Recorded new-set results: intent accuracy 78.0% (117/150); emergency recall 71.9% (41/57); false escalation 0/93; negation accuracy 10/10; Bangla 76.9% (50/65), Banglish 80.0% (28/35), mixed 75.0% (24/32); unknown-case recall 95.0% (19/20). These are synthetic prototype metrics; in particular, the measured emergency recall is not a safety guarantee.
+
+The normalization layer canonicalizes a short list of Romanized spelling variants (`sas/shas`, `kosto/kosht`, `bacha`, `hoise/hoyeche`, `nei`, `hospitaal`) only in matching text. The patient's original message remains as entered. This does not establish broad dialect or language coverage.
+
 ## Limitations
 
-Synthetic/local-language training data; limited Bangla/Banglish spelling and dialect coverage; possible dialect bias and negation edge cases; incomplete facility sample and no live availability; no live emergency dispatch; no real NGO/CHW network, financial transaction, or insurance product; browser localStorage without production encryption/authentication; no clinical validation. Browser-based end-to-end testing could not be completed in the available environment. Mobile/browser testing limitations remain.
+Synthetic/local-language training data; limited Bangla/Banglish spelling and dialect coverage; possible dialect bias and negation edge cases; selected static facility snapshot with incomplete exact Bangla locality matching and no live availability; DGHS redistribution terms need confirmation; no live emergency dispatch; no real NGO/CHW network, financial transaction, or insurance product; browser localStorage without production encryption/authentication; no clinical validation. Browser-based end-to-end testing could not be completed in the available environment. Mobile/browser testing limitations remain.
 
 ## Future work
 

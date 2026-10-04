@@ -1,4 +1,4 @@
-const CACHE_NAME = "shustho-poth-static-v5";
+const CACHE_NAME = "shustho-poth-static-v6";
 const LOCAL_ASSETS = [
   "./",
   "./index.html",
@@ -14,6 +14,8 @@ const LOCAL_ASSETS = [
   "./data/health_access/bangladesh_health_facilities.json",
   "./data/health_access/service_delivery_indicators.json",
   "./data/context/who_bangladesh_health_priorities.json",
+  "./evaluation_cases_independent.json",
+  "./evaluation_results_independent.json",
   "./data/context/who_bangladesh_health_priorities_summary.js",
   "./data/context/who_health_priority_mapping.json",
   "./data/context/global_findex_bangladesh.json",

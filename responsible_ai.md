@@ -28,7 +28,7 @@ Case notes and patient-controlled records are stored in browser `localStorage`; 
 
 ## 11–12. Facility and emergency limits
 
-The DGHS directory contains six static source records, not a full national directory. It does not report live opening, staffing, capacity, stock, services, route, distance, referral acceptance, or emergency suitability. No live emergency, ambulance, CHW, NGO, or SMS service is connected. Verify local options independently.
+The DGHS snapshot contains 20,509 selected active public records across all divisions and named districts, but it is not a full registry export. It does not report live opening, staffing, capacity, stock, services, route, distance, referral acceptance, or emergency suitability. The selector is Bangla while DGHS locality fields are English, so exact upazila/district matching is incomplete and division fallback is common. The snapshot is static; verify local options independently. No live emergency, ambulance, CHW, NGO, or SMS service is connected. Redistribution terms were not identified and should be confirmed before production use.
 
 ## 13. Financial safety
 

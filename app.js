@@ -141,12 +141,17 @@ function renderCareOptions() {
   if(!status||!cards||!select)return;
   const result=findCareOptions(selectedLocation,latestAnalysis?.concerns);
   const area=selectedLocation.upazila||selectedLocation.district||selectedLocation.division;
-  if(!area){status.textContent="Select an area to look for the small sample of source records. Records are incomplete; verify locally.";cards.innerHTML="";select.innerHTML='<option value="">Choose a record</option>';return;}
-  if(!result.records.length){status.textContent=`No bundled source facility records were found for ${area}. This sample does not cover every area; ask locally for current care options.`;cards.innerHTML="";select.innerHTML='<option value="">No records for selected area</option>';return;}
+  if(!area){status.textContent="Select an area to look for DGHS source records. This static registry snapshot is incomplete and not live; verify locally.";cards.innerHTML="";select.innerHTML='<option value="">Choose a record</option>';return;}
+  if(!result.records.length){status.textContent=`No facility records available for this exact area in the current demo dataset. No higher-level record is available in the selected division either; ask locally for current care options.`;cards.innerHTML="";select.innerHTML='<option value="">No records for selected area</option>';return;}
   const level=result.matchedLevel, label={upazila:"Selected upazila",district:"District-level fallback",division:"Division-level fallback"}[level];
-  status.textContent=`${label}: ${area}. ${result.records.length} source record${result.records.length===1?"":"s"}; not a nearest-facility result. Confirm location, services, opening, and suitability locally.`;
-  cards.innerHTML=result.records.map(f=>`<article class="facility-card"><h3>${escapeHTML(facilityValue(f,"name"))}</h3><p class="bangla-name">${escapeHTML(facilityValue(f,"name_bn")||"")}</p><p>${escapeHTML(facilityValue(f,"type"))} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">${escapeHTML(f.data_status||"DEMO")} · ${escapeHTML(f.facility_id)} · verify locally</p></article>`).join("");
-  select.innerHTML='<option value="">Choose a source record</option>'+result.records.map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(facilityValue(f,"name"))} · ${escapeHTML(f.district)}</option>`).join("");
+  const matchedArea=level==="upazila"?selectedLocation.upazila:level==="district"?selectedLocation.district:selectedLocation.division;
+  const exactLevel=selectedLocation.upazila?"upazila":selectedLocation.district?"district":"division";
+  const fallbackNotice=level===exactLevel?"":level==="division"&&(selectedLocation.upazila||selectedLocation.district)?"No facility records available for this exact area in the current demo dataset. Showing options at the selected division level because Bangla district/upazila names cannot be matched to the registry's English locality labels. ":"No facility records available for this exact area in the current demo dataset. Showing options at the next administrative level. ";
+  const careVisible=result.records.slice(0,12);
+  const crosswalkNotice=level==="division"&&(selectedLocation.upazila||selectedLocation.district)?" District/upazila matching is limited because the DGHS snapshot provides English facility locality names while the selector uses Bangla names.":"";
+  status.textContent=`${fallbackNotice}${label}: ${matchedArea}. ${result.records.length.toLocaleString()} source records; showing up to ${careVisible.length}. Not a nearest-facility result. Confirm location, services, opening, and suitability locally.${crosswalkNotice}`;
+  cards.innerHTML=careVisible.map(f=>`<article class="facility-card"><h3>${escapeHTML(facilityValue(f,"name"))}</h3><p class="bangla-name">${escapeHTML(facilityValue(f,"name_bn")||"")}</p><p>${escapeHTML(facilityValue(f,"type"))} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">${escapeHTML(f.data_status||"DEMO")} · ${escapeHTML(f.facility_id)} · verify locally</p></article>`).join("");
+  select.innerHTML='<option value="">Choose a source record</option>'+result.records.slice(0,100).map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(facilityValue(f,"name"))} · ${escapeHTML(f.district)}</option>`).join("");
 }
 function renderLocationControls() {
   if(!locations)return;
@@ -381,13 +386,19 @@ function renderFollowups() {
 }
 function updateFollowup(id,changes) { const records=safeStorage.read("shustho_poth_cases",[]);const record=(Array.isArray(records)?records:[]).find(item=>item.id===id);if(!record)return;record.follow_up={...record.follow_up,...changes};record.updated_at=new Date().toISOString();safeStorage.write("shustho_poth_cases",records);if(draft?.id===id)draft=record;byId("followupStatus").textContent=`Follow-up updated: ${record.follow_up.status || "Pending"}. Saved locally; no reminder was sent.`;renderFollowups();renderQueue(); }
 function renderFacilities() {
-  const chosenDistrict = byId("districtFilter").value;
-  const visible = chosenDistrict === "all" ? facilities : facilities.filter(f => f.district === chosenDistrict);
-  byId("facilityCards").innerHTML = visible.map(f => `<article class="facility-card"><h3>${escapeHTML(facilityValue(f,"name"))}</h3><p class="bangla-name">${escapeHTML(facilityValue(f,"name_bn") || "")}</p><p>${escapeHTML(facilityValue(f,"type"))} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">${escapeHTML(f.data_status||"DEMO")} · ${escapeHTML(f.facility_id)} · Verify locally</p><button type="button" class="button-small" onclick="chooseFacility('${escapeHTML(f.facility_id)}')">Select for this case</button></article>`).join("") || `<p>No sample records for this district.</p>`;
+  const districtFilter=byId("districtFilter");
+  const chosenDistrict = districtFilter.value;
+  const districts=[...new Set(facilities.map(f=>f.district).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  districtFilter.innerHTML='<option value="all">All source districts</option>'+districts.map(d=>`<option value="${escapeHTML(d)}">${escapeHTML(d)}</option>`).join("");
+  districtFilter.value=chosenDistrict==="all"||districts.includes(chosenDistrict)?chosenDistrict:"all";
+  const visible = districtFilter.value === "all" ? facilities : facilities.filter(f => f.district === districtFilter.value);
+  const visibleRows=visible.slice(0,50);
+  if(byId("facilityDatasetStatus"))byId("facilityDatasetStatus").textContent=`${visible.length.toLocaleString()} source records match this filter. Showing ${visibleRows.length.toLocaleString()} records; this static registry snapshot is not live.`;
+  byId("facilityCards").innerHTML = visibleRows.map(f => `<article class="facility-card"><h3>${escapeHTML(facilityValue(f,"name"))}</h3><p class="bangla-name">${escapeHTML(facilityValue(f,"name_bn") || "")}</p><p>${escapeHTML(facilityValue(f,"type"))} · ${escapeHTML(f.district)}, ${escapeHTML(f.upazila)}</p><p class="muted">${escapeHTML(f.data_status||"DEMO")} · ${escapeHTML(f.facility_id)} · Verify locally</p><button type="button" class="button-small" onclick="chooseFacility('${escapeHTML(f.facility_id)}')">Select for this case</button></article>`).join("") || `<p>No source records for this district.</p>`;
   const select=byId("facilitySelect"), prior=select.value;
-  select.innerHTML=`<option value="">Choose a sample facility (verify locally)</option>`+facilities.map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(facilityValue(f,"name"))} · ${escapeHTML(f.district)} (${escapeHTML(f.upazila)})</option>`).join("");
+  select.innerHTML=`<option value="">Choose a source facility (verify locally)</option>`+visible.slice(0,100).map(f=>`<option value="${escapeHTML(f.facility_id)}">${escapeHTML(facilityValue(f,"name"))} · ${escapeHTML(f.district)} (${escapeHTML(f.upazila)})</option>`).join("");
   select.value=prior;
-  select.onchange=()=>{if(draft){draft.facility_id=select.value;updatePlanSummary();refreshSms();}else{const f=facilities.find(row=>row.facility_id===select.value);byId("selectedFacilitySummary").textContent=f?`${facilityValue(f,"name")} · ${facilityValue(f,"type")} · ${f.district}, ${f.upazila}. Source sample; independently verify services, hours, and suitability.`:"No facility selected.";}};
+  select.onchange=()=>{if(draft){draft.facility_id=select.value;updatePlanSummary();refreshSms();}else{const f=facilities.find(row=>row.facility_id===select.value);byId("selectedFacilitySummary").textContent=f?`${facilityValue(f,"name")} · ${facilityValue(f,"type")} · ${f.district}, ${f.upazila}. DGHS snapshot record; independently verify services, hours, and suitability.`:"No facility selected.";}};
   renderCareOptions();
 }
 function chooseFacility(id) { byId("facilitySelect").value=id; if (!draft) { byId("facilityHint").textContent = "Sample facility selected for discussion. Analyze a case to attach it to your local note."; byId("facilitySelect").dispatchEvent(new Event("change")); return; } draft.facility_id = id; updatePlanSummary(); byId("facilityHint").textContent = "Facility selected for this draft. Independently verify locally that it is appropriate and available."; }
@@ -491,7 +502,7 @@ function loadLocalResources() {
     if (!window.SHU_WHO_SUMMARY) byId("whoStatus").textContent = "WHO indicator JSON is bundled locally. Core screening and case workflow work offline.";
     return;
   }
-  fetch("./data/health_access/bangladesh_health_facilities.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { if (Array.isArray(data.records)) facilities = data.records; renderFacilities(); if (draft) renderAccess(); }).catch(() => renderFacilities());
+  fetch("./data/health_access/bangladesh_health_facilities.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { if (Array.isArray(data.records)) facilities = data.records; renderFacilities(); if (draft) renderAccess(); }).catch(() => {renderFacilities();if(byId("facilityDatasetStatus"))byId("facilityDatasetStatus").textContent="The full DGHS snapshot could not be loaded. A small embedded sample may be shown; use an HTTPS/local web server and check connectivity for the bundled file.";});
   fetch("./data/geography/bangladesh_locations.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {locations=data;renderLocationControls();}).catch(()=>{if(locations)renderLocationControls();else byId("locationStatus").textContent="Bundled location file could not be loaded; core workflow still works.";});
   fetch("./data/context/who_bangladesh_health_priorities.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(renderIndicators).catch(() => { if (!window.SHU_WHO_SUMMARY) byId("whoStatus").textContent = "WHO context file is bundled locally; the classifier and workflow work without it."; });
 }
@@ -510,6 +521,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if(!speechAvailable){byId("voiceUnavailable").hidden=false;setVoiceStatus("unavailable","Voice unavailable · You can type your message instead.");}
   byId("recordVoiceButton").addEventListener("click",startVoiceRecognition);
   byId("stopVoiceButton").addEventListener("click",stopVoiceRecognition);
+  byId("voiceTypeModeButton").addEventListener("click",()=>byId("input").focus());
+  byId("voiceSpeakModeButton").addEventListener("click",()=>{byId("recordVoiceButton").focus();byId("recordVoiceButton").scrollIntoView({block:"nearest",behavior:"smooth"});});
   byId("typeInsteadButton").addEventListener("click",()=>showTypeInstead());
   document.querySelectorAll("[data-type-instead]").forEach(button=>button.addEventListener("click",()=>showTypeInstead()));
   byId("retryVoiceButton").addEventListener("click",startVoiceRecognition);
