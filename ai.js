@@ -252,10 +252,13 @@ function classify(text) {
 }
 
 const CUE_RULES = [
-  ["neurological_red_flag", /এক পাশের.*(দুর্বল|অবশ)|হঠাৎ.*(হাত|পা).*(দুর্বল|অবশ)|কথা জড়িয়ে|কথা বলতে.*(পারছে না|শব্দ বের হচ্ছে না)|মুখ.*বেঁকে|hothat ek pasher.*(durbol|obosh)|ek pasher haat pa durbol|ek pashe.*(jhim|obosh)|hothat.*(obosh|joracche)|kotha bolte partese na|kotha joracche|kotha joray|one side.*(weak|numb)|sudden.*weak|speech.*slurred|slurred speech|face.*droop|drooping face/i],
-  ["breathing_difficulty", /শ্বাস.?কষ্ট|বুক ধর ধর|শ্বাস নিতে.*কষ্ট|দম নিতে.*কষ্ট|দম নিতে পারছে না|নিশ্বাস নিতে.*কষ্ট|শ্বাস নিতে পারছে না|শ্বাস নিতে.*সমস্যা|শ্বাস নিতে কষ্ট|শ্বাস e কষ্ট|shash nite.*(?:koshto|kosto|problem|partese|parche)|shash korte koshto|shash e.*koshto|shash e.*kosto|shash koshto|shash kosto|nishash.*koshto|buk dhor|dom nite koshto|breathing(?:\s+\w+){0,2}\s+(?:problem|difficulty|trouble)|breathing problem|breath korte problem|cannot breathe|can't breathe|cannot breathe comfortably|breath.*(difficulty|hard|trouble)|short of breath/i],
-  ["seizure", /খিঁচুনি|খিচুনি|khichuni|seizure|convulsion/i],
-  ["chest_cardiac_warning", /বুকে চাপ|বুকের মাঝখানে ব্যথা|বুকে ব্যথা|buk.*(chap|betha)|chest (pain|pressure)|chest.*discomfort|tight feeling.*chest|tight.*chest/i],
+   ["neurological_red_flag", /এক পাশের.*(দুর্বল|অবশ|ঝিনঝিন)|হঠাৎ.*(হাত|পা).*(দুর্বল|অবশ|ঝিনঝিন)|এক হাত.*দুর্বল|এক পা.*দুর্বল|হাত পা.*অবশ|কথা জড়িয়ে|কথা আটকে|কথা বলতে.*(পারছে না|পারে না)|কথা বুঝতে.*পারছে না|মুখ.*(বেঁকে|বিকৃত|এক দিকে)|চোখ.*এক দিকে|হঠাৎ.*দেখতে.*(পারছে না|পাচ্ছে না)|হঠাৎ.*দৃষ্টি.*কম|খুব মাথা ঘুরে.*পড়|অস্বাভাবিক.*বিভ্রান্ত|hothat ek pasher.*(durbol|obosh|jhim)|ek pasher haat.*(durbol|obosh)|ek pasher pa.*(durbol|obosh)|haat pa.*obosh|haat.*durbol.*hoye|pa.*durbol.*hoye|kotha bolte.*(partese na|parche na)|kotha.*joracche|kotha.*atke|mukh.*(ek dike|neme)|face.*droop|drooping face|one side.*(weak|numb|tingling)|sudden.*(weak|numb)|speech.*(slurred|difficulty)|cannot speak|can't speak|cannot see|sudden.*vision|sudden.*confus|very confused/i],
+
+  ["breathing_difficulty", /শ্বাস.?কষ্ট|শ্বাস নিতে.*(কষ্ট|পারছে না|পারতেছে না|সমস্যা)|শ্বাস.*বন্ধ|দম নিতে.*(কষ্ট|পারছে না)|দম.*বন্ধ|নিশ্বাস নিতে.*(কষ্ট|পারছে না)|নিশ্বাস.*বন্ধ|শ্বাস খুব দ্রুত|হাঁপাচ্ছে|হাঁপানি.*খুব বেড়েছে|ঠোঁট.*(নীল|কালো)|মুখ.*নীল|বুক.*(ধর|চাপ|আটকে)|বুক.*ভেঙে|শ্বাস নিতে গেলে.*কষ্ট|শ্বাস নিতে.*না পার|amar dom nite.*(koshto|kosto)|dom.*(nite|neya).*(koshto|kosto)|shash.*(koshto|kosto|problem|bondho)|shash nite.*(parche na|partese na)|nishash.*(koshto|bondho)|haap.*korche|buk.*(dhor|chap|atke)|buk.*heavy|lips?.*(blue|nil)|face.*blue|can't breathe|cannot breathe|can't catch my breath|struggling to breathe|breathing.*(difficulty|trouble|hard)|shortness of breath|short of breath|choking|choked/i],
+
+  ["seizure", /খিঁচুনি|খিচুনি|খিঁচুনি মতো|শরীর.*(কাঁপ|ঝাঁকুনি)|চোখ.*উল্টে|মুখে.*ফেনা|অজ্ঞান.*কাঁপ|বারবার.*খিঁচুনি|খিঁচুনি.*(থামছে না|চলছে)|একটার পর.*আরেকটা.*খিঁচুনি|khichuni|khichuni moto|shorir.*(kap|jhakuni)|chokh.*ulte|mukhe.*fena|ojnan.*(kap|khichuni)|bar bar.*khichuni|khichuni.*(thamche na|cholche)|convulsion|seizure|fitting|fit.*again/i],
+
+  ["chest_cardiac_warning", /বুকে চাপ|বুকের মাঝখানে ব্যথা|বুকে ব্যথা|বুকের ভিতর ব্যথা|বুকে ভার|বুকে অস্বস্তি|বুক চেপে|বুক ফেটে|হৃদপিণ্ডের কাছে ব্যথা|বাম হাত.*বুকে|বুক.*ব্যথা.*ঘাম|বুক.*চাপ.*শ্বাস|buk.*(chap|betha|bhari|atke|ashosti)|buker majhkhane.*betha|buk.*betha.*gham|bam hat.*buk|heart.*(pain|pressure)|chest (pain|pressure)|chest.*discomfort|chest.*tight|tight.*chest|pressure.*chest|heart attack|heart.*attack|crushing chest pain/i],
   ["maternal_pregnancy", /গর্ভবতী|গর্ভাবস্থা|প্রসব|বাচ্চার নড়াচড়া কম|pregnan|pregnant|delivery pain|baby.*movement.*less/i],
   ["dehydration", /পানি খেতে পারছে না|পানি খাচ্ছে না|পানিও রাখতে পারছে না|পানি.*খেতে.*চায় না|প্রস্রাব (হচ্ছে না|কম)|মুখ শুকিয়ে|জিহ্বা শুকনো|pani (khete|khaite|khaitese) partese na|pani khaite iccha korche na|prosrab kom|tongue dry|no urine|cannot keep fluids/i],
   ["diarrhea_vomiting", /পাতলা পায়খানা|ডায়রিয়া|বমি|patla paykhana|diarr?hoea|diarrhea|loose motion|vomit/i],
@@ -299,9 +302,37 @@ function detectRedFlags(text, concerns, fields) {
   if (concerns.includes("injury_trauma") && /রক্তপাত|অনেক রক্ত|রক্ত পড়|bleed|blood/i.test(value)) add("bleeding_report", "Bleeding reported after injury", "Heavy or ongoing bleeding needs urgent human assessment.");
   if (hasPositiveMatch(value, /(মাথায়.*লেগেছে|mathay legeche|hit.*head|head injury|head trauma|পড়ে.*মাথায়)/i) && hasPositiveMatch(value, /(ঘুরছে|ghur|বমি|অজ্ঞান|confus|dizz|vomit|unconscious)/i)) add("head_injury_report", "Head injury with a concerning symptom reported", "A head injury and dizziness, vomiting, confusion, or loss of consciousness were reported; seek urgent human assessment.");
   if (hasPositiveMatch(value, /প্রস্রাব.{0,12}(হচ্ছে না|কম)|no urine|prosrab.*(kom|hoy nai)|pani rakhte partese na|পানি খেতে পারছে না|pani (khete|khaite|khaitese) partese na|cannot keep fluids|unable to drink|চোখ বসে|চামড়া.*শুকনো/i)) add("fluid_or_urine_warning", "Unable to drink or very little/no urine reported", "The reported words describe difficulty drinking or reduced urine; seek prompt human assessment.");
-  if (hasPositiveMatch(value, /সাপে কামড়|সাপ কামড়|snake ?bite|bitten by a snake|venomous bite/i)) add("snakebite_report", "Snakebite reported", "Snakebite needs urgent human medical assessment; do not wait for app guidance.");
-  if (hasPositiveMatch(value, /বিষ খেয়েছে|বিষ পান|poison(ing)?|drank poison|ate poison|chemical ingestion|ওষুধ বেশি খেয়েছে/i)) add("poisoning_report", "Possible poisoning reported", "Possible poisoning needs urgent human assessment; contact emergency care now.");
-  return flags;
+ if (hasPositiveMatch(value, /সাপে কামড়|সাপ কামড়|snake ?bite|bitten by a snake|venomous bite/i))
+  add("snakebite_report", "Snakebite reported", "Snakebite needs urgent human medical assessment; do not wait for app guidance.");
+
+if (hasPositiveMatch(value, /বিষ খেয়েছে|বিষ পান|বিষ খাইছে|কীটনাশক.*খেয়েছে|poison(ing)?|drank poison|ate poison|chemical ingestion|poison.*ingest|pesticide.*ingest|ওষুধ বেশি খেয়েছে/i))
+  add("poisoning_report", "Possible poisoning reported", "Possible poisoning needs urgent human assessment; contact emergency care now.");
+
+if (hasPositiveMatch(value, /ঠোঁট.*নীল|মুখ.*নীল|চামড়া.*নীল|blue lips|lips.*blue|turning blue|cyanosis/i))
+  add("blue_lips_report", "Blue lips or skin reported", "Blue discoloration can indicate a serious problem; seek urgent human assessment.");
+
+if (hasPositiveMatch(value, /দম বন্ধ|শ্বাস বন্ধ|শ্বাস.*বন্ধ|breathing stopped|not breathing|stopped breathing|unable to breathe/i))
+  add("not_breathing_report", "Severe breathing problem reported", "The reported words describe inability to breathe; seek emergency help immediately.");
+
+if (hasPositiveMatch(value, /গলায়.*আটকে|গলায়.*কিছু আটকে|দম বন্ধ.*খাবার|choking|choked|something stuck in throat/i))
+  add("choking_report", "Possible choking reported", "Possible choking needs immediate human emergency assistance.");
+
+if (hasPositiveMatch(value, /অতিরিক্ত ঘুম|জাগছে না|জাগানো যাচ্ছে না|সাড়া.*দিচ্ছে না|unresponsive|not responding|not waking|cannot wake|can't wake/i))
+  add("unresponsive_report", "Not responding or difficult to wake reported", "The reported words describe reduced responsiveness; seek urgent human help.");
+
+if (hasPositiveMatch(value, /অনেক বেশি রক্ত|প্রচুর রক্ত|রক্ত.*বন্ধ.*হচ্ছে না|রক্ত.*থামছে না|heavy bleeding|severe bleeding|bleeding won't stop|won't stop bleeding/i))
+  add("severe_bleeding_report", "Heavy or ongoing bleeding reported", "Heavy or ongoing bleeding needs urgent human assessment.");
+
+if (hasPositiveMatch(value, /গুরুতর অ্যালার্জি|শরীর ফুলে.*শ্বাস|মুখ.*ফুলে.*শ্বাস|গলা.*ফুলে|anaphylaxis|severe allergic reaction|face.*swelling.*breath|throat.*swelling/i))
+  add("severe_allergy_report", "Possible severe allergic reaction reported", "Swelling with breathing difficulty can be serious; seek urgent human assessment.");
+
+if (hasPositiveMatch(value, /গর্ভ.*রক্ত.*বেশি|গর্ভাবস্থায়.*অনেক রক্ত|pregnan.*heavy bleeding|pregnancy.*severe bleeding/i))
+  add("pregnancy_bleeding_report", "Heavy pregnancy-related bleeding reported", "Pregnancy-related heavy bleeding needs urgent human assessment.");
+
+if (hasPositiveMatch(value, /বাচ্চা নড়ছে না|বাচ্চা নড়াচড়া করছে না|baby.*not moving|baby.*stopped moving|fetal movement.*absent/i))
+  add("reduced_fetal_movement_report", "Reduced or absent fetal movement reported", "Reduced fetal movement needs prompt human assessment.");
+
+return flags;
 }
 
 function extractFields(text) {
@@ -326,7 +357,15 @@ function extractFields(text) {
 }
 function analyzeCase(text) {
   const prediction = classify(text), fields = extractFields(text), concerns = detectConcerns(text), negatedConcerns = detectNegatedConcerns(text);
-  const urgentConcern = concerns.find(x => ["neurological_red_flag", "breathing_difficulty", "seizure", "chest_cardiac_warning"].includes(x));
+  const redFlags = detectRedFlags(text, concerns, fields);
+  const urgentConcern =
+    concerns.find(x => [
+      "neurological_red_flag",
+      "breathing_difficulty",
+      "seizure",
+      "chest_cardiac_warning"
+    ].includes(x))
+    || (redFlags.length ? "urgent_warning_sign" : null);
   const intent = urgentConcern || (concerns.includes("routine_follow_up") ? "routine_follow_up" : null) || (concerns.includes(prediction.intent) ? prediction.intent : null) || concerns[0] || (negatedConcerns.includes(prediction.intent) || prediction.confidence < .35 ? "unknown" : prediction.intent);
   const barriers = [];
   if (fields.financial_barrier || concerns.includes("financial_barrier")) barriers.push("financial");
@@ -341,10 +380,11 @@ function analyzeCase(text) {
   if (concerns.includes("maternal_pregnancy")) { required.add("pregnancy_weeks"); required.add("bleeding_or_labour_symptoms"); }
   const missing = [...required].filter(key => !fields[key]);
   const uncertainty = [];
-  if (prediction.confidence < .35 || intent === "unknown") uncertainty.push("The model signal is uncertain; provide more information or seek human medical advice.");
+ if (prediction.confidence < .35 || intent === "unknown") {
+  uncertainty.push("Not sure. Ask a health worker, or call 999 if worried.");
+}
   if (prediction.intent !== intent) uncertainty.push(`Model's top class (${INTENT_LABELS[prediction.intent] || prediction.intent}) differs from the directly matched concern; worker review is essential.`);
   if (missing.length) uncertainty.push("Some relevant information is not recorded yet.");
-  const redFlags = detectRedFlags(text, concerns, fields);
   const hasHealthCue = concerns.some(x => !["financial_barrier","travel_barrier","connectivity","routine_follow_up"].includes(x));
   const uncertain = prediction.confidence < .35 || (!concerns.length && !hasHealthCue) || intent === "unknown";
   return { intent, model_intent: prediction.intent, confidence: prediction.confidence, model_signal: uncertain ? "uncertain" : "strong_phrase_match", negated_concerns: [...new Set(negatedConcerns)], direct_matches: [...new Set(concerns)], concerns: [...new Set(concerns.length ? concerns : intent === "unknown" ? [] : [prediction.intent])], fields, barriers, missing, uncertainty, red_flags: redFlags, safety_note: "Screening and documentation support only. Not a diagnosis or autonomous referral decision." };
